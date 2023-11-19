@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:login_flutter/src/models/peces_model.dart';
+import 'package:login_flutter/src/pages/carousel_details.dart';
 import 'package:login_flutter/src/providers/carousel_provider.dart';
-
-import '../utils/widgets/card_carousel_image.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -37,8 +36,8 @@ class _HomeViewState extends State<HomeView> {
                 return CarouselSlider.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index, realIndex) {
-                      final pez = snapshot.data![index];
-                      return CardImages(pez: pez);
+                      final carouselImage = snapshot.data![index];
+                      return CardImages(carouselImages: carouselImage);
                     },
                     options: CarouselOptions(
                       height: 200,
@@ -179,5 +178,29 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
     );
+  }
+}
+
+class CardImages extends StatelessWidget {
+  final Pez carouselImages;
+  const CardImages({super.key, required this.carouselImages});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        width: 400,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: InkWell(
+              onTap: () {
+                GoRouter.of(context).go('/home_view/carouselDetails',
+                    extra: {"carouselImage": carouselImages});
+              },
+              child: FadeInImage(
+                placeholder: const AssetImage("assets/loading3.gif"),
+                image: AssetImage(carouselImages.imageRoute),
+                fit: BoxFit.cover,
+              )),
+        ));
   }
 }

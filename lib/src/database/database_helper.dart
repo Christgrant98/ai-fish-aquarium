@@ -47,8 +47,6 @@ class PezRepository extends GenericRepository<Pez> {
       name: map['name'],
       imageRoute: map['image_route'],
       description: map['description'],
-      isLiked: map['is_liked'] ?? false,
-      comments: map['comments'],
     );
   }
 }

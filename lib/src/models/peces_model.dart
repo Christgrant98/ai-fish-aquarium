@@ -1,3 +1,4 @@
+import 'package:login_flutter/src/models/comment.dart';
 import 'package:login_flutter/src/models/generic_model.dart';
 import 'user_model.dart';
 
@@ -7,7 +8,7 @@ class Pez implements GenericModel {
   final String imageRoute;
   final String description;
   bool isLiked;
-  final List<Map<User, String>>? comments;
+  final List<Comment>? comments;
 
   Pez({
     this.id,
@@ -18,33 +19,39 @@ class Pez implements GenericModel {
     this.comments,
   });
 
-  factory Pez.fromMap(Map<String, dynamic> map) => Pez(
-        id: map["id"],
-        name: map["name"],
-        imageRoute: map["image_route"],
-        description: map["description"],
-        isLiked: map["is_liked"] ?? false,
-        comments: map["comments"],
-      );
+  factory Pez.fromMap(Map<String, dynamic> map) {
+    return Pez(
+      id: map["id"],
+      name: map["name"],
+      imageRoute: map["image_route"],
+      description: map["description"],
+      isLiked: map["is_liked"] ?? false,
+      comments: map["comments"],
+    );
+  }
 
   @override
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "image_route": imageRoute,
-        "description": description,
-        "is_liked": isLiked,
-        "comments": comments,
-      };
+  Map<String, dynamic> toMap() {
+    return {
+      "id": id,
+      "name": name,
+      "image_route": imageRoute,
+      "description": description,
+      "is_liked": isLiked,
+      "comments": comments,
+    };
+  }
 
-  Pez copy() => Pez(
-        id: id,
-        name: name,
-        imageRoute: imageRoute,
-        description: description,
-        isLiked: isLiked,
-        comments: comments,
-      );
+  Pez copy() {
+    return Pez(
+      id: id,
+      name: name,
+      imageRoute: imageRoute,
+      description: description,
+      isLiked: isLiked,
+      comments: comments,
+    );
+  }
 
   void toggleLike() {
     isLiked = !isLiked;

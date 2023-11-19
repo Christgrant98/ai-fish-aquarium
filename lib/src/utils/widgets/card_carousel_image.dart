@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_flutter/src/models/comment.dart';
 
 import '../../models/peces_model.dart';
 import 'base_modal.dart';
@@ -22,7 +23,7 @@ class CardImagesState extends State<CardImages> {
           child: InkWell(
             onTap: () => showDialog(
               context: context,
-              builder: (ctx) {
+              builder: (context) {
                 return BaseModal(
                   heightFactor: .65,
                   widthFactor: .9,
@@ -87,24 +88,24 @@ class CardImagesState extends State<CardImages> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Row(
-                    children: [
-                      const Text(
-                        'isLiked:',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Icon(
-                        widget.pez.isLiked
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        color: Colors.red,
-                      ),
-                    ],
-                  ),
+                  SingleChildScrollView(
+                    child: Container(
+                        color: Colors.grey,
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: widget.pez.comments?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            Comment comment = widget.pez.comments![index];
+                            return ListTile(
+                              title: Row(
+                                children: [
+                                  Text(comment.username),
+                                ],
+                              ),
+                            );
+                          },
+                        )),
+                  )
                 ],
               ),
             ),

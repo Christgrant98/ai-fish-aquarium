@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: MaterialButton(
                 onPressed: () {
-                  context.go("/home_view");
+                  context.go("/login");
                 },
                 minWidth: double.infinity,
                 color: Colors.teal,

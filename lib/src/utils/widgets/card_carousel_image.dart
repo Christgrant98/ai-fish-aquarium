@@ -80,7 +80,7 @@ class _InfoModalState extends State<InfoModal> {
   @override
   Widget build(BuildContext context) {
     return BaseModal(
-      heightFactor: .65,
+      heightFactor: step == StepView.initial ? .65 : .5,
       widthFactor: .9,
       paddingValue: 10,
       content: _buildFishModalContent(),
@@ -94,22 +94,35 @@ class _InfoModalState extends State<InfoModal> {
           Column(
             children: [
               _buildHeaderInformation(),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() => step = StepView.interactionView);
-                },
-                child: const TextView(text: 'see coments'),
-              )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextView(text: '${widget.pez.comments!.length} comments'),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() => step = StepView.interactionView);
+                    },
+                    child: const TextView(text: 'see coments'),
+                  )
+                ],
+              ),
             ],
           ),
         ],
       );
-    } else if (StepView.interactionView == step) {
-      return SingleChildScrollView(
-        child: _buildInteractionSection(),
-      );
     } else {
-      return Container();
+      return SingleChildScrollView(
+          child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              setState(() => step = StepView.initial);
+            },
+            child: const TextView(text: 'back'),
+          ),
+          _buildInteractionSection(),
+        ],
+      ));
     }
   }
 
@@ -150,12 +163,6 @@ class _InfoModalState extends State<InfoModal> {
   Widget _buildInteractionSection() {
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () {
-            setState(() => step = StepView.initial);
-          },
-          child: const TextView(text: 'back'),
-        ),
         Container(
           color: Colors.grey,
           height: 200,
@@ -174,6 +181,7 @@ class _InfoModalState extends State<InfoModal> {
           ),
         ),
         TextFormField(
+          minLines: 1,
           maxLines: 5,
         )
       ],

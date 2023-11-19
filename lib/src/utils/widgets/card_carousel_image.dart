@@ -160,7 +160,9 @@ class _InfoModalState extends State<InfoModal> {
         ),
         ElevatedButton(
           onPressed: () {
-            _addCommentToPez(currentUser);
+            _addCommentToPez(
+              user: currentUser,
+            );
           },
           child: const TextView(text: 'Add Comment'),
         ),
@@ -202,14 +204,14 @@ class _InfoModalState extends State<InfoModal> {
     );
   }
 
-  void _addCommentToPez(
-    User currentUser,
-  ) {
+  void _addCommentToPez({
+    required User user,
+  }) {
     String commentText = commentController.text;
 
     Comment newComment = _buildComment(
-      username: currentUser.username,
-      mail: currentUser.mail,
+      username: user.username,
+      mail: user.mail,
       commentText: commentText,
     );
 
@@ -230,7 +232,7 @@ class _InfoModalState extends State<InfoModal> {
     );
   }
 
-  Comment _buildComment({
+  _buildComment({
     required String username,
     required String mail,
     required String commentText,

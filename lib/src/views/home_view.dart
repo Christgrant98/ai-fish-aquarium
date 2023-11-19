@@ -106,30 +106,31 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  FutureBuilder<List<Pez>> _builCarouselView() {
+  Widget _builCarouselView() {
     return FutureBuilder<List<Pez>>(
-        future: carouselProvider.cargarData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return CarouselSlider.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index, realIndex) {
-                  final pez = snapshot.data![index];
-                  print('pez $pez');
-                  return CardImages(pez: pez);
-                },
-                options: CarouselOptions(
-                  height: 200,
-                  autoPlay: true,
-                  autoPlayCurve: Curves.easeInOut,
-                  autoPlayInterval: const Duration(seconds: 5),
-                  scrollDirection: Axis.horizontal,
-                  enlargeCenterPage: true,
-                ));
-          } else {
-            return const CustomProgressIndicator();
-          }
-        });
+      future: carouselProvider.cargarData(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return CarouselSlider.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index, realIndex) {
+                final pez = snapshot.data![index];
+                print('pez $pez');
+                return CardImages(pez: pez);
+              },
+              options: CarouselOptions(
+                height: 200,
+                autoPlay: true,
+                autoPlayCurve: Curves.easeInOut,
+                autoPlayInterval: const Duration(seconds: 5),
+                scrollDirection: Axis.horizontal,
+                enlargeCenterPage: true,
+              ));
+        } else {
+          return const CustomProgressIndicator();
+        }
+      },
+    );
   }
 
   Widget _cardImagenTexto() {

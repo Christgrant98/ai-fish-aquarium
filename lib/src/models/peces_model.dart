@@ -1,4 +1,5 @@
 import 'package:login_flutter/src/models/generic_model.dart';
+import 'user_model.dart';
 
 class Pez implements GenericModel {
   final int? id;
@@ -6,6 +7,7 @@ class Pez implements GenericModel {
   final String imageRoute;
   final String description;
   bool isLiked;
+  final List<Map<User, String>>? comments;
 
   Pez({
     this.id,
@@ -13,6 +15,7 @@ class Pez implements GenericModel {
     required this.imageRoute,
     required this.description,
     this.isLiked = false,
+    this.comments,
   });
 
   factory Pez.fromMap(Map<String, dynamic> map) => Pez(
@@ -21,6 +24,7 @@ class Pez implements GenericModel {
         imageRoute: map["image_route"],
         description: map["description"],
         isLiked: map["is_liked"] ?? false,
+        comments: map["comments"],
       );
 
   @override
@@ -30,6 +34,7 @@ class Pez implements GenericModel {
         "image_route": imageRoute,
         "description": description,
         "is_liked": isLiked,
+        "comments": comments,
       };
 
   Pez copy() => Pez(
@@ -38,6 +43,7 @@ class Pez implements GenericModel {
         imageRoute: imageRoute,
         description: description,
         isLiked: isLiked,
+        comments: comments,
       );
 
   void toggleLike() {

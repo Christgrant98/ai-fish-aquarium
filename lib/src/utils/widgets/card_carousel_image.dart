@@ -9,10 +9,10 @@ class CardImages extends StatefulWidget {
   const CardImages({super.key, required this.pez});
 
   @override
-  _CardImagesState createState() => _CardImagesState();
+  CardImagesState createState() => CardImagesState();
 }
 
-class _CardImagesState extends State<CardImages> {
+class CardImagesState extends State<CardImages> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -39,20 +39,7 @@ class _CardImagesState extends State<CardImages> {
             ),
           ),
         ),
-        CircleAvatar(
-          backgroundColor: Colors.black,
-          child: IconButton(
-            onPressed: () {
-              setState(() {
-                widget.pez.toggleLike();
-              });
-            },
-            icon: Icon(
-              widget.pez.isLiked ? Icons.favorite : Icons.favorite_border,
-              color: widget.pez.isLiked ? Colors.red : Colors.grey,
-            ),
-          ),
-        ),
+        _buildLikeBttn(),
       ],
     );
   }
@@ -124,6 +111,23 @@ class _CardImagesState extends State<CardImages> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildLikeBttn() {
+    return CircleAvatar(
+      backgroundColor: Colors.black,
+      child: IconButton(
+        onPressed: () {
+          setState(() {
+            widget.pez.toggleLike();
+          });
+        },
+        icon: Icon(
+          widget.pez.isLiked ? Icons.favorite : Icons.favorite_border,
+          color: widget.pez.isLiked ? Colors.red : Colors.grey,
+        ),
+      ),
     );
   }
 }

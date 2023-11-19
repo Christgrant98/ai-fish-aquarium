@@ -50,13 +50,7 @@ class PezRepository extends GenericRepository<Pez> {
 
   @override
   Pez fromMap(Map<String, dynamic> map) {
-    print('comments from database: ${map["comments"]}');
-    final commentsJson = map['comments'] as String?;
-    final List<Comment>? comments = commentsJson != null
-        ? (jsonDecode(commentsJson) as List<dynamic>)
-            .map((commentMap) => Comment.fromMap(commentMap))
-            .toList()
-        : null;
+    final List<Comment> comments = _decodeDataComments(map['comments']);
     return Pez(
       id: map['id'],
       name: map['name'],
@@ -65,6 +59,14 @@ class PezRepository extends GenericRepository<Pez> {
       isLiked: map['is_liked'] == 1,
       comments: comments,
     );
+  }
+
+  List<Comment> _decodeDataComments(String? commentsJson) {
+    return (commentsJson != null)
+        ? (jsonDecode(commentsJson) as List<dynamic>)
+            .map((commentMap) => Comment.fromMap(commentMap))
+            .toList()
+        : [];
   }
 }
 

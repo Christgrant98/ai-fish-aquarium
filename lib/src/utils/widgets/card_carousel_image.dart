@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/models/comment.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/peces_model.dart';
+import '../../providers/user_provider.dart';
 import 'base_modal.dart';
 
 enum StepView {
@@ -76,6 +78,7 @@ class InfoModal extends StatefulWidget {
 
 class _InfoModalState extends State<InfoModal> {
   StepView step = StepView.initial;
+  final TextEditingController commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +105,7 @@ class _InfoModalState extends State<InfoModal> {
                     onPressed: () {
                       setState(() => step = StepView.interactionView);
                     },
-                    child: const TextView(text: 'see coments'),
+                    child: const TextView(text: 'see comments'),
                   )
                 ],
               ),
@@ -124,6 +127,42 @@ class _InfoModalState extends State<InfoModal> {
         ],
       ));
     }
+  }
+
+  Widget _buildInteractionSection() {
+    return Column(
+      children: [
+        Container(
+          color: Colors.grey,
+          height: 200,
+          child: ListView.builder(
+            itemCount: widget.pez.comments?.length ?? 0,
+            itemBuilder: (context, index) {
+              Comment comment = widget.pez.comments![index];
+              return ListTile(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text(comment.username), Text(comment.mail)],
+                ),
+                subtitle: Text(comment.comment),
+              );
+            },
+          ),
+        ),
+        TextFormField(
+          controller: commentController,
+          minLines: 2,
+          maxLines: 5,
+          onChanged: (value) {},
+        ),
+        ElevatedButton(
+          onPressed: () {
+            _addCommentToPez();
+          },
+          child: const TextView(text: 'Add Comment'),
+        ),
+      ],
+    );
   }
 
   Widget _buildHeaderInformation() {
@@ -160,31 +199,33 @@ class _InfoModalState extends State<InfoModal> {
     );
   }
 
-  Widget _buildInteractionSection() {
-    return Column(
-      children: [
-        Container(
-          color: Colors.grey,
-          height: 200,
-          child: ListView.builder(
-            itemCount: widget.pez.comments?.length ?? 0,
-            itemBuilder: (context, index) {
-              Comment comment = widget.pez.comments![index];
-              return ListTile(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text(comment.username), Text(comment.mail)],
-                ),
-                subtitle: Text(comment.comment),
-              );
-            },
-          ),
-        ),
-        TextFormField(
-          minLines: 1,
-          maxLines: 5,
-        )
-      ],
+  void _addCommentToPez() {
+    final currentUser = Provider.of<UserProvider>(context, listen: false).user!;
+
+    String commentText = commentController.text;
+
+    Comment newComment = _buildComment(
+      username: currentUser.username,
+      mail: currentUser.mail,
+      commentText: commentText,
+    );
+
+    setState(() {
+      widget.pez.comments!.add(newComment);
+    });
+
+    Navigator.of(context).pop();
+  }
+
+  Comment _buildComment({
+    required String username,
+    required String mail,
+    required String commentText,
+  }) {
+    return Comment(
+      username: username,
+      mail: mail,
+      comment: commentText,
     );
   }
 }

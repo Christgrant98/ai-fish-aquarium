@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:login_flutter/src/models/explorer_activity_model.dart';
 import 'package:login_flutter/src/models/generic_model.dart';
 import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/models/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+
+import '../models/comment.dart';
 
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
@@ -25,11 +29,15 @@ class DatabaseHelper {
       join(await getDatabasesPath(), 'acuario.db'),
       onCreate: (db, version) {
         db.execute(
-            'CREATE TABLE peces (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image_route TEXT, description TEXT)');
+          'CREATE TABLE peces (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image_route TEXT, description TEXT, is_liked INTEGER, comments TEXT)',
+        );
+
         db.execute(
-            'CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, mail TEXT, profilePicture TEXT)');
+          'CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, mail TEXT, profilePicture TEXT)',
+        );
         db.execute(
-            'CREATE TABLE activities (id INTEGER PRIMARY KEY AUTOINCREMENT, activity TEXT, completed INTEGER, checkCompletionFunction TEXT)');
+          'CREATE TABLE activities (id INTEGER PRIMARY KEY AUTOINCREMENT, activity TEXT, completed INTEGER, checkCompletionFunction TEXT)',
+        );
       },
       version: 1,
     );
@@ -42,11 +50,20 @@ class PezRepository extends GenericRepository<Pez> {
 
   @override
   Pez fromMap(Map<String, dynamic> map) {
+    print('comments from database: ${map["comments"]}');
+    final commentsJson = map['comments'] as String?;
+    final List<Comment>? comments = commentsJson != null
+        ? (jsonDecode(commentsJson) as List<dynamic>)
+            .map((commentMap) => Comment.fromMap(commentMap))
+            .toList()
+        : null;
     return Pez(
       id: map['id'],
       name: map['name'],
       imageRoute: map['image_route'],
       description: map['description'],
+      isLiked: map['is_liked'] == 1,
+      comments: comments,
     );
   }
 }

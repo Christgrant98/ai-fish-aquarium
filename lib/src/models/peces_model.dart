@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:login_flutter/src/models/comment.dart';
 import 'package:login_flutter/src/models/generic_model.dart';
-import 'user_model.dart';
 
 class Pez implements GenericModel {
   final int? id;
@@ -26,7 +27,9 @@ class Pez implements GenericModel {
       imageRoute: map["image_route"],
       description: map["description"],
       isLiked: map["is_liked"] ?? false,
-      comments: map["comments"],
+      comments: (map["comments"] as List<dynamic>?)
+          ?.map((commentMap) => Comment.fromMap(commentMap))
+          .toList(),
     );
   }
 
@@ -37,8 +40,10 @@ class Pez implements GenericModel {
       "name": name,
       "image_route": imageRoute,
       "description": description,
-      "is_liked": isLiked,
-      "comments": comments,
+      "is_liked":
+          isLiked ? 1 : 0, // Convertir el bool a un valor compatible con SQLite
+      "comments":
+          jsonEncode(comments?.map((comment) => comment.toMap()).toList()),
     };
   }
 

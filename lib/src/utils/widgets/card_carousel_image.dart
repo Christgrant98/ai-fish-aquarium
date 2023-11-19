@@ -4,6 +4,7 @@ import 'package:login_flutter/src/utils/widgets/text_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/peces_model.dart';
+import '../../models/user_model.dart';
 import '../../providers/user_provider.dart';
 import 'base_modal.dart';
 
@@ -130,6 +131,8 @@ class _InfoModalState extends State<InfoModal> {
   }
 
   Widget _buildInteractionSection() {
+    final currentUser = Provider.of<UserProvider>(context, listen: false).user!;
+
     return Column(
       children: [
         Container(
@@ -157,7 +160,7 @@ class _InfoModalState extends State<InfoModal> {
         ),
         ElevatedButton(
           onPressed: () {
-            _addCommentToPez();
+            _addCommentToPez(currentUser);
           },
           child: const TextView(text: 'Add Comment'),
         ),
@@ -199,9 +202,9 @@ class _InfoModalState extends State<InfoModal> {
     );
   }
 
-  void _addCommentToPez() {
-    final currentUser = Provider.of<UserProvider>(context, listen: false).user!;
-
+  void _addCommentToPez(
+    User currentUser,
+  ) {
     String commentText = commentController.text;
 
     Comment newComment = _buildComment(
@@ -215,6 +218,14 @@ class _InfoModalState extends State<InfoModal> {
     });
 
     Navigator.of(context).pop();
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return const AlertDialog(
+          content: TextView(text: 'comment was sent successfully'),
+        );
+      },
+    );
   }
 
   Comment _buildComment({

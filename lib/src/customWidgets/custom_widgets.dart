@@ -3,59 +3,57 @@ import 'package:login_flutter/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 
-
 class MyBottonNavBar extends StatelessWidget {
-
   final Function(int) onTapFunc;
   final int selectedIndex;
 
-  const MyBottonNavBar({super.key, required this.onTapFunc, required this.selectedIndex});
+  const MyBottonNavBar(
+      {super.key, required this.onTapFunc, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        onTap: onTapFunc,
-        currentIndex: selectedIndex,
-        backgroundColor: Colors.blueAccent,
-        unselectedItemColor: const Color.fromARGB(146, 255, 255, 255),
-        selectedItemColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(
+      onTap: onTapFunc,
+      currentIndex: selectedIndex,
+      backgroundColor: Colors.blueAccent,
+      unselectedItemColor: const Color.fromARGB(146, 255, 255, 255),
+      selectedItemColor: Colors.white,
+      items: const [
+        BottomNavigationBarItem(
             icon: Icon(Icons.home),
             activeIcon: Icon(Icons.home_outlined),
             label: "Home"),
-          BottomNavigationBarItem(
+        BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             activeIcon: Icon(Icons.camera_outlined),
             label: "Camara"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              activeIcon: Icon(Icons.map_outlined),
-              label: "Mapa"),
-        ],
-      );
+        BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            activeIcon: Icon(Icons.map_outlined),
+            label: "Mapa"),
+      ],
+    );
   }
 }
 
 class MyAppBar extends StatelessWidget {
-  
   const MyAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context, listen: false).user!;
     return AppBar(
-        backgroundColor: Colors.blueAccent,
-        actions: [
-          Container(
-              padding: const EdgeInsets.all(5.0),
-              child: CircleAvatar(
-                radius: 30,
-                backgroundImage:
-                    AssetImage(user.profilePicture), // Imagen de perfil
-              )),
-        ],
-      );
+      backgroundColor: Colors.blueAccent,
+      actions: [
+        Container(
+            padding: const EdgeInsets.all(5.0),
+            child: CircleAvatar(
+              radius: 30,
+              backgroundImage:
+                  AssetImage(user.profilePicture), // Imagen de perfil
+            )),
+      ],
+    );
   }
 }
 
@@ -64,7 +62,6 @@ class ScaffoldWithNavBar extends StatelessWidget {
     required this.child,
     super.key,
   });
-
 
   final Widget child;
 
@@ -75,19 +72,19 @@ class ScaffoldWithNavBar extends StatelessWidget {
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: MyAppBar(),
-        ),
+      ),
       drawer: const MyDrawer(),
       body: child,
       bottomNavigationBar: BottomNavigationBar(
-        items:  const [
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            activeIcon: Icon(Icons.home_outlined),
-            label: "Home"),
+              icon: Icon(Icons.home),
+              activeIcon: Icon(Icons.home_outlined),
+              label: "Home"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            activeIcon: Icon(Icons.camera_outlined),
-            label: "Camara"),
+              icon: Icon(Icons.camera),
+              activeIcon: Icon(Icons.camera_outlined),
+              label: "Camara"),
           BottomNavigationBarItem(
               icon: Icon(Icons.map),
               activeIcon: Icon(Icons.map_outlined),
@@ -132,12 +129,12 @@ class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
   @override
   Widget build(BuildContext context) {
-  final user = Provider.of<UserProvider>(context, listen: false).user!;
+    final user = Provider.of<UserProvider>(context, listen: false).user!;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-           DrawerHeader(
+          DrawerHeader(
             decoration: const BoxDecoration(
               color: Colors.blue,
             ),
@@ -149,7 +146,7 @@ class MyDrawer extends StatelessWidget {
                   backgroundImage: AssetImage(user.profilePicture),
                 ),
                 const SizedBox(height: 10),
-                 Text(
+                Text(
                   user.username,
                   style: const TextStyle(
                     color: Colors.white,

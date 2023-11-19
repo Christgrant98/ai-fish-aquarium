@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
-  DatabaseHelper._privateConstructor(); 
+  DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
   Database? _database;
@@ -36,7 +36,7 @@ class DatabaseHelper {
   }
 }
 
-class PezRepository extends GenericRepository<Pez>{
+class PezRepository extends GenericRepository<Pez> {
   @override
   String get tableName => 'peces';
 
@@ -47,11 +47,12 @@ class PezRepository extends GenericRepository<Pez>{
       name: map['name'],
       imageRoute: map['image_route'],
       description: map['description'],
+      isLiked: map['is_liked'] ?? false,
     );
   }
 }
 
-class UserRepository extends GenericRepository<User>{
+class UserRepository extends GenericRepository<User> {
   @override
   String get tableName => 'users';
 
@@ -87,7 +88,7 @@ class UserRepository extends GenericRepository<User>{
     return null;
   }
 
-  Future<bool> exist({required String mail}) async{
+  Future<bool> exist({required String mail}) async {
     final db = await dbHelper.database;
     final List<Map<String, dynamic>> result = await db.query(
       'users',
@@ -97,7 +98,6 @@ class UserRepository extends GenericRepository<User>{
     return result.isNotEmpty;
   }
 }
-
 
 class ExplorerActivityRepository extends GenericRepository<ExplorerActivity> {
   @override
@@ -113,7 +113,7 @@ class ExplorerActivityRepository extends GenericRepository<ExplorerActivity> {
   }
 }
 
-abstract class GenericRepository<T extends GenericModel>{
+abstract class GenericRepository<T extends GenericModel> {
   final DatabaseHelper dbHelper = DatabaseHelper.instance;
 
   String get tableName;
@@ -132,7 +132,8 @@ abstract class GenericRepository<T extends GenericModel>{
 
   Future<int> update({required T item}) async {
     final db = await dbHelper.database;
-    return db.update(tableName, item.toMap(), where: 'id = ?', whereArgs: [item.id]);
+    return db
+        .update(tableName, item.toMap(), where: 'id = ?', whereArgs: [item.id]);
   }
 
   Future<List<T>> getAll() async {

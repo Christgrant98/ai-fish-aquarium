@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:login_flutter/src/models/peces_model.dart';
-import 'package:login_flutter/src/pages/carousel_details.dart';
 import 'package:login_flutter/src/providers/carousel_provider.dart';
-import 'package:login_flutter/src/utils/widgets/base_modal.dart';
+
+import '../utils/widgets/card_carousel_image.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -37,8 +37,8 @@ class _HomeViewState extends State<HomeView> {
                 return CarouselSlider.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index, realIndex) {
-                      final carouselImage = snapshot.data![index];
-                      return CardImages(carouselImages: carouselImage);
+                      final pez = snapshot.data![index];
+                      return CardImages(pez: pez);
                     },
                     options: CarouselOptions(
                       height: 200,
@@ -179,84 +179,5 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
     );
-  }
-}
-
-class CardImages extends StatelessWidget {
-  final Pez carouselImages;
-  const CardImages({super.key, required this.carouselImages});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: InkWell(
-          onTap: () => showDialog(
-              context: context,
-              builder: (ctx) {
-                return BaseModal(
-                  heightFactor: .65,
-                  widthFactor: .9,
-                  content: SingleChildScrollView(
-                    child: _buildFishModalContent(),
-                  ),
-                );
-              }),
-          child: FadeInImage(
-            placeholder: const AssetImage("assets/loading3.gif"),
-            image: AssetImage(
-              carouselImages.imageRoute,
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFishModalContent() {
-    return Column(children: [
-      Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: FadeInImage(
-            placeholder: const AssetImage("assets/loading3.gif"),
-            image: AssetImage(carouselImages.imageRoute),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              carouselImages.name,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
-            const SizedBox(height: 15),
-            Text(
-              carouselImages.description,
-              textAlign: TextAlign.justify,
-              style: const TextStyle(
-                color: Colors.yellow,
-                fontSize: 15,
-              ),
-            )
-          ],
-        ),
-      )
-    ]);
   }
 }

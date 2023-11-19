@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/models/recognized.dart';
 
-
 class PhotosPecesProvider extends ChangeNotifier {
   final Set<PezRecognized> _setPeces = <PezRecognized>{};
 
@@ -10,7 +9,7 @@ class PhotosPecesProvider extends ChangeNotifier {
   void agregarPez(PezRecognized pez) {
     _setPeces.add(pez);
     Future.microtask(() {
-    notifyListeners();
-  });
+      notifyListeners();
+    });
   }
 }

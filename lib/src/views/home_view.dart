@@ -5,13 +5,13 @@ import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/pages/carousel_details.dart';
 import 'package:login_flutter/src/providers/carousel_provider.dart';
+import 'package:login_flutter/src/utils/widgets/base_modal.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
-
 }
 
 class _HomeViewState extends State<HomeView> {
@@ -22,7 +22,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Column(children: [
         const SizedBox(height: 10),
@@ -62,10 +61,11 @@ class _HomeViewState extends State<HomeView> {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                   GoRouter.of(context).go('/home_view/explorer');
+                    GoRouter.of(context).go('/home_view/explorer');
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(8), // Espacio interno del widget
+                    padding:
+                        const EdgeInsets.all(8), // Espacio interno del widget
                     decoration: BoxDecoration(
                       color: backgroudCards, // Color de fondo del widget
                       borderRadius:
@@ -94,7 +94,8 @@ class _HomeViewState extends State<HomeView> {
                     GoRouter.of(context).go('/home_view/album');
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(10), // Espacio interno del widget
+                    padding:
+                        const EdgeInsets.all(10), // Espacio interno del widget
                     decoration: BoxDecoration(
                       color: backgroudCards, // Color de fondo del widget
                       borderRadius:
@@ -124,6 +125,7 @@ class _HomeViewState extends State<HomeView> {
       ]),
     );
   }
+
   Widget _cardImagenTexto() {
     return Container(
       margin: lateralMargin,
@@ -158,22 +160,22 @@ class _HomeViewState extends State<HomeView> {
           ),
           const SizedBox(width: 16), // Espacio entre los elementos
           Container(
-          constraints: const BoxConstraints(
-            maxHeight: 100, // Altura máxima para la imagen
-          ),
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: const FadeInImage(
-              placeholder: AssetImage("assets/loading3.gif"),
-              image: AssetImage("assets/carousel/tiger_oscar.jpg"),
-              fit: BoxFit.cover, // Ajuste de la imagen
+            constraints: const BoxConstraints(
+              maxHeight: 100, // Altura máxima para la imagen
+            ),
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: const FadeInImage(
+                placeholder: AssetImage("assets/loading3.gif"),
+                image: AssetImage("assets/carousel/tiger_oscar.jpg"),
+                fit: BoxFit.cover, // Ajuste de la imagen
+              ),
             ),
           ),
-        ),
         ],
       ),
     );
@@ -187,18 +189,74 @@ class CardImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 400,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: InkWell(
+          onTap: () => showDialog(
+              context: context,
+              builder: (ctx) {
+                return BaseModal(
+                  heightFactor: .65,
+                  widthFactor: .9,
+                  content: SingleChildScrollView(
+                    child: _buildFishModalContent(),
+                  ),
+                );
+              }),
+          child: FadeInImage(
+            placeholder: const AssetImage("assets/loading3.gif"),
+            image: AssetImage(
+              carouselImages.imageRoute,
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFishModalContent() {
+    return Column(children: [
+      Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: InkWell(
-              onTap: () {
-                GoRouter.of(context).go('/home_view/carouselDetails', extra: {"carouselImage": carouselImages});
-              },
-              child: FadeInImage(
-                placeholder: const AssetImage("assets/loading3.gif"),
-                image: AssetImage(carouselImages.imageRoute),
-                fit: BoxFit.cover,
-              )),
-        ));
+          child: FadeInImage(
+            placeholder: const AssetImage("assets/loading3.gif"),
+            image: AssetImage(carouselImages.imageRoute),
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              carouselImages.name,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(height: 15),
+            Text(
+              carouselImages.description,
+              textAlign: TextAlign.justify,
+              style: const TextStyle(
+                color: Colors.yellow,
+                fontSize: 15,
+              ),
+            )
+          ],
+        ),
+      )
+    ]);
   }
 }

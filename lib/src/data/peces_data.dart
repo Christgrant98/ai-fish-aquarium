@@ -10,9 +10,18 @@ List<Pez> peces = <Pez>[
     description:
         "El Marbled Headstander (Abramites hypselonotus) es conocido como el 'Cabezón Marmoleado' o 'Cabezón de Espalda Alta'. Pertenece a la familia Anostomidae y al orden Characiformes. A diferencia de lo que su nombre sugiere, el Marbled Headstander no es un habitante de la superficie; más bien, se encuentra en las partes medias e inferiores del acuario. En su hábitat natural, a menudo se le encuentra con la cabeza hacia abajo y la cola hacia arriba en fisuras rocosas verticales estrechas.",
     comments: [
-      Comment(username: 'username', mail: 'mail', comment: 'comment'),
-      Comment(username: 'username', mail: 'mail', comment: 'comment'),
-      Comment(username: 'username', mail: 'mail', comment: 'comment')
+      Comment(
+          username: 'username',
+          mail: 'mail@example.com',
+          comment: 'Este es un comentario de prueba papu'),
+      Comment(
+          username: 'username',
+          mail: 'mail@example.com',
+          comment: 'Este es un comentario de prueba papu'),
+      Comment(
+          username: 'username',
+          mail: 'mail@example.com',
+          comment: 'Este es un comentario de prueba papu')
     ],
   ),
   Pez(
@@ -23,9 +32,18 @@ List<Pez> peces = <Pez>[
           "El Spotted Raphael Catfish (Agamyxis pectinifrons) es un pez de la familia Doradidae. Es conocido por sus patrones moteados y su comportamiento nocturno. Este pez originario de América del Sur prefiere hábitats con escondites y se alimenta principalmente de insectos y pequeños invertebrados. Su apariencia única y su comportamiento cautivador lo convierten en una adición interesante para acuarios comunitarios.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 3,
@@ -35,9 +53,18 @@ List<Pez> peces = <Pez>[
           "El Common Clown Fish (Amphiprion ocellaris) es famoso por su apariencia colorida y su relación simbiótica con las anémonas de mar. Originario de las aguas cálidas del Pacífico y el Índico, este pez es conocido por su comportamiento territorial y su capacidad para cambiar de género. Su asociación mutualista con las anémonas proporciona protección contra depredadores y un lugar seguro para poner huevos.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 4,
@@ -47,9 +74,18 @@ List<Pez> peces = <Pez>[
           "El Cichlid (Cíclido) es un grupo diverso de peces pertenecientes a varias familias. Conocidos por su variada coloración y comportamiento territorial, los cíclidos se encuentran en una amplia variedad de hábitats, desde lagos hasta ríos. Muchas especies de cíclidos son apreciadas en acuarismo debido a su belleza y comportamiento único.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 5,
@@ -59,9 +95,18 @@ List<Pez> peces = <Pez>[
           "El Black Ghost Knifefish (Apteronotus albifrons) es conocido por su cuerpo negro y alargado, con una aleta anal que se extiende a lo largo de su parte inferior. Originario de América del Sur, este pez nocturno es electrogénico, utilizando descargas eléctricas débiles para navegar y comunicarse. Su naturaleza única y su apariencia fascinante lo convierten en una opción popular para acuarios avanzados.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 6,
@@ -71,9 +116,18 @@ List<Pez> peces = <Pez>[
           "El Shadow Sea Catfish (Centromochlus perugiae) es un pequeño bagre de agua dulce con una apariencia distintiva. Con su cuerpo oscuro y ojos grandes, parece una sombra en movimiento en el agua. Originario de la cuenca del Amazonas, este pez pacífico es adecuado para acuarios comunitarios y prefiere esconderse en áreas sombreadas.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 7,
@@ -83,9 +137,18 @@ List<Pez> peces = <Pez>[
           "El Tiger Oscar (Astronotus ocellatus) es un pez cíclido grande y vibrante conocido por su coloración rayada y patrones únicos. Originario de América del Sur, el Oscar es apreciado por su personalidad carismática y su capacidad para reconocer a sus cuidadores. Sin embargo, es importante proporcionar un entorno espacioso para este pez robusto.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 8,
@@ -95,9 +158,18 @@ List<Pez> peces = <Pez>[
           "El Mexican Cavefish (Astyanax mexicanus) es una especie de pez adaptada a la vida en cuevas. Carece de pigmentación y ojos desarrollados debido a su entorno oscuro. Originario de México, este pez es interesante desde el punto de vista evolutivo y es una elección única para acuaristas especializados en biología subterránea.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 9,
@@ -107,9 +179,18 @@ List<Pez> peces = <Pez>[
           "El Gold Barb (Puntius semifasciolatus) es un pez de agua dulce conocido por su color dorado y su comportamiento activo. Originario de Asia, este pez de cardumen es adecuado para acuarios comunitarios y se lleva bien con una variedad de otras especies pacíficas. Su coloración vibrante lo convierte en una opción popular para acuarios plantados.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 10,
@@ -119,9 +200,18 @@ List<Pez> peces = <Pez>[
           "El Machaca (Brycon guatemalensis) es un pez de agua dulce nativo de América Central y América del Sur. Conocido por su cuerpo plateado y forma delgada, el Machaca es una especie migratoria que se encuentra en ríos y arroyos. Su papel en los ecosistemas acuáticos como dispersor de semillas lo hace vital para la salud de estos hábitats.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 11,
@@ -131,9 +221,18 @@ List<Pez> peces = <Pez>[
           "El Tetra es un grupo diverso de peces pequeños y coloridos pertenecientes a varias especies dentro de la familia Characidae. Originarios de América del Sur y Central, los tetras son conocidos por su comportamiento de cardumen y su coloración brillante. Son populares en acuarios comunitarios y a menudo se eligen por su naturaleza pacífica y su fácil cuidado.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 12,
@@ -143,9 +242,18 @@ List<Pez> peces = <Pez>[
           "El Characidum es un género de peces de agua dulce perteneciente a la familia Crenuchidae. Conocidos por su forma alargada y aleta dorsal prominente, los peces del género Characidum son originarios de América del Sur. Muchas especies de este género son apreciadas en acuarismo por su aspecto distintivo y su comportamiento activo.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 13,
@@ -155,9 +263,18 @@ List<Pez> peces = <Pez>[
           "El Characidium es un género de peces de agua dulce perteneciente a la familia Crenuchidae. Conocidos por su forma alargada y aleta dorsal prominente, los peces del género Characidium son originarios de América del Sur. Muchas especies de este género son apreciadas en acuarismo por su aspecto distintivo y su comportamiento activo.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 14,
@@ -167,9 +284,18 @@ List<Pez> peces = <Pez>[
           "El Clown Loach (Chromobotia macracanthus) es un pez de agua dulce originario de ríos en Indonesia. Conocido por sus colores vibrantes y patrones llamativos, el Clown Loach es popular en acuarios comunitarios. Este pez pacífico prefiere vivir en grupos y es conocido por su comportamiento activo y juguetón.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 15,
@@ -179,9 +305,18 @@ List<Pez> peces = <Pez>[
           "El Delphax Catfish (Dianema longibarbis) es un pequeño bagre de agua dulce originario de América del Sur. Conocido por sus espinas pectorales alargadas y su comportamiento nocturno, este pez es adecuado para acuarios comunitarios. Prefiere áreas con escondites y se alimenta principalmente de insectos y pequeños invertebrados.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 16,
@@ -191,9 +326,18 @@ List<Pez> peces = <Pez>[
           "El Netted Catfish (Agamyxis pectinifrons) es un bagre de agua dulce conocido por su patrón de red en su cuerpo. Originario de América del Sur, este pez es popular en acuarios comunitarios debido a su apariencia única y su comportamiento nocturno. Prefiere hábitats con escondites y se alimenta de insectos y pequeños invertebrados.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 17,
@@ -203,9 +347,18 @@ List<Pez> peces = <Pez>[
           "La Common Carp (Cyprinus carpio) es un pez de agua dulce originario de Asia y Europa. Conocida por su tamaño grande y su capacidad para adaptarse a una variedad de entornos acuáticos, la carpa común es una especie de importancia económica y cultural en todo el mundo. A menudo se cría en estanques y embalses para la pesca deportiva y la alimentación.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 18,
@@ -215,9 +368,18 @@ List<Pez> peces = <Pez>[
           "La Electric Eel (Electrophorus electricus) es un pez eléctrico nativo de la cuenca del Amazonas en América del Sur. Aunque no es una anguila, se le conoce comúnmente como 'anguila eléctrica'. Puede generar descargas eléctricas para la caza, la comunicación y la autodefensa. Su capacidad eléctrica única lo hace fascinante desde el punto de vista biológico.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 19,
@@ -227,9 +389,18 @@ List<Pez> peces = <Pez>[
           "El River Hatchetfish (Carnegiella marthae) es un pequeño pez de agua dulce conocido por su cuerpo transparente y su forma de hacha. Originario de América del Sur, este pez se encuentra comúnmente en arroyos y ríos lentos. Su apariencia única y su comportamiento de cardumen lo convierten en una opción interesante para acuarios más pequeños.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 20,
@@ -239,9 +410,18 @@ List<Pez> peces = <Pez>[
           "El Red Rainbow Fish (Glossolepis incisus) es un pez de agua dulce originario de Papua Nueva Guinea. Conocido por sus colores vibrantes y aletas alargadas, este pez es popular en acuarios tropicales. Prefiere hábitats con plantas y es adecuado para acuarios comunitarios con otras especies pacíficas.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
   Pez(
       id: 21,
@@ -251,9 +431,18 @@ List<Pez> peces = <Pez>[
           "El Red Rainbow Fish (Glossolepis incisus) es un pez de agua dulce originario de Papua Nueva Guinea. Conocido por sus colores vibrantes y aletas alargadas, este pez es popular en acuarios tropicales. Prefiere hábitats con plantas y es adecuado para acuarios comunitarios con otras especies pacíficas.",
       isLiked: false,
       comments: [
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment'),
-        Comment(username: 'username', mail: 'mail', comment: 'comment')
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu'),
+        Comment(
+            username: 'username',
+            mail: 'mail@example.com',
+            comment: 'Este es un comentario de prueba papu')
       ]),
 ];
 

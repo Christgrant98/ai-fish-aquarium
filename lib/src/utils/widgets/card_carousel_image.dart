@@ -98,10 +98,14 @@ class CardImagesState extends State<CardImages> {
                             Comment comment = widget.pez.comments![index];
                             return ListTile(
                               title: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(comment.username),
+                                  Text(comment.mail)
                                 ],
                               ),
+                              subtitle: Text(comment.comment),
                             );
                           },
                         )),

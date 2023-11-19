@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
                       enlargeCenterPage: true,
                     ));
               } else {
-                return const CircularProgressIndicator();
+                return const CustomProgressIndicator();
               }
             }),
         const SizedBox(height: 20),

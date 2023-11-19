@@ -3,52 +3,56 @@ import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/models/explorer_activity_model.dart';
 
-class ExplorerView extends StatelessWidget {
+import '../utils/widgets/custom_progress_indicator.dart';
 
+class ExplorerView extends StatelessWidget {
   const ExplorerView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Text("Actividades de Explorador", style: TextStyle(color: Colors.white, fontSize: 20)),
-        FutureBuilder(future: _getActivities(), 
-        builder: (context, snapshot){
-          switch(snapshot.connectionState){
-            case ConnectionState.none:
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return const Center(child: CircularProgressIndicator());
-            case ConnectionState.done:
-              if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
+        const Text("Actividades de Explorador",
+            style: TextStyle(color: Colors.white, fontSize: 20)),
+        FutureBuilder(
+            future: _getActivities(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.active:
+                case ConnectionState.waiting:
+                  return const Center(child: CustomProgressIndicator());
+                case ConnectionState.done:
+                  if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  }
+                  return snapshot.data as Widget;
               }
-              return snapshot.data as Widget;
-                    
-          }
-        }),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 50),
-        child: ElevatedButton(
-          onPressed: (){
-            context.go("/home_view/explorer/recompensas", extra: {"points":0});
-          },
-          child: const Text("Recompensas"),
+            }),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 50),
+          child: ElevatedButton(
+            onPressed: () {
+              context
+                  .go("/home_view/explorer/recompensas", extra: {"points": 0});
+            },
+            child: const Text("Recompensas"),
           ),
-      ),
-      ],);      
+        ),
+      ],
+    );
   }
-  
- Future<Widget> _getActivities() async {
-    ExplorerActivityRepository explorerRepository = ExplorerActivityRepository();
+
+  Future<Widget> _getActivities() async {
+    ExplorerActivityRepository explorerRepository =
+        ExplorerActivityRepository();
     List<ExplorerActivity> activities = await explorerRepository.getAll();
     List<Widget> misiones = [];
-    for (ExplorerActivity activity in activities){
-      misiones.add(MissionWidget(missionText: activity.activity,isCompleted: activity.isCompleted!));
-    }  
-    return Column(
-          children: misiones
-        );
+    for (ExplorerActivity activity in activities) {
+      misiones.add(MissionWidget(
+          missionText: activity.activity, isCompleted: activity.isCompleted!));
+    }
+    return Column(children: misiones);
   }
 }
 
@@ -56,7 +60,8 @@ class MissionWidget extends StatelessWidget {
   final String missionText;
   final bool isCompleted;
 
-  const MissionWidget({super.key, required this.missionText, this.isCompleted = false});
+  const MissionWidget(
+      {super.key, required this.missionText, this.isCompleted = false});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +79,10 @@ class MissionWidget extends StatelessWidget {
             height: 30,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isCompleted ? Colors.green : Colors.red, // Rojo si no se ha completado, verde si se ha completado
+              color: isCompleted
+                  ? Colors.green
+                  : Colors
+                      .red, // Rojo si no se ha completado, verde si se ha completado
             ),
             child: Icon(
               isCompleted ? Icons.check : Icons.close, // Icono de chulo o equis
@@ -86,7 +94,7 @@ class MissionWidget extends StatelessWidget {
             child: Text(
               missionText,
               style: const TextStyle(
-                color: Colors.white, 
+                color: Colors.white,
                 fontSize: 16,
               ),
             ),

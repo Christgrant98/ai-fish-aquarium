@@ -31,29 +31,7 @@ class _HomeViewState extends State<HomeView> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
-        FutureBuilder<List<Pez>>(
-            future: carouselProvider.cargarData(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return CarouselSlider.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index, realIndex) {
-                      final pez = snapshot.data![index];
-                      print('pez $pez');
-                      return CardImages(pez: pez);
-                    },
-                    options: CarouselOptions(
-                      height: 200,
-                      autoPlay: true,
-                      autoPlayCurve: Curves.easeInOut,
-                      autoPlayInterval: const Duration(seconds: 5),
-                      scrollDirection: Axis.horizontal,
-                      enlargeCenterPage: true,
-                    ));
-              } else {
-                return const CustomProgressIndicator();
-              }
-            }),
+        _builCarouselView(),
         const SizedBox(height: 20),
         Container(
           margin: lateralMargin,
@@ -126,6 +104,32 @@ class _HomeViewState extends State<HomeView> {
         _cardImagenTexto()
       ]),
     );
+  }
+
+  FutureBuilder<List<Pez>> _builCarouselView() {
+    return FutureBuilder<List<Pez>>(
+        future: carouselProvider.cargarData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return CarouselSlider.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index, realIndex) {
+                  final pez = snapshot.data![index];
+                  print('pez $pez');
+                  return CardImages(pez: pez);
+                },
+                options: CarouselOptions(
+                  height: 200,
+                  autoPlay: true,
+                  autoPlayCurve: Curves.easeInOut,
+                  autoPlayInterval: const Duration(seconds: 5),
+                  scrollDirection: Axis.horizontal,
+                  enlargeCenterPage: true,
+                ));
+          } else {
+            return const CustomProgressIndicator();
+          }
+        });
   }
 
   Widget _cardImagenTexto() {

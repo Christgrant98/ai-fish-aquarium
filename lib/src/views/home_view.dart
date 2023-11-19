@@ -6,6 +6,7 @@ import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/providers/carousel_provider.dart';
 
 import '../utils/widgets/card_carousel_image.dart';
+import '../utils/widgets/custom_progress_indicator.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

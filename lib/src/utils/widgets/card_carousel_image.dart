@@ -222,7 +222,9 @@ class _InfoModalState extends State<InfoModal> {
       context: context,
       builder: (ctx) {
         return const AlertDialog(
-          content: TextView(text: 'comment was sent successfully'),
+          content: TextView(
+            text: 'comment was sent successfully',
+          ),
         );
       },
     );

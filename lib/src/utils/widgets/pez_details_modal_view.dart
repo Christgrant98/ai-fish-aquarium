@@ -119,6 +119,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
               },
             ),
           ),
+          const SizedBox(height: 3.5),
           CommentFormField(
             title: '@${currentUser.username}',
             onChange: (String? value, bool isValid) {
@@ -126,11 +127,16 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
                 comment = isValid ? value : null;
               });
             },
-            actionSend: () => _addCommentToPez(user: currentUser),
+            actionSend: () =>
+                _canSendComment() ? _addCommentToPez(user: currentUser) : null,
           ),
         ],
       ),
     );
+  }
+
+  bool _canSendComment() {
+    return comment != null;
   }
 
   Card _buildCommentCard(Comment comment) {
@@ -175,6 +181,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
+        const SizedBox(height: 15),
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: FadeInImage(
@@ -183,7 +190,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
             fit: BoxFit.cover,
           ),
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 2.5),
         SizedBox(
           height: 155,
           child: Center(
@@ -192,7 +199,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
                 text: widget.pez.description,
                 textAlign: TextAlign.justify,
                 color: Colors.black,
-                fontSize: 13.5,
+                fontSize: 14,
               ),
             ),
           ),
@@ -209,12 +216,10 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
   void _addCommentToPez({
     required User user,
   }) {
-    String commentText = commentController.text;
-
     Comment newComment = _buildComment(
       username: user.username,
       mail: user.mail,
-      commentText: commentText,
+      commentText: comment!,
     );
 
     setState(() {

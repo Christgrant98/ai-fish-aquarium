@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../utils/widgets/custom_progress_indicator.dart';
+import '../utils/widgets/text_view.dart';
 
 class AlbumView extends StatefulWidget {
   const AlbumView({super.key});
@@ -24,13 +25,11 @@ class _AlbumViewState extends State<AlbumView> {
           const SizedBox(
             height: 40,
           ),
-          const Text(
-            'Album',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
+          const TextView(
+            text: 'Album',
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
             textAlign: TextAlign.center,
           ),
           const SizedBox(

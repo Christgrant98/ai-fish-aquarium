@@ -152,9 +152,12 @@ class _InfoModalState extends State<InfoModal> {
               return ListTile(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text(comment.username), Text(comment.mail)],
+                  children: [
+                    TextView(text: comment.username),
+                    TextView(text: comment.mail)
+                  ],
                 ),
-                subtitle: Text(comment.comment),
+                subtitle: TextView(text: comment.comment),
               );
             },
           ),
@@ -180,12 +183,10 @@ class _InfoModalState extends State<InfoModal> {
   Widget _buildHeaderInformation() {
     return Column(
       children: [
-        Text(
-          widget.pez.name,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 20,
-          ),
+        TextView(
+          text: widget.pez.name,
+          color: Colors.grey,
+          fontSize: 20,
         ),
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -195,13 +196,11 @@ class _InfoModalState extends State<InfoModal> {
             fit: BoxFit.cover,
           ),
         ),
-        Text(
-          widget.pez.description,
+        TextView(
+          text: widget.pez.description,
           textAlign: TextAlign.justify,
-          style: const TextStyle(
-            color: Colors.yellow,
-            fontSize: 14,
-          ),
+          color: Colors.yellow,
+          fontSize: 14,
         ),
         const Divider(
           color: Colors.black,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/widgets/text_view.dart';
+
 class InstructionsView extends StatelessWidget {
   const InstructionsView({super.key});
 
@@ -11,55 +13,51 @@ class InstructionsView extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "Tomar fotos de buena calidad ayudan con la identificacion de los peces",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+          TextView(
+              text:
+                  "Tomar fotos de buena calidad ayudan con la identificacion de los peces",
+              fontSize: 20,
+              color: Colors.white),
+          SizedBox(
+            height: 30,
           ),
-          SizedBox(height: 30,),
-          Text(
-            "1. el pez debe aparecer dentro del recuadro de la foto, asegúrate que no esté muy lejos.",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          TextView(
+              text:
+                  "1. el pez debe aparecer dentro del recuadro de la foto, asegúrate que no esté muy lejos.",
+              fontSize: 20,
+              color: Colors.white),
           CustomImagePair(
               imagePath1: "assets/instructions/1.1.png",
               imagePath2: "assets/instructions/1.2.png"),
-          Text(
-            "2. Evita que la foto del pez se vea obstruida por la vegetación, el recinto u otros objetos.",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          TextView(
+              text:
+                  "2. Evita que la foto del pez se vea obstruida por la vegetación, el recinto u otros objetos.",
+              fontSize: 20,
+              color: Colors.white),
           CustomImagePair(
               imagePath1: "assets/instructions/2.1.png",
               imagePath2: "assets/instructions/2.2.png"),
-          Text(
-            "3. Ten buena iluminación para un mejor contraste al momento de tomar la foto.",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          TextView(
+              text:
+                  "3. Ten buena iluminación para un mejor contraste al momento de tomar la foto.",
+              fontSize: 20,
+              color: Colors.white),
           CustomImagePair(
               imagePath1: "assets/instructions/3.1.png",
               imagePath2: "assets/instructions/3.2.png"),
-          Text(
-            "4. Pero POR FAVOR, NO uses el flash, algunos peces son muy sensibles a la luz.",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          TextView(
+              text:
+                  "4. Pero POR FAVOR, NO uses el flash, algunos peces son muy sensibles a la luz.",
+              fontSize: 20,
+              color: Colors.white),
           CustomImagePair(
               imagePath1: "assets/instructions/4.1.png",
               imagePath2: "assets/instructions/4.2.png"),
-          Text(
-            "5. Trata de tomarle la foto a un solo espécimen a la vez, puede que se dificulte la identificación si hay varias especies.",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          TextView(
+              text:
+                  "5. Trata de tomarle la foto a un solo espécimen a la vez, puede que se dificulte la identificación si hay varias especies.",
+              fontSize: 20,
+              color: Colors.white),
           CustomImagePair(
               imagePath1: "assets/instructions/5.1.png",
               imagePath2: "assets/instructions/5.2.png"),

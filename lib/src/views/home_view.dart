@@ -8,6 +8,7 @@ import 'package:login_flutter/src/providers/carousel_provider.dart';
 import '../utils/widgets/card_carousel_image.dart';
 import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/custom_progress_indicator.dart';
+import '../utils/widgets/text_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -29,9 +30,10 @@ class _HomeViewState extends State<HomeView> {
         const SizedBox(height: 10),
         _builCarouselView(),
         const SizedBox(height: 10),
-        const Text(
-          "Fotos De la Semana",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        const TextView(
+          text: "Fotos De la Semana",
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
         ),
         Container(
           margin: lateralMargin,
@@ -55,10 +57,10 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Actividades de explorador",
-                          style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
+                        TextView(
+                          text: "Actividades de explorador",
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
                         ),
                         Icon(Icons.explore,
                             size: 60, color: Colors.white), // Icono y tamaño
@@ -85,10 +87,10 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Álbum de campo",
-                          style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
+                        TextView(
+                          text: "Álbum de campo",
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
                         ),
                         Icon(Icons.photo_library,
                             size: 60, color: Colors.white), // Icono y tamaño
@@ -150,12 +152,14 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "¿Cómo utilizar la app?",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                const TextView(
+                  text: "¿Cómo utilizar la app?",
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                const Text(
-                  "Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.",
+                const TextView(
+                  text:
+                      "Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.",
                 ),
                 CustomButton(
                   onPressed: () {

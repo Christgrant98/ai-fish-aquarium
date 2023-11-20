@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/models/peces_model.dart';
 
+import '../utils/widgets/text_view.dart';
+
 class CarouselDetails extends StatelessWidget {
   final Pez carouselImages;
   const CarouselDetails({super.key, required this.carouselImages});
@@ -30,21 +32,17 @@ class CarouselDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                carouselImages.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+              TextView(
+                text: carouselImages.name,
+                color: Colors.white,
+                fontSize: 20,
               ),
               const SizedBox(height: 15),
-              Text(
-                carouselImages.description,
+              TextView(
+                text: carouselImages.description,
                 textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 15,
-                ),
+                color: Colors.yellow,
+                fontSize: 15,
               )
             ],
           ),

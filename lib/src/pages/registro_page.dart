@@ -7,6 +7,7 @@ import 'package:login_flutter/src/utils/widgets/email_form_field.dart';
 import 'package:login_flutter/src/utils/widgets/password_form_field.dart';
 
 import '../utils/widgets/custom_button.dart';
+import '../utils/widgets/text_view.dart';
 import '../utils/widgets/username_form_field.dart';
 
 class RegistroPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _RegistroPageState extends State<RegistroPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Regístrate"),
+          title: const TextView(text: "Regístrate"),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -37,13 +38,11 @@ class _RegistroPageState extends State<RegistroPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Register",
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold),
-                ),
+                const TextView(
+                    text: "Register",
+                    fontSize: 35,
+                    color: Colors.teal,
+                    fontWeight: FontWeight.bold),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Form(
@@ -167,11 +166,11 @@ class _RegistroPageState extends State<RegistroPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(title),
-          content: Text(content),
+          title: TextView(text: title),
+          content: TextView(text: content),
           actions: <Widget>[
             TextButton(
-              child: const Text("OK"),
+              child: const TextView(text: "OK"),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },

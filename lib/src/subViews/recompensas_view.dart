@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/widgets/custom_button.dart';
+import '../utils/widgets/text_view.dart';
 
 class RecompensasView extends StatelessWidget {
   final int points;
@@ -12,9 +13,10 @@ class RecompensasView extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const Text(
-            "Recompensas",
-            style: TextStyle(fontSize: 20, color: Colors.white),
+          const TextView(
+            text: "Recompensas",
+            fontSize: 20,
+            color: Colors.white,
           ),
           Container(
             margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -25,9 +27,9 @@ class RecompensasView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text(
-                  "Puntos de explorador: $points",
-                  style: const TextStyle(color: Colors.white),
+                TextView(
+                  text: "Puntos de explorador: $points",
+                  color: Colors.white,
                 ),
                 const PromoWidget(
                   promocion:
@@ -68,13 +70,11 @@ class PromoWidget extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              child: Text(
-                promocion,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: TextView(
+                text: promocion,
+                color: Colors.white,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -90,12 +90,10 @@ class PromoWidget extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(height: 8.0),
-                Text(
-                  puntosRequeridos.toString(),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                  ),
+                TextView(
+                  text: puntosRequeridos.toString(),
+                  color: Colors.white,
+                  fontSize: 20.0,
                 ),
                 const SizedBox(height: 8.0),
                 CustomButton(

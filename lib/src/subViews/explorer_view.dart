@@ -5,6 +5,7 @@ import 'package:login_flutter/src/models/explorer_activity_model.dart';
 
 import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/custom_progress_indicator.dart';
+import '../utils/widgets/text_view.dart';
 
 class ExplorerView extends StatelessWidget {
   const ExplorerView({super.key});
@@ -13,8 +14,10 @@ class ExplorerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Text("Actividades de Explorador",
-            style: TextStyle(color: Colors.white, fontSize: 20)),
+        const TextView(
+            text: "Actividades de Explorador",
+            color: Colors.white,
+            fontSize: 20),
         FutureBuilder(
             future: _getActivities(),
             builder: (context, snapshot) {
@@ -25,7 +28,7 @@ class ExplorerView extends StatelessWidget {
                   return const Center(child: CustomProgressIndicator());
                 case ConnectionState.done:
                   if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
+                    return TextView(text: 'Error: ${snapshot.error}');
                   }
                   return snapshot.data as Widget;
               }
@@ -92,12 +95,10 @@ class MissionWidget extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: Text(
-              missionText,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
+            child: TextView(
+              text: missionText,
+              color: Colors.white,
+              fontSize: 16,
             ),
           ),
         ],

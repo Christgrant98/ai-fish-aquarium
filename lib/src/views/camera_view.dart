@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -10,6 +9,8 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:login_flutter/src/utils/initialize_cameras.dart';
+
+import '../utils/widgets/text_view.dart';
 
 class CameraView extends StatefulWidget {
   const CameraView({super.key});
@@ -41,10 +42,8 @@ class _CameraViewState extends State<CameraView> {
         return;
       }
       controller.startImageStream((image) => {
-        if(!busy){
-        _doStreamImageLabeling(image),busy = true
-        }
-        });
+            if (!busy) {_doStreamImageLabeling(image), busy = true}
+          });
       setState(() {});
     }).catchError((Object e) {
       if (e is CameraException) {
@@ -70,7 +69,7 @@ class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     if (!controller.value.isInitialized) {
-      return const Center(child: Text("Camera preview"));
+      return const Center(child: TextView(text: "Camera preview"));
     }
 
     return Stack(
@@ -83,10 +82,13 @@ class _CameraViewState extends State<CameraView> {
         Positioned(
           top: 16,
           left: 16,
-          child: Text(result),),
+          child: TextView(text: result),
+        ),
         Positioned(
           bottom: 16, // Ajusta la posición vertical del botón
-          width: MediaQuery.of(context).size.width, // Ancho igual al ancho de la pantalla
+          width: MediaQuery.of(context)
+              .size
+              .width, // Ancho igual al ancho de la pantalla
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -94,7 +96,8 @@ class _CameraViewState extends State<CameraView> {
                 onPressed: () {
                   takePicture(context);
                 },
-                child: const Icon(Icons.camera, size: 36), // Ajusta el tamaño del icono
+                child: const Icon(Icons.camera,
+                    size: 36), // Ajusta el tamaño del icono
               ),
               const SizedBox(width: 16), // Agrega un espacio entre los botones
               IconButton(
@@ -114,19 +117,20 @@ class _CameraViewState extends State<CameraView> {
 
   chooseImage(BuildContext context) async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image!=null){
+    if (image != null) {
       setState(() {
         _image = File(image.path);
       });
       await _doImageLabeling();
-      GoRouter.of(context).go('/camera_view/details',extra: {"image":_image, "name":fishName});    
+      GoRouter.of(context).go('/camera_view/details',
+          extra: {"image": _image, "name": fishName});
     }
   }
 
   _doImageLabeling() async {
     if (!mounted) {
-        return;
-      }
+      return;
+    }
     InputImage inputImage = InputImage.fromFile(_image!);
 
     final List<ImageLabel> labels = await imageLabeler.processImage(inputImage);
@@ -135,7 +139,7 @@ class _CameraViewState extends State<CameraView> {
     for (ImageLabel label in labels) {
       final String text = label.label;
       final double confidence = label.confidence;
-      index =  label.index;
+      index = label.index;
       fishName = text;
       result += "$text  ${confidence.toStringAsFixed(2)}\n";
     }
@@ -144,14 +148,14 @@ class _CameraViewState extends State<CameraView> {
       index;
     });
   }
-  
+
   _doStreamImageLabeling(CameraImage image) async {
     if (!mounted) {
-        return;
-      }
+      return;
+    }
     InputImage? inputImage = await _getInputImage(image);
 
-    if (inputImage == null){
+    if (inputImage == null) {
       return;
     }
 
@@ -164,15 +168,15 @@ class _CameraViewState extends State<CameraView> {
       result += "${index.toString()} $text  ${confidence.toStringAsFixed(2)}\n";
     }
     if (!mounted) {
-        return;
-      }
+      return;
+    }
     setState(() {
       result;
       index;
     });
     busy = false;
   }
-  
+
   Future<InputImage?> _getInputImage(CameraImage image) async {
     final WriteBuffer allBytes = WriteBuffer();
     for (final Plane plane in image.planes) {
@@ -181,33 +185,38 @@ class _CameraViewState extends State<CameraView> {
     final bytes = allBytes.done().buffer.asUint8List();
 
     final Size imageSize =
-    Size(image.width.toDouble(), image.height.toDouble());
+        Size(image.width.toDouble(), image.height.toDouble());
 
     final camera = backCamera;
     final imageRotation =
-    InputImageRotationValue.fromRawValue(camera.sensorOrientation);
+        InputImageRotationValue.fromRawValue(camera.sensorOrientation);
     if (imageRotation == null) return null;
 
     final inputImageFormat =
-    InputImageFormatValue.fromRawValue(image.format.raw);
+        InputImageFormatValue.fromRawValue(image.format.raw);
     if (inputImageFormat == null) return null;
     int bytesPerRow = image.planes.first.bytesPerRow;
-    final InputImageMetadata metadata = InputImageMetadata(bytesPerRow: bytesPerRow, size: imageSize,rotation: imageRotation, format: inputImageFormat);
-    final InputImage inputImage = InputImage.fromBytes(bytes: bytes, metadata: metadata);
+    final InputImageMetadata metadata = InputImageMetadata(
+        bytesPerRow: bytesPerRow,
+        size: imageSize,
+        rotation: imageRotation,
+        format: inputImageFormat);
+    final InputImage inputImage =
+        InputImage.fromBytes(bytes: bytes, metadata: metadata);
     return inputImage;
   }
 
   Future<String> _getModelPath(String asset) async {
-  final path = '${(await getApplicationSupportDirectory()).path}/$asset';
-  await Directory(dirname(path)).create(recursive: true);
-  final file = File(path);
-  if (!await file.exists()) {
-    final byteData = await rootBundle.load(asset);
-    await file.writeAsBytes(byteData.buffer
-            .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+    final path = '${(await getApplicationSupportDirectory()).path}/$asset';
+    await Directory(dirname(path)).create(recursive: true);
+    final file = File(path);
+    if (!await file.exists()) {
+      final byteData = await rootBundle.load(asset);
+      await file.writeAsBytes(byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+    }
+    return file.path;
   }
-  return file.path;
-}
 
   Future<void> _createLabeler() async {
     final modelPath = await _getModelPath('assets/ml/fishModel.tflite');
@@ -239,12 +248,11 @@ class _CameraViewState extends State<CameraView> {
       });
 
       await _doImageLabeling();
-      GoRouter.of(context).go('/camera_view/details',extra: {"image":_image, "name":fishName});    
-    
+      GoRouter.of(context).go('/camera_view/details',
+          extra: {"image": _image, "name": fishName});
     } catch (e) {
       // Handle error taking picture
       print("Error taking picture: $e");
     }
   }
-
 }

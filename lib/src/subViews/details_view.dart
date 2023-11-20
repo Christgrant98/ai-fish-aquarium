@@ -8,6 +8,7 @@ import 'package:login_flutter/src/services/openai/chat_service.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/widgets/custom_progress_indicator.dart';
+import '../utils/widgets/text_view.dart';
 
 class DetailsView extends StatefulWidget {
   final File image;
@@ -42,35 +43,32 @@ class _DetailsViewState extends State<DetailsView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               widget.fishName != ""
-                  ? Text(
-                      widget.fishName,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
+                  ? TextView(
+                      text: widget.fishName,
+                      color: Colors.white,
+                      fontSize: 20,
                     )
-                  : const Text(""),
+                  : const TextView(text: ""),
               const SizedBox(height: 15),
               FutureBuilder(
                   future: _getDescription(context),
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:
-                        return const Text('Presiona el botón para comenzar.');
+                        return const TextView(
+                            text: 'Presiona el botón para comenzar.');
                       case ConnectionState.active:
                       case ConnectionState.waiting:
                         return const CustomProgressIndicator();
                       case ConnectionState.done:
                         if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
+                          return TextView(text: 'Error: ${snapshot.error}');
                         }
-                        return Text(
-                          '${snapshot.data}',
+                        return TextView(
+                          text: '${snapshot.data}',
                           textAlign: TextAlign.justify,
-                          style: const TextStyle(
-                            color: Colors.yellow,
-                            fontSize: 15,
-                          ),
+                          color: Colors.yellow,
+                          fontSize: 15,
                         );
                     }
                   }),

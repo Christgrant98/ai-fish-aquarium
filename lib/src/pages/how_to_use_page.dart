@@ -9,7 +9,7 @@ class HowToUsePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
         children: const [
-          Text("Instrucciones",
+          TextView( text: "Instrucciones",
         style: TextStyle(
           color: Colors.white,
           fontSize: 20.0,
@@ -47,7 +47,7 @@ class InstruccionCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          Text(
+          TextView( text: 
             texto,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),

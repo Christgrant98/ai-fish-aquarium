@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 
 import '../utils/widgets/botton_navigator_menu.dart';
+import '../utils/widgets/text_view.dart';
 
 class MyBottonNavBar extends StatelessWidget {
   final Function(int) onTapFunc;
@@ -128,18 +129,16 @@ class MyDrawer extends StatelessWidget {
                   backgroundImage: AssetImage(user.profilePicture),
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  user.username,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
+                TextView(
+                  text: user.username,
+                  color: Colors.white,
+                  fontSize: 18,
                 ),
               ],
             ),
           ),
           ListTile(
-            title: const Text('About'),
+            title: const TextView(text: 'About'),
             onTap: () {
               Navigator.pop(context);
               _showAboutDialog(context);
@@ -155,22 +154,24 @@ class MyDrawer extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Acerca de la Aplicación para Acuarios'),
+          title: const TextView(text: 'Acerca de la Aplicación para Acuarios'),
           content: const SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Bienvenido a la Aplicación para Acuarios',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                TextView(
+                  text: 'Bienvenido a la Aplicación para Acuarios',
+                  fontWeight: FontWeight.bold,
                 ),
                 SizedBox(height: 10),
-                Text(
-                  'Esta aplicación está diseñada para los amantes de los acuarios, ya sean principiantes o expertos en acuarismo. Aquí encontrarás herramientas útiles, información sobre peces, consejos de cuidado y mucho más.',
+                TextView(
+                  text:
+                      'Esta aplicación está diseñada para los amantes de los acuarios, ya sean principiantes o expertos en acuarismo. Aquí encontrarás herramientas útiles, información sobre peces, consejos de cuidado y mucho más.',
                 ),
                 SizedBox(height: 10),
-                Text(
-                  '¡Explora el mundo fascinante de los acuarios y crea un entorno acuático vibrante para tus peces!',
+                TextView(
+                  text:
+                      '¡Explora el mundo fascinante de los acuarios y crea un entorno acuático vibrante para tus peces!',
                 ),
               ],
             ),
@@ -180,7 +181,7 @@ class MyDrawer extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cerrar'),
+              child: const TextView(text: 'Cerrar'),
             ),
           ],
         );

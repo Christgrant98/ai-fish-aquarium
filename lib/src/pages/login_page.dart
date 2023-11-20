@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../utils/widgets/email_form_field.dart';
 import '../utils/widgets/password_form_field.dart';
+import '../utils/widgets/text_view.dart';
 
 class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -19,7 +20,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Iniciar Sesión"),
+          title: const TextView(text: "Iniciar Sesión"),
           centerTitle: true,
         ),
         body: Center(
@@ -28,12 +29,11 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Login",
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold),
+                const TextView(
+                  text: "Login",
+                  fontSize: 35,
+                  color: Colors.teal,
+                  fontWeight: FontWeight.bold,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30),
@@ -88,11 +88,12 @@ class LoginPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Login Failed"),
-          content: const Text("Tu inicio de sesión no pudo ser realizado"),
+          title: const TextView(text: "Login Failed"),
+          content:
+              const TextView(text: "Tu inicio de sesión no pudo ser realizado"),
           actions: <Widget>[
             TextButton(
-              child: const Text("OK"),
+              child: const TextView(text: "OK"),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../utils/widgets/custom_button.dart';
+import '../utils/widgets/text_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("App Acuario"),
+        title: const TextView(text: "App Acuario"),
         centerTitle: true,
         leading: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
       ),

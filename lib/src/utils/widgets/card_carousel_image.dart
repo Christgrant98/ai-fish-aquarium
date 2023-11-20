@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/utils/widgets/custom_progress_indicator.dart';
 import 'package:login_flutter/src/utils/widgets/pez_details_modal_view.dart';
@@ -28,8 +30,14 @@ class CardImagesState extends State<CardImages> {
                   onTap: () => showDialog(
                         context: context,
                         builder: (context) {
-                          return PezDetailsModalView(
-                            pez: widget.pez,
+                          return BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 5.0,
+                              sigmaY: 5.0,
+                            ),
+                            child: PezDetailsModalView(
+                              pez: widget.pez,
+                            ),
                           );
                         },
                       ),

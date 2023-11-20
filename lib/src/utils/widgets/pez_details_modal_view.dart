@@ -34,14 +34,12 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      contentPadding: EdgeInsets.all(20),
-      insetPadding: EdgeInsets.all(20),
-      content: Container(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      contentPadding: const EdgeInsets.all(20),
+      insetPadding: const EdgeInsets.all(20),
+      content: SizedBox(
         height:
-            step == StepView.initial ? screenHeight * 0.6 : screenHeight * 0.5,
+            step == StepView.initial ? screenHeight * 0.6 : screenHeight * 0.45,
         width: screenWidth * 0.9,
         child: _buildFishModalContent(),
       ),
@@ -49,6 +47,8 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
   }
 
   Widget _buildFishModalContent() {
+    final currentUser = Provider.of<UserProvider>(context, listen: false).user!;
+
     if (StepView.initial == step) {
       return Stack(
         children: [
@@ -98,14 +98,17 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           ),
           const SizedBox(height: 15),
           _buildCommentBoxSection(),
+          const SizedBox(height: 20),
+          CommentFormField(
+            controller: commentController,
+            actionSend: () => _addCommentToPez(user: currentUser),
+          ),
         ],
       ));
     }
   }
 
   Widget _buildCommentBoxSection() {
-    final currentUser = Provider.of<UserProvider>(context, listen: false).user!;
-
     return Column(
       children: [
         SizedBox(
@@ -119,10 +122,6 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           ),
         ),
         const SizedBox(height: 15),
-        CommentFormField(
-          controller: commentController,
-          actionSend: () => _addCommentToPez(user: currentUser),
-        ),
       ],
     );
   }

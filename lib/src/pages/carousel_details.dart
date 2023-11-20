@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/models/peces_model.dart';
+import 'package:login_flutter/src/utils/widgets/custom_progress_indicator.dart';
 
 import '../utils/widgets/text_view.dart';
 
 class CarouselDetails extends StatelessWidget {
-  final Pez carouselImages;
-  const CarouselDetails({super.key, required this.carouselImages});
+  final Pez pez;
+  const CarouselDetails({super.key, required this.pez});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,7 @@ class CarouselDetails extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: const AssetImage("assets/loading3.gif"),
-              image: AssetImage(carouselImages.imageRoute),
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(pez.imageRoute),
           ),
         ),
         const SizedBox(
@@ -33,13 +30,13 @@ class CarouselDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextView(
-                text: carouselImages.name,
+                text: pez.name,
                 color: Colors.white,
                 fontSize: 20,
               ),
               const SizedBox(height: 15),
               TextView(
-                text: carouselImages.description,
+                text: pez.description,
                 textAlign: TextAlign.justify,
                 color: Colors.yellow,
                 fontSize: 15,

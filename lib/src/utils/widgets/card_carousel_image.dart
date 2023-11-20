@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/models/comment.dart';
+import 'package:login_flutter/src/utils/widgets/custom_progress_indicator.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,7 @@ class CardImages extends StatefulWidget {
 class CardImagesState extends State<CardImages> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Stack(
         children: [
@@ -35,20 +36,17 @@ class CardImagesState extends State<CardImages> {
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: InkWell(
-                onTap: () => showDialog(
-                  context: context,
-                  builder: (context) {
-                    return InfoModal(
-                      pez: widget.pez,
-                    );
-                  },
-                ),
-                child: FadeInImage(
-                  placeholder: const AssetImage("assets/loading3.gif"),
-                  image: AssetImage(widget.pez.imageRoute),
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  onTap: () => showDialog(
+                        context: context,
+                        builder: (context) {
+                          return InfoModal(
+                            pez: widget.pez,
+                          );
+                        },
+                      ),
+                  child: widget.pez.imageRoute.isNotEmpty
+                      ? Image.asset(widget.pez.imageRoute)
+                      : const CustomProgressIndicator()),
             ),
           ),
           _buildLikeBttn(),

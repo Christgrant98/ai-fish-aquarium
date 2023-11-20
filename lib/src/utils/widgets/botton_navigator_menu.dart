@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomNavigatorMenu extends StatefulWidget {
-  BottomNavigatorMenu({
+  const BottomNavigatorMenu({
     super.key,
   });
 
@@ -38,7 +38,7 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
         child: GNav(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           selectedIndex: _calculateSelectedIndex(context),
-          color: Color.fromARGB(255, 153, 153, 153),
+          color: const Color.fromARGB(255, 153, 153, 153),
           activeColor: const Color.fromARGB(255, 33, 243, 236),
           padding: const EdgeInsets.all(5),
           gap: 8,

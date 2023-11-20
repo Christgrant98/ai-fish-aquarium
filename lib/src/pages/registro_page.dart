@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/models/user_model.dart';
 import 'package:login_flutter/src/utils/verify_string.dart';
+import 'package:login_flutter/src/utils/widgets/email_form_field.dart';
+import 'package:login_flutter/src/utils/widgets/password_form_field.dart';
+
+import '../utils/widgets/custom_button.dart';
+import '../utils/widgets/username_form_field.dart';
 
 class RegistroPage extends StatefulWidget {
   const RegistroPage({super.key});
@@ -48,56 +53,16 @@ class _RegistroPageState extends State<RegistroPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Column(
                         children: [
-                          TextFormField(
+                          EmailFormField(
                             controller: _emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: const InputDecoration(
-                              labelText: "Correo",
-                              hintText: "Ingresa el Correo",
-                              prefixIcon: Icon(Icons.email),
-                              border: OutlineInputBorder(),
-                            ),
-                            onChanged: (String value) {},
-                            validator: (value) {
-                              return isMailValid(value!)
-                                  ? null
-                                  : "Por favor ingresa un correo valido";
-                            },
                           ),
                           const SizedBox(height: 30),
-                          TextFormField(
+                          PasswordFormField(
                             controller: _passwordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: "Contraseña",
-                              hintText: "Ingresa la Contraseña",
-                              prefixIcon: Icon(Icons.password),
-                              border: OutlineInputBorder(),
-                            ),
-                            onChanged: (String value) {},
-                            validator: (value) {
-                              return value!.isEmpty
-                                  ? "Por favor ingresa la Contraseña"
-                                  : null;
-                            },
                           ),
                           const SizedBox(height: 30),
-                          TextFormField(
+                          UsernameFormField(
                             controller: _usernameController,
-                            keyboardType: TextInputType.text,
-                            decoration: const InputDecoration(
-                              labelText: "Usuario",
-                              hintText: "Ingresa Nombre de Usuario",
-                              prefixIcon: Icon(Icons.person),
-                              border: OutlineInputBorder(),
-                            ),
-                            onChanged: (String value) {},
-                            validator: (value) {
-                              return value!.isEmpty
-                                  ? "Por favor ingresa Usuario"
-                                  : null;
-                            },
                           ),
                           const SizedBox(height: 30),
                           CheckBoxWithText(
@@ -182,10 +147,7 @@ class _RegistroPageState extends State<RegistroPage> {
                                 );
                               }
                             },
-                            minWidth: double.infinity,
-                            textColor: Colors.white,
-                            color: Colors.teal,
-                            child: const Text("Regístrate"),
+                            text: "Regístrate",
                           ),
                         ],
                       ),

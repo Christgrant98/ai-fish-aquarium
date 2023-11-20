@@ -5,6 +5,9 @@ import 'package:login_flutter/src/providers/user_provider.dart';
 import 'package:login_flutter/src/utils/verify_string.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/widgets/email_form_field.dart';
+import '../utils/widgets/password_form_field.dart';
+
 class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
@@ -37,45 +40,12 @@ class LoginPage extends StatelessWidget {
                     key: _formKey,
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: TextFormField(
-                            controller: _emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: const InputDecoration(
-                              labelText: "Correo",
-                              hintText: "Ingresa el Correo",
-                              prefixIcon: Icon(Icons.email),
-                              border: OutlineInputBorder(),
-                            ),
-                            onChanged: (String value) {},
-                            validator: (value) {
-                              return isMailValid(value!)
-                                  ? null
-                                  : "Por favor ingresa un correo valido";
-                            },
-                          ),
+                        EmailFormField(
+                          controller: _emailController,
                         ),
                         const SizedBox(height: 30.0),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: TextFormField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            keyboardType: TextInputType.visiblePassword,
-                            decoration: const InputDecoration(
-                              labelText: "Contraseña",
-                              hintText: "Ingresa la Contraseña",
-                              prefixIcon: Icon(Icons.password),
-                              border: OutlineInputBorder(),
-                            ),
-                            onChanged: (String value) {},
-                            validator: (value) {
-                              return value!.isEmpty
-                                  ? "Por favor ingresa la Contraseña"
-                                  : null;
-                            },
-                          ),
+                        PasswordFormField(
+                          controller: _passwordController,
                         ),
                         const SizedBox(height: 30),
                         Padding(
@@ -83,14 +53,17 @@ class LoginPage extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                UserRepository userRepository = UserRepository();
+                                UserRepository userRepository =
+                                    UserRepository();
                                 userRepository
                                     .selectUserFromCredentials(
                                         mail: _emailController.text,
                                         password: _passwordController.text)
                                     .then((user) {
                                   if (user != null) {
-                                    final userProvider = Provider.of<UserProvider>(context, listen: false);
+                                    final userProvider =
+                                        Provider.of<UserProvider>(context,
+                                            listen: false);
                                     userProvider.setUser(user);
                                     context.go("/home_view");
                                   } else {
@@ -134,4 +107,4 @@ class LoginPage extends StatelessWidget {
       },
     );
   }
-} 
+}

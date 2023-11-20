@@ -26,28 +26,34 @@ class CardImages extends StatefulWidget {
 class CardImagesState extends State<CardImages> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: InkWell(
-            onTap: () => showDialog(
-              context: context,
-              builder: (context) {
-                return InfoModal(
-                  pez: widget.pez,
-                );
-              },
-            ),
-            child: FadeInImage(
-              placeholder: const AssetImage("assets/loading3.gif"),
-              image: AssetImage(widget.pez.imageRoute),
-              fit: BoxFit.cover,
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: InkWell(
+                onTap: () => showDialog(
+                  context: context,
+                  builder: (context) {
+                    return InfoModal(
+                      pez: widget.pez,
+                    );
+                  },
+                ),
+                child: FadeInImage(
+                  placeholder: const AssetImage("assets/loading3.gif"),
+                  image: AssetImage(widget.pez.imageRoute),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
-        ),
-        _buildLikeBttn(),
-      ],
+          _buildLikeBttn(),
+        ],
+      ),
     );
   }
 

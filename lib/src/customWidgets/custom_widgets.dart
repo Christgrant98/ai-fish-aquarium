@@ -83,7 +83,26 @@ class ScaffoldWithNavBar extends StatelessWidget {
       ),
       drawer: const MyDrawer(),
       body: child,
+
       bottomNavigationBar: BottomNavigatorMenu(),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.home),
+      //         activeIcon: Icon(Icons.home_outlined),
+      //         label: "Home"),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.camera),
+      //         activeIcon: Icon(Icons.camera_outlined),
+      //         label: "Camara"),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.map),
+      //         activeIcon: Icon(Icons.map_outlined),
+      //         label: "Mapa"),
+      //   ],
+      //   currentIndex: _calculateSelectedIndex(context),
+      //   onTap: (int idx) => _onItemTapped(idx, context),
+      // ),
     );
   }
 }

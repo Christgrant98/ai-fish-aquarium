@@ -33,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
         ),
         const SizedBox(height: 10),
         _builCarouselView(),
-        const SizedBox(height: 20),
         Container(
           margin: lateralMargin,
           child: Row(
@@ -120,12 +119,13 @@ class _HomeViewState extends State<HomeView> {
                 return CardImages(pez: pez);
               },
               options: CarouselOptions(
-                height: 200,
-                autoPlay: true,
-                autoPlayCurve: Curves.easeInOut,
                 autoPlayInterval: const Duration(seconds: 5),
-                scrollDirection: Axis.horizontal,
                 enlargeCenterPage: true,
+                autoPlayCurve: Curves.easeInOut,
+                autoPlay: true,
+                aspectRatio: 16 / 9,
+                viewportFraction: 1,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
               ));
         } else {
           return const CustomProgressIndicator();

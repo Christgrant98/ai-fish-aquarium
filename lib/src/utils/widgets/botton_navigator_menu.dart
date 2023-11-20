@@ -29,7 +29,7 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
         topLeft: Radius.circular(35),
         topRight: Radius.circular(35),
       ),
-      blur: 18,
+      blur: 25,
       color: const Color.fromRGBO(0, 0, 0, 0.6),
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -38,8 +38,8 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
         child: GNav(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           selectedIndex: _calculateSelectedIndex(context),
-          color: Colors.grey,
-          activeColor: Colors.white,
+          color: Color.fromARGB(255, 153, 153, 153),
+          activeColor: const Color.fromARGB(255, 33, 243, 236),
           padding: const EdgeInsets.all(5),
           gap: 8,
           onTabChange: (index) {
@@ -47,7 +47,7 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
           },
           tabs: const [
             GButton(
-              iconSize: 35,
+              iconSize: 30,
               icon: CupertinoIcons.house_fill,
             ),
             GButton(
@@ -55,7 +55,7 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
               icon: CupertinoIcons.camera_fill,
             ),
             GButton(
-              iconSize: 35,
+              iconSize: 30,
               icon: CupertinoIcons.map_fill,
             ),
           ],

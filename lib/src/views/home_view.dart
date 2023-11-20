@@ -27,12 +27,12 @@ class _HomeViewState extends State<HomeView> {
     return SingleChildScrollView(
       child: Column(children: [
         const SizedBox(height: 10),
+        _builCarouselView(),
+        const SizedBox(height: 10),
         const Text(
           "Fotos De la Semana",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 10),
-        _builCarouselView(),
         Container(
           margin: lateralMargin,
           child: Row(
@@ -123,7 +123,7 @@ class _HomeViewState extends State<HomeView> {
                 enlargeCenterPage: true,
                 autoPlayCurve: Curves.easeInOut,
                 autoPlay: true,
-                aspectRatio: 16 / 9,
+                aspectRatio: 16 / 12,
                 viewportFraction: 1,
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
               ));

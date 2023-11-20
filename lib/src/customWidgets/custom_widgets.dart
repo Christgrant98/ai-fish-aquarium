@@ -77,12 +77,12 @@ class ScaffoldWithNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigoAccent,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: MyAppBar(),
-      ),
+      // appBar: const PreferredSize(
+      //   preferredSize: Size.fromHeight(kToolbarHeight),
+      //   // child: MyAppBar(),
+      // ),
       drawer: const MyDrawer(),
-      body: child,
+      body: SafeArea(child: child),
 
       bottomNavigationBar: BottomNavigatorMenu(),
       // bottomNavigationBar: BottomNavigationBar(

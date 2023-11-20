@@ -45,6 +45,10 @@ class UsernameFormField extends StatelessWidget {
               filled: true,
               fillColor: Colors.white,
               hintText: "username123",
+              hintStyle: GoogleFonts.quicksand(
+                color: const Color.fromARGB(255, 190, 190, 190),
+                fontSize: 14,
+              ),
               labelStyle: GoogleFonts.quicksand(
                 color: const Color.fromARGB(255, 190, 190, 190),
                 fontSize: 14,

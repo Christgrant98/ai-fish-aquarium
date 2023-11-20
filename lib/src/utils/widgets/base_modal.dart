@@ -9,6 +9,7 @@ class BaseModal extends StatelessWidget {
   final double? heightFactor;
   final double? borderRadius;
   final double? paddingValue;
+  final Widget Function()? buildFooter;
 
   const BaseModal({
     Key? key,
@@ -18,6 +19,7 @@ class BaseModal extends StatelessWidget {
     this.heightFactor = 1,
     this.borderRadius = 12,
     this.paddingValue = 20,
+    this.buildFooter,
   }) : super(key: key);
 
   @override
@@ -29,27 +31,37 @@ class BaseModal extends StatelessWidget {
   }
 
   Widget _buildContent(bool isLargeScreen) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(
-        sigmaX: 5.0,
-        sigmaY: 5.0,
-      ),
-      child: FractionallySizedBox(
-        widthFactor: isLargeScreen ? widthFactor! * .3 : widthFactor,
-        heightFactor: heightFactor,
-        child: Container(
-          padding: EdgeInsets.all(paddingValue!),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius!),
-            border: Border.all(color: Colors.black),
-            color: Colors.white,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 5.0,
+          sigmaY: 5.0,
+        ),
+        child: FractionallySizedBox(
+          widthFactor: isLargeScreen ? widthFactor! * .3 : widthFactor,
+          heightFactor: heightFactor,
+          child: Container(
+            padding: EdgeInsets.all(paddingValue!),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderRadius!),
+              border: Border.all(color: Colors.black),
+              color: Colors.white,
+            ),
+            child: content != null
+                ? Material(
+                    color: Colors.transparent,
+                    child: Column(
+                      children: [
+                        content!,
+                        if (buildFooter != null) buildFooter!(),
+                      ],
+                    ),
+                  )
+                : Container(),
           ),
-          child: content != null
-              ? Material(
-                  color: Colors.transparent,
-                  child: content!,
-                )
-              : Container(),
         ),
       ),
     );

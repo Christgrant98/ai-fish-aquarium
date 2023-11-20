@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../utils/widgets/custom_button.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -18,26 +20,21 @@ class HomePage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
-              child: MaterialButton(
+              child: CustomButton(
                 onPressed: () {
                   context.go("/login");
                 },
-                minWidth: double.infinity,
-                color: Colors.teal,
-                textColor: Colors.white,
-                child: const Text("Iniciar Sesión"),
+                text: "Iniciar Sesión",
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
-              child: MaterialButton(
+              child: CustomButton(
                 onPressed: () {
                   context.go("/registro");
                 },
-                minWidth: double.infinity,
                 color: Colors.teal,
-                textColor: Colors.white,
-                child: const Text("Regístrate"),
+                text: "Regístrate",
               ),
             )
           ]),

@@ -142,18 +142,22 @@ class _RegistroPageState extends State<RegistroPage> {
                                     .ellipsis, // Recorta el texto si es demasiado largo
                                 maxLines: 5, // Muestra solo una línea de texto
                               )),
-                          MaterialButton(
+                          CustomButton(
                             onPressed: () {
-                              if(!_aceptaTerminos){
+                              if (!_aceptaTerminos) {
                                 _showOkDialog(
-                                              context: context,
-                                              title: "Términos Requeridos",
-                                              content:
-                                                  "Necesitas aceptar los Términos y Condiciones para regístrarte.");
+                                    context: context,
+                                    title: "Términos Requeridos",
+                                    content:
+                                        "Necesitas aceptar los Términos y Condiciones para regístrarte.");
                               }
-                              if (_formKey.currentState!.validate() && _aceptaTerminos) {
-                                final UserRepository userRepository = UserRepository();
-                                userRepository.exist(mail: _emailController.text).then(
+                              if (_formKey.currentState!.validate() &&
+                                  _aceptaTerminos) {
+                                final UserRepository userRepository =
+                                    UserRepository();
+                                userRepository
+                                    .exist(mail: _emailController.text)
+                                    .then(
                                   (existe) {
                                     if (!existe) {
                                       User user = User(
@@ -161,8 +165,8 @@ class _RegistroPageState extends State<RegistroPage> {
                                           password: _passwordController.text,
                                           mail: _emailController.text,
                                           profilePicture: "assets/default.jpg");
-                                      userRepository.insert(item: user).then((value) =>
-                                          _showOkDialog(
+                                      userRepository.insert(item: user).then(
+                                          (value) => _showOkDialog(
                                               context: context,
                                               title: "Registration Successful",
                                               content:
@@ -223,7 +227,8 @@ class CheckBoxWithText extends StatelessWidget {
   final ValueChanged<bool?> onChanged;
   final Widget text;
 
-  const CheckBoxWithText({super.key, 
+  const CheckBoxWithText({
+    super.key,
     required this.value,
     required this.onChanged,
     required this.text,
@@ -242,5 +247,5 @@ class CheckBoxWithText extends StatelessWidget {
         ),
       ],
     );
-  } 
+  }
 }

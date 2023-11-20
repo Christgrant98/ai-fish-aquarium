@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/providers/user_provider.dart';
 import 'package:login_flutter/src/utils/verify_string.dart';
+import 'package:login_flutter/src/utils/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/widgets/email_form_field.dart';
@@ -48,35 +49,29 @@ class LoginPage extends StatelessWidget {
                           controller: _passwordController,
                         ),
                         const SizedBox(height: 30),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 35),
-                          child: MaterialButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                UserRepository userRepository =
-                                    UserRepository();
-                                userRepository
-                                    .selectUserFromCredentials(
-                                        mail: _emailController.text,
-                                        password: _passwordController.text)
-                                    .then((user) {
-                                  if (user != null) {
-                                    final userProvider =
-                                        Provider.of<UserProvider>(context,
-                                            listen: false);
-                                    userProvider.setUser(user);
-                                    context.go("/home_view");
-                                  } else {
-                                    _showFailureDialog(context);
-                                  }
-                                });
-                              }
-                            },
-                            minWidth: double.infinity,
-                            textColor: Colors.white,
-                            color: Colors.teal,
-                            child: const Text("Ingresar"),
-                          ),
+                        CustomButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              UserRepository userRepository = UserRepository();
+                              userRepository
+                                  .selectUserFromCredentials(
+                                      mail: _emailController.text,
+                                      password: _passwordController.text)
+                                  .then((user) {
+                                if (user != null) {
+                                  final userProvider =
+                                      Provider.of<UserProvider>(context,
+                                          listen: false);
+                                  userProvider.setUser(user);
+                                  context.go("/home_view");
+                                } else {
+                                  _showFailureDialog(context);
+                                }
+                              });
+                            }
+                          },
+                          color: Colors.teal,
+                          text: "Ingresar",
                         )
                       ],
                     ),

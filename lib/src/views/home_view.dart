@@ -6,6 +6,7 @@ import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/providers/carousel_provider.dart';
 
 import '../utils/widgets/card_carousel_image.dart';
+import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/custom_progress_indicator.dart';
 
 class HomeView extends StatefulWidget {
@@ -156,11 +157,11 @@ class _HomeViewState extends State<HomeView> {
                 const Text(
                   "Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.",
                 ),
-                ElevatedButton(
+                CustomButton(
                   onPressed: () {
                     GoRouter.of(context).go('/home_view/instructions');
                   },
-                  child: const Text("¡Vamos!"),
+                  text: "¡Vamos!",
                 ),
               ],
             ),

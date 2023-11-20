@@ -7,6 +7,7 @@ import '../../models/peces_model.dart';
 import '../../models/user_model.dart';
 import '../../providers/user_provider.dart';
 import 'base_modal.dart';
+import 'custom_button.dart';
 
 enum StepView {
   initial,
@@ -102,11 +103,11 @@ class _InfoModalState extends State<InfoModal> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextView(text: '${widget.pez.comments!.length} comments'),
-                  ElevatedButton(
+                  CustomButton(
                     onPressed: () {
                       setState(() => step = StepView.interactionView);
                     },
-                    child: const TextView(text: 'see comments'),
+                    text: 'see comments',
                   )
                 ],
               ),
@@ -118,11 +119,11 @@ class _InfoModalState extends State<InfoModal> {
       return SingleChildScrollView(
           child: Column(
         children: [
-          ElevatedButton(
+          CustomButton(
             onPressed: () {
               setState(() => step = StepView.initial);
             },
-            child: const TextView(text: 'back'),
+            text: 'back',
           ),
           _buildInteractionSection(),
         ],
@@ -158,13 +159,13 @@ class _InfoModalState extends State<InfoModal> {
           maxLines: 5,
           onChanged: (value) {},
         ),
-        ElevatedButton(
+        CustomButton(
           onPressed: () {
             _addCommentToPez(
               user: currentUser,
             );
           },
-          child: const TextView(text: 'Add Comment'),
+          text: 'Add Comment',
         ),
       ],
     );

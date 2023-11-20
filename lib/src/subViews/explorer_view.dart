@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/models/explorer_activity_model.dart';
 
+import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/custom_progress_indicator.dart';
 
 class ExplorerView extends StatelessWidget {
@@ -31,12 +32,12 @@ class ExplorerView extends StatelessWidget {
             }),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 50),
-          child: ElevatedButton(
+          child: CustomButton(
             onPressed: () {
               context
                   .go("/home_view/explorer/recompensas", extra: {"points": 0});
             },
-            child: const Text("Recompensas"),
+            text: "Recompensas",
           ),
         ),
       ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/widgets/custom_button.dart';
+
 class RecompensasView extends StatelessWidget {
   final int points;
 
@@ -96,11 +98,11 @@ class PromoWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8.0),
-                ElevatedButton(
+                CustomButton(
                   onPressed: () {
                     // Lógica para el botón
                   },
-                  child: const Text('Canjear'),
+                  text: 'Canjear',
                 ),
               ],
             ),

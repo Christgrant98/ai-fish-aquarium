@@ -40,7 +40,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
       insetPadding: const EdgeInsets.all(20),
       content: SizedBox(
         height:
-            step == StepView.initial ? screenHeight * 0.6 : screenHeight * 0.45,
+            step == StepView.initial ? screenHeight * 0.6 : screenHeight * 0.5,
         width: screenWidth * 0.9,
         child: _buildFishModalContent(),
       ),
@@ -76,8 +76,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
         ],
       );
     } else {
-      return SingleChildScrollView(
-          child: Column(
+      return Column(
         children: [
           InkWell(
             onTap: () {
@@ -97,32 +96,40 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
               ],
             ),
           ),
-          const SizedBox(height: 15),
-          _buildCommentBoxSection(),
-          const SizedBox(height: 20),
-          CommentFormField(
-            actionSend: () => _addCommentToPez(user: currentUser),
-          ),
+          const SizedBox(height: 10),
+          Expanded(child: _buildCommentBoxSection(currentUser)),
         ],
-      ));
+      );
     }
   }
 
-  Widget _buildCommentBoxSection() {
-    return Column(
-      children: [
-        SizedBox(
-          height: 250,
-          child: ListView.builder(
-            itemCount: widget.pez.comments?.length ?? 0,
-            itemBuilder: (context, index) {
-              Comment comment = widget.pez.comments![index];
-              return _buildCommentCard(comment);
-            },
+  Widget _buildCommentBoxSection(
+    User currentUser,
+  ) {
+    return SizedBox(
+      height: 280,
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: widget.pez.comments?.length ?? 0,
+              itemBuilder: (context, index) {
+                Comment comment = widget.pez.comments![index];
+                return _buildCommentCard(comment);
+              },
+            ),
           ),
-        ),
-        const SizedBox(height: 15),
-      ],
+          CommentFormField(
+            title: '@${currentUser.username}',
+            onChange: (String? value, bool isValid) {
+              setState(() {
+                comment = isValid ? value : null;
+              });
+            },
+            actionSend: () => _addCommentToPez(user: currentUser),
+          ),
+        ],
+      ),
     );
   }
 

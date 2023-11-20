@@ -35,20 +35,22 @@ class EmailFormField extends StatelessWidget {
         const SizedBox(height: 10),
         BaseTextFormField(
           initialValue: initialValue,
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.all(10),
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(10),
             floatingLabelBehavior: FloatingLabelBehavior.never,
-            prefixIcon: Icon(
-              Icons.person_outlined,
+            floatingLabelStyle: const TextStyle(
+              color: Colors.black,
+            ),
+            prefixIcon: const Icon(
+              CupertinoIcons.envelope,
               color: Colors.grey,
             ),
             filled: true,
             fillColor: Colors.white,
-            hintText: 'Uname@mail.com',
-            hintStyle: TextStyle(
-              color: Color.fromARGB(255, 190, 190, 190),
-              fontSize: 12,
-              fontFamily: 'ProductSans',
+            labelText: 'mail@example.com',
+            labelStyle: GoogleFonts.quicksand(
+              color: const Color.fromARGB(255, 190, 190, 190),
+              fontSize: 14,
             ),
           ),
           onFieldSubmitted: onFieldSubmitted,

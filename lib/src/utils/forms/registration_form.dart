@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_flutter/src/utils/widgets/custom_button.dart';
 
@@ -18,15 +19,14 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   bool aceptaTerminos = false;
   bool aceptaNotificacion = false;
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController usernameController = TextEditingController();
-
     return Form(
       key: formKey,
       child: Column(
@@ -51,7 +51,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     color: Colors.black,
                     fontSize: 12,
                   ),
-                  children: <TextSpan>[
+                  children: [
                     TextSpan(
                       text: 'términos y condiciones',
                       style: GoogleFonts.quicksand(
@@ -97,17 +97,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 userRepository.exist(mail: emailController.text).then(
                   (existe) {
                     if (!existe) {
-                      User user = User(
-                          username: usernameController.text,
-                          password: passwordController.text,
-                          mail: emailController.text,
-                          profilePicture: "assets/default.jpg");
+                      User user = _buildUser();
                       userRepository.insert(item: user).then((value) =>
                           _showOkDialog(
                               context: context,
                               title: "Registration Successful",
                               content:
                                   "Tu registro fue satisfactorio ahora puedes iniciar sesión."));
+                      context.go("/login");
                     } else {
                       _showOkDialog(
                           context: context,
@@ -124,6 +121,15 @@ class _RegistrationFormState extends State<RegistrationForm> {
         ],
       ),
     );
+  }
+
+  User _buildUser() {
+    User user = User(
+        username: usernameController.text,
+        password: passwordController.text,
+        mail: emailController.text,
+        profilePicture: "assets/default.jpg");
+    return user;
   }
 
   void _showOkDialog(

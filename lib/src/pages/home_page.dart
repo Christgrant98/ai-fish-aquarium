@@ -19,24 +19,18 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0),
-              child: CustomButton(
-                onPressed: () {
-                  context.go("/login");
-                },
-                text: "Iniciar Sesión",
-              ),
+            CustomButton(
+              onPressed: () {
+                context.go("/login");
+              },
+              text: "Iniciar Sesión",
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0),
-              child: CustomButton(
-                onPressed: () {
-                  context.go("/registro");
-                },
-                color: Colors.teal,
-                text: "Regístrate",
-              ),
+            CustomButton(
+              onPressed: () {
+                context.go("/registro");
+              },
+              color: Colors.teal,
+              text: "Regístrate",
             )
           ]),
     );

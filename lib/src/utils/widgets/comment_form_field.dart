@@ -4,11 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:login_flutter/src/utils/widgets/base_text_form_field.dart';
 
 class CommentFormField extends StatelessWidget {
-  final TextEditingController controller;
   final void Function() actionSend;
   const CommentFormField({
     super.key,
-    required this.controller,
     required this.actionSend,
   });
 
@@ -17,7 +15,6 @@ class CommentFormField extends StatelessWidget {
     return BaseTextFormField(
       minLines: 1,
       maxLines: 3,
-      controller: controller,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(10),
         floatingLabelBehavior: FloatingLabelBehavior.never,

@@ -18,45 +18,69 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  String? mail;
+  String? password;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: _formKey,
       child: Column(
         children: [
-          EmailFormField(controller: emailController),
-          const SizedBox(height: 25),
-          PasswordFormField(controller: passwordController),
-          const SizedBox(height: 30),
-          CustomButton(
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                UserRepository userRepository = UserRepository();
-                userRepository
-                    .selectUserFromCredentials(
-                        mail: emailController.text,
-                        password: passwordController.text)
-                    .then((user) {
-                  if (user != null) {
-                    final userProvider =
-                        Provider.of<UserProvider>(context, listen: false);
-                    userProvider.setUser(user);
-                    context.go("/home_view");
-                  } else {
-                    _showFailureDialog(context);
-                  }
-                });
-              }
+          EmailFormField(
+            onChange: (String? value, bool valid) {
+              setState(() => mail = valid ? value : null);
             },
-            color: Colors.teal,
-            text: "Ingresar",
-          )
+          ),
+          const SizedBox(height: 25),
+          PasswordFormField(
+            onChange: (String? value, bool valid) {
+              setState(() => password = valid ? value : null);
+            },
+          ),
+          const SizedBox(height: 30),
+          if (_canSubmitForm()) _buildSubmitButton(context),
         ],
       ),
     );
+  }
+
+  Widget _buildSubmitButton(BuildContext context) {
+    return CustomButton(
+      onPressed: () {
+        _submitForm(context);
+      },
+      color: Colors.teal,
+      text: "Ingresar",
+    );
+  }
+
+  void _submitForm(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      UserRepository userRepository = UserRepository();
+      userRepository
+          .selectUserFromCredentials(
+        mail: mail!,
+        password: password!,
+      )
+          .then(
+        (user) {
+          if (user != null) {
+            final userProvider =
+                Provider.of<UserProvider>(context, listen: false);
+            userProvider.setUser(user);
+            context.go("/home_view");
+          } else {
+            _showFailureDialog(context);
+          }
+        },
+      );
+    }
+  }
+
+  bool _canSubmitForm() {
+    return mail != null && password != null;
   }
 
   void _showFailureDialog(BuildContext context) {

@@ -26,6 +26,7 @@ class PezDetailsModalView extends StatefulWidget {
 }
 
 class _PezDetailsModalViewState extends State<PezDetailsModalView> {
+  String? comment;
   StepView step = StepView.initial;
   final TextEditingController commentController = TextEditingController();
 
@@ -100,7 +101,6 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           _buildCommentBoxSection(),
           const SizedBox(height: 20),
           CommentFormField(
-            controller: commentController,
             actionSend: () => _addCommentToPez(user: currentUser),
           ),
         ],
@@ -151,7 +151,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           ],
         ),
         subtitle: TextView(
-          text: comment.comment,
+          text: '${comment.comment} ${comment.comment} ${comment.comment}',
           fontSize: 13,
           fontWeight: FontWeight.w300,
         ),

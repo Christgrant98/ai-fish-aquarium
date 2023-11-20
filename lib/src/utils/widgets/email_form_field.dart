@@ -6,9 +6,8 @@ import 'package:login_flutter/src/utils/widgets/base_text_form_field.dart';
 import 'text_view.dart';
 
 class EmailFormField extends StatelessWidget {
-  final void Function(String?, bool)? onChange;
+  final void Function(String?, bool) onChange;
   final void Function(String)? onFieldSubmitted;
-  final TextEditingController controller;
 
   final String? initialValue;
   final bool enabled;
@@ -17,9 +16,8 @@ class EmailFormField extends StatelessWidget {
     super.key,
     this.initialValue,
     this.onFieldSubmitted,
-    this.onChange,
+    required this.onChange,
     this.enabled = true,
-    required this.controller,
   });
 
   @override
@@ -36,41 +34,35 @@ class EmailFormField extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         BaseTextFormField(
-          controller: controller,
-          enabled: enabled,
-          fieldValue: initialValue,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(10),
+          initialValue: initialValue,
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(10),
             floatingLabelBehavior: FloatingLabelBehavior.never,
-            floatingLabelStyle: const TextStyle(
-              color: Colors.black,
-            ),
-            prefixIcon: const Icon(
-              CupertinoIcons.envelope,
+            prefixIcon: Icon(
+              Icons.person_outlined,
               color: Colors.grey,
             ),
             filled: true,
             fillColor: Colors.white,
-            labelText: 'mail@example.com',
-            labelStyle: GoogleFonts.quicksand(
-              color: const Color.fromARGB(255, 190, 190, 190),
-              fontSize: 14,
+            hintText: 'Uname@mail.com',
+            hintStyle: TextStyle(
+              color: Color.fromARGB(255, 190, 190, 190),
+              fontSize: 12,
+              fontFamily: 'ProductSans',
             ),
           ),
-          validator: (value) {
+          onFieldSubmitted: onFieldSubmitted,
+          validator: (String? value, BuildContext context) {
             if (value == null || value.isEmpty) {
               return 'email data cannot be empty';
             }
-            final emailRegex = RegExp(r'^[\w-zñ\.]+@([\w-zñ]+\.)+[\w-z]{2,4}$');
+            final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
             if (!emailRegex.hasMatch(value)) {
               return 'please enter a valid email address';
             }
             return null;
           },
-          onChange: (String? value, bool isValid) {
-            onChange!(value?.toLowerCase(), isValid);
-          },
-          onFieldSubmitted: onFieldSubmitted,
+          onChanged: onChange,
         ),
       ],
     );

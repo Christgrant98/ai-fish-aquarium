@@ -19,23 +19,39 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController usernameController = TextEditingController();
   bool aceptaTerminos = false;
   bool aceptaNotificacion = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? mail;
+  String? password;
+  String? username;
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: _formKey,
       child: Column(
         children: [
-          EmailFormField(controller: emailController),
+          EmailFormField(
+            onFieldSubmitted: (_) => _submitForm(),
+            onChange: (String? value, bool valid) {
+              setState(() => mail = valid ? value : null);
+            },
+          ),
           const SizedBox(height: 25),
-          PasswordFormField(controller: passwordController),
+          PasswordFormField(
+            onFieldSubmitted: (_) => _submitForm(),
+            onChange: (String? value, bool valid) {
+              setState(() => password = valid ? value : null);
+            },
+          ),
           const SizedBox(height: 25),
-          UsernameFormField(controller: usernameController),
+          UsernameFormField(
+            onFieldSubmitted: (_) => _submitForm(),
+            onChange: (String? value, bool valid) {
+              setState(() => username = valid ? value : null);
+            },
+          ),
           const SizedBox(height: 20),
           _buildCheckBoxField(
               value: aceptaTerminos,
@@ -83,53 +99,66 @@ class _RegistrationFormState extends State<RegistrationForm> {
             ),
           ),
           const SizedBox(height: 30),
-          CustomButton(
-            onPressed: () {
-              if (!aceptaTerminos) {
-                _showOkDialog(
-                    context: context,
-                    title: "Términos Requeridos",
-                    content:
-                        "Necesitas aceptar los Términos y Condiciones para regístrarte.");
-              }
-              if (formKey.currentState!.validate() && aceptaTerminos) {
-                final UserRepository userRepository = UserRepository();
-                userRepository.exist(mail: emailController.text).then(
-                  (existe) {
-                    if (!existe) {
-                      User user = _buildUser();
-                      userRepository.insert(item: user).then((value) =>
-                          _showOkDialog(
-                              context: context,
-                              title: "Registration Successful",
-                              content:
-                                  "Tu registro fue satisfactorio ahora puedes iniciar sesión."));
-                      context.go("/login");
-                    } else {
-                      _showOkDialog(
-                          context: context,
-                          title: "Registration Failed",
-                          content:
-                              "Al parecer ya tienes una cuenta por favor inicia sesión.");
-                    }
-                  },
-                );
-              }
-            },
-            text: "Regístrate",
-          ),
+          _builSubmitButton(context),
         ],
       ),
     );
   }
 
+  CustomButton _builSubmitButton(BuildContext context) {
+    return CustomButton(
+      onPressed: () {
+        if (!aceptaTerminos) {
+          _showOkDialog(
+              context: context,
+              title: "Términos Requeridos",
+              content:
+                  "Necesitas aceptar los Términos y Condiciones para regístrarte.");
+        }
+        if (_canSubmitForm()) _submitForm();
+      },
+      text: "Regístrate",
+    );
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate() && aceptaTerminos) {
+      final UserRepository userRepository = UserRepository();
+      userRepository.exist(mail: mail!).then(
+        (existe) {
+          if (!existe) {
+            User user = _buildUser();
+            userRepository.insert(item: user).then((value) => _showOkDialog(
+                context: context,
+                title: "Registration Successful",
+                content:
+                    "Tu registro fue satisfactorio ahora puedes iniciar sesión."));
+            context.go("/login");
+          } else {
+            _showOkDialog(
+                context: context,
+                title: "Registration Failed",
+                content:
+                    "Al parecer ya tienes una cuenta por favor inicia sesión.");
+          }
+        },
+      );
+    }
+  }
+
+  bool _canSubmitForm() {
+    return username != null &&
+        password != null &&
+        mail != null &&
+        aceptaTerminos;
+  }
+
   User _buildUser() {
-    User user = User(
-        username: usernameController.text,
-        password: passwordController.text,
-        mail: emailController.text,
+    return User(
+        username: username!,
+        password: password!,
+        mail: mail!,
         profilePicture: "assets/default.jpg");
-    return user;
   }
 
   void _showOkDialog(

@@ -5,17 +5,15 @@ import 'package:login_flutter/src/utils/widgets/text_view.dart';
 import 'base_text_form_field.dart';
 
 class PasswordFormField extends StatefulWidget {
-  final void Function(String? value, bool valid)? onChange;
+  final void Function(String? value, bool valid) onChange;
   final Function? additionalValidator;
   final String? emptyMessage;
   final String? labelText;
   final void Function(String)? onFieldSubmitted;
-  final TextEditingController controller;
 
   const PasswordFormField({
     Key? key,
-    required this.controller,
-    this.onChange,
+    required this.onChange,
     this.additionalValidator,
     this.emptyMessage,
     this.labelText,
@@ -43,7 +41,6 @@ class PasswordFormFieldState extends State<PasswordFormField> {
         ),
         const SizedBox(height: 10),
         BaseTextFormField(
-          controller: widget.controller,
           decoration: InputDecoration(
             prefixIcon: InkWell(
               onTap: () {
@@ -66,17 +63,19 @@ class PasswordFormFieldState extends State<PasswordFormField> {
             ),
           ),
           obscureText: obscureText,
-          validator: (String? value) {
+          validator: (String? value, BuildContext context) {
             if (value == null || value.isEmpty) {
-              return widget.emptyMessage ?? 'Por favor ingresa la Contraseña';
+              return 'Por favor ingresa la Contraseña';
+            }
+            if (value.length < 3) {
+              return 'Debe tener al menos 3 caracteres';
             }
             if (widget.additionalValidator != null) {
               return widget.additionalValidator!(value);
             }
-            return null;
           },
-          onChange: (String? value, bool valid) {
-            widget.onChange!(value, valid);
+          onChanged: (String? value, bool valid) {
+            widget.onChange(value, valid);
           },
           onFieldSubmitted: widget.onFieldSubmitted,
         ),

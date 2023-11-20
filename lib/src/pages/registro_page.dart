@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/models/user_model.dart';
-import 'package:login_flutter/src/utils/verify_string.dart';
 import 'package:login_flutter/src/utils/widgets/email_form_field.dart';
 import 'package:login_flutter/src/utils/widgets/password_form_field.dart';
 

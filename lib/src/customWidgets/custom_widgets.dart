@@ -3,6 +3,8 @@ import 'package:login_flutter/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 
+import '../utils/widgets/botton_navigator_menu.dart';
+
 class MyBottonNavBar extends StatelessWidget {
   final Function(int) onTapFunc;
   final int selectedIndex;
@@ -43,16 +45,22 @@ class MyAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context, listen: false).user!;
     return AppBar(
-      backgroundColor: Colors.blueAccent,
-      actions: [
-        Container(
-            padding: const EdgeInsets.all(5.0),
-            child: CircleAvatar(
-              radius: 30,
-              backgroundImage:
-                  AssetImage(user.profilePicture), // Imagen de perfil
-            )),
-      ],
+      elevation: 0,
+      toolbarHeight: 60,
+      backgroundColor: Colors.transparent,
+      leading: Builder(
+        builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.black,
+              size: 25,
+            ),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        },
+      ),
     );
   }
 }
@@ -75,53 +83,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
       ),
       drawer: const MyDrawer(),
       body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              activeIcon: Icon(Icons.home_outlined),
-              label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera),
-              activeIcon: Icon(Icons.camera_outlined),
-              label: "Camara"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              activeIcon: Icon(Icons.map_outlined),
-              label: "Mapa"),
-        ],
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (int idx) => _onItemTapped(idx, context),
-      ),
+      bottomNavigationBar: BottomNavigatorMenu(),
     );
-  }
-
-  static int _calculateSelectedIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).uri.toString();
-    if (location.startsWith('/home_view')) {
-      return 0;
-    }
-    if (location.startsWith('/camera_view')) {
-      return 1;
-    }
-    if (location.startsWith('/map_view')) {
-      return 2;
-    }
-    return 0;
-  }
-
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        GoRouter.of(context).go('/home_view');
-        break;
-      case 1:
-        GoRouter.of(context).go('/camera_view');
-        break;
-      case 2:
-        GoRouter.of(context).go('/map_view');
-        break;
-    }
   }
 }
 

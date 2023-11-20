@@ -45,6 +45,8 @@ dependencies:
   langchain: ^0.0.15
   langchain_openai: ^0.0.15+1
   google_fonts: ^6.1.0
+  google_nav_bar: ^5.0.6
+  blurrycontainer: ^1.0.2
 
 
 dev_dependencies:

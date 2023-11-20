@@ -53,7 +53,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   ),
                   children: [
                     TextSpan(
-                      text: 'términos y condiciones',
+                      text: 'Términos y Condiciones',
                       style: GoogleFonts.quicksand(
                         color: Colors.teal,
                         decoration: TextDecoration.underline,

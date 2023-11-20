@@ -21,12 +21,7 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextView(
-                text: "Login",
-                fontSize: 35,
-                color: Colors.teal,
-                fontWeight: FontWeight.w900,
-              ),
+              _buildTitle('Login'),
               const SizedBox(height: 30),
               const LoginForm(),
               const SizedBox(height: 30),
@@ -36,6 +31,15 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  Widget _buildTitle(String text) {
+    return TextView(
+      text: text,
+      fontSize: 28,
+      color: Colors.teal,
+      fontWeight: FontWeight.w900,
+    );
   }
 
   Widget _buildAskForRegistration(BuildContext context) {

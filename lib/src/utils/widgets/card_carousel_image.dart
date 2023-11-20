@@ -109,11 +109,14 @@ class _InfoModalState extends State<InfoModal> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextView(text: '${widget.pez.comments!.length} comments'),
-                  CustomButton(
-                    onPressed: () {
-                      setState(() => step = StepView.interactionView);
-                    },
-                    text: 'see comments',
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: CustomButton(
+                      onPressed: () {
+                        setState(() => step = StepView.interactionView);
+                      },
+                      text: 'see comments',
+                    ),
                   )
                 ],
               ),
@@ -199,7 +202,7 @@ class _InfoModalState extends State<InfoModal> {
         TextView(
           text: widget.pez.description,
           textAlign: TextAlign.justify,
-          color: Colors.yellow,
+          color: Colors.black,
           fontSize: 14,
         ),
         const Divider(

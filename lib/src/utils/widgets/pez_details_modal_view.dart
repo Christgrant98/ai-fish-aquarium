@@ -142,7 +142,10 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
   Card _buildCommentCard(Comment comment) {
     return Card(
       shape: RoundedRectangleBorder(
-        side: const BorderSide(color: Colors.black, width: 0.1),
+        side: const BorderSide(
+          color: Colors.black,
+          width: 0.1,
+        ),
         borderRadius: BorderRadius.circular(10),
       ),
       color: CupertinoColors.systemGrey6,

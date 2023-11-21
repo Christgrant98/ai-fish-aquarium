@@ -12,7 +12,7 @@ class ExplorerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         const TextView(
             text: "Actividades de Explorador",

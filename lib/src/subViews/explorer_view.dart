@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/models/explorer_activity_model.dart';
+import 'package:login_flutter/src/utils/widgets/custom_card.dart';
 
 import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/custom_progress_indicator.dart';
@@ -15,33 +16,34 @@ class ExplorerView extends StatelessWidget {
     return Column(
       children: [
         const TextView(
-            text: "Actividades de Explorador",
-            color: Colors.white,
-            fontSize: 20),
+          text: "Actividades de Explorador",
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+        const SizedBox(height: 10),
         FutureBuilder(
-            future: _getActivities(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.active:
-                case ConnectionState.waiting:
-                  return const Center(child: CustomProgressIndicator());
-                case ConnectionState.done:
-                  if (snapshot.hasError) {
-                    return TextView(text: 'Error: ${snapshot.error}');
-                  }
-                  return snapshot.data as Widget;
-              }
-            }),
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 50),
-          child: CustomButton(
-            onPressed: () {
-              context
-                  .go("/home_view/explorer/recompensas", extra: {"points": 0});
-            },
-            text: "Recompensas",
-          ),
+          future: _getActivities(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                return const Center(child: CustomProgressIndicator());
+              case ConnectionState.done:
+                if (snapshot.hasError) {
+                  return TextView(text: 'Error: ${snapshot.error}');
+                }
+                return snapshot.data as Widget;
+            }
+          },
+        ),
+        const SizedBox(height: 15),
+        CustomButton(
+          onPressed: () {
+            context.go("/home_view/explorer/recompensas", extra: {"points": 0});
+          },
+          text: "Recompensas",
         ),
       ],
     );
@@ -53,10 +55,24 @@ class ExplorerView extends StatelessWidget {
     List<ExplorerActivity> activities = await explorerRepository.getAll();
     List<Widget> misiones = [];
     for (ExplorerActivity activity in activities) {
-      misiones.add(MissionWidget(
-          missionText: activity.activity, isCompleted: activity.isCompleted!));
+      misiones.add(
+        MissionWidget(
+          missionText: activity.activity,
+          isCompleted: activity.isCompleted!,
+        ),
+      );
     }
-    return Column(children: misiones);
+    return Container(
+      height: 470,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: Column(
+            children: misiones,
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -69,39 +85,15 @@ class MissionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.blue, // Fondo azul
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isCompleted
-                  ? Colors.green
-                  : Colors
-                      .red, // Rojo si no se ha completado, verde si se ha completado
-            ),
-            child: Icon(
-              isCompleted ? Icons.check : Icons.close, // Icono de chulo o equis
-              color: Colors.white, // Color blanco para el icono
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: TextView(
-              text: missionText,
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: CustomCard(
+        title: missionText,
+        titleSize: 14,
+        titleWeight: FontWeight.w400,
+        icon: isCompleted ? Icons.check : Icons.close,
+        backgroundColor: Colors.white,
+        iconColor: isCompleted ? Colors.green : Colors.red,
       ),
     );
   }

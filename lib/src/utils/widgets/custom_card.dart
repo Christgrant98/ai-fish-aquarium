@@ -2,22 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-    required this.icon,
-    required this.backgroundColor,
-    required this.iconColor,
-  });
-
   final String title;
   final String subtitle;
-  final void Function() onTap;
+  final void Function()? onTap;
+  final FontWeight? titleWeight;
+  final double? titleSize;
   final IconData? icon;
   final Color backgroundColor;
   final Color iconColor;
+  const CustomCard({
+    Key? key,
+    required this.title,
+    this.subtitle = '',
+    this.onTap,
+    required this.icon,
+    required this.backgroundColor,
+    required this.iconColor,
+    this.titleWeight,
+    this.titleSize,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,24 +42,27 @@ class CustomCard extends StatelessWidget {
               backgroundColor: Colors.black,
               radius: 28,
               child: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: backgroundColor,
-                  child: Icon(
-                    icon,
-                    size: 35,
-                    color: iconColor,
-                  )),
+                radius: 25,
+                backgroundColor: backgroundColor,
+                child: Icon(
+                  icon,
+                  size: 35,
+                  color: iconColor,
+                ),
+              ),
             ),
             title: TextView(
               text: title,
-              fontWeight: FontWeight.w900,
-              fontSize: 18,
+              fontWeight: titleWeight ?? FontWeight.w900,
+              fontSize: titleSize ?? 18,
             ),
-            subtitle: TextView(
-              text: subtitle,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
+            subtitle: subtitle.isNotEmpty
+                ? TextView(
+                    text: subtitle,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  )
+                : null,
           ),
         ),
       ),

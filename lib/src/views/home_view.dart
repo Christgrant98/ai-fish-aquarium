@@ -46,7 +46,7 @@ class HomeView extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return const BaseModal(
-                          heightFactor: .8,
+                          heightFactor: .75,
                           widthFactor: .9,
                           content: ExplorerView(),
                         );

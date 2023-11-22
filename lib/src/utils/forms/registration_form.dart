@@ -166,6 +166,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
       required title,
       required String content}) {
     showDialog(
+      barrierColor: Colors.black87,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(

@@ -85,6 +85,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void _showFailureDialog(BuildContext context) {
     showDialog(
+      barrierColor: Colors.black87,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(

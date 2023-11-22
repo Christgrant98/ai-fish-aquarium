@@ -28,6 +28,7 @@ class CardImagesState extends State<CardImages> {
               width: MediaQuery.of(context).size.width,
               child: InkWell(
                   onTap: () => showDialog(
+                        barrierColor: Colors.black87,
                         context: context,
                         builder: (context) {
                           return BackdropFilter(

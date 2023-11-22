@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:go_router/go_router.dart';
 
 import '../utils/widgets/botton_navigator_menu.dart';
 import '../utils/widgets/text_view.dart';
@@ -85,7 +84,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
       drawer: const MyDrawer(),
       body: SafeArea(child: child),
 
-      bottomNavigationBar: BottomNavigatorMenu(),
+      bottomNavigationBar: const BottomNavigatorMenu(),
       // bottomNavigationBar: BottomNavigationBar(
       //   items: const [
       //     BottomNavigationBarItem(
@@ -151,6 +150,7 @@ class MyDrawer extends StatelessWidget {
 
   void _showAboutDialog(BuildContext context) {
     showDialog(
+      barrierColor: Colors.black87,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(

@@ -85,6 +85,7 @@ class _HomeViewState extends State<HomeView> {
                 icon: Icons.rocket_launch_rounded,
                 onTap: () {
                   showDialog(
+                      barrierColor: Colors.black87,
                       context: context,
                       builder: (context) {
                         return const BaseModal(

@@ -34,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
               _buildTitleHead(),
               const SizedBox(height: 5),
               _builCarouselView(context),
-              const SizedBox(height: 5),
+              const SizedBox(height: 20),
               CustomCard(
                 title: 'Actividades de explorador',
                 subtitle: 'consulta aqui las actividades de explorades',

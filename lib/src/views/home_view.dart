@@ -30,11 +30,11 @@ class _HomeViewState extends State<HomeView> {
           child: SizedBox(
             width: MediaQuery.of(context).size.width * .95,
             child: Column(children: [
-              const SizedBox(height: 15),
+              const SizedBox(height: 5),
               _buildTitleHead(),
-              const SizedBox(height: 15),
+              const SizedBox(height: 5),
               _builCarouselView(context),
-              const SizedBox(height: 15),
+              const SizedBox(height: 5),
               CustomCard(
                 title: 'Actividades de explorador',
                 subtitle: 'consulta aqui las actividades de explorades',
@@ -53,7 +53,7 @@ class _HomeViewState extends State<HomeView> {
                   },
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 5),
               CustomCard(
                 title: 'Album de campo',
                 subtitle: 'consulta aqui Album de campo',
@@ -64,7 +64,7 @@ class _HomeViewState extends State<HomeView> {
                   '/home_view/album',
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 5),
               CustomCard(
                 title: '¿Cómo utilizar la app?',
                 subtitle:
@@ -76,7 +76,7 @@ class _HomeViewState extends State<HomeView> {
                   '/home_view/instructions',
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 5),
               CustomCard(
                 title: 'About us',
                 subtitle: 'Learn More About Us...',

@@ -42,6 +42,7 @@ class ExplorerView extends StatelessWidget {
         const SizedBox(height: 15),
         CustomButton(
           onPressed: () {
+            Navigator.of(context).pop();
             context.go("/home_view/explorer/recompensas", extra: {"points": 0});
           },
           text: "Recompensas",
@@ -89,6 +90,7 @@ class MissionWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: CustomCard(
+        cardColor: const Color.fromARGB(255, 240, 240, 240),
         title: missionText,
         titleSize: 14,
         titleWeight: FontWeight.w400,

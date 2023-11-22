@@ -7,6 +7,7 @@ import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/providers/carousel_provider.dart';
 import 'package:login_flutter/src/subViews/about_us_view.dart';
 import 'package:login_flutter/src/utils/widgets/base_modal.dart';
+import 'package:login_flutter/src/utils/widgets/custom_card.dart';
 import 'package:login_flutter/src/utils/widgets/layout.dart';
 
 import '../subViews/explorer_view.dart';
@@ -28,14 +29,14 @@ class HomeView extends StatelessWidget {
           body: SingleChildScrollView(
             child: Center(
               child: SizedBox(
-                width: constraints.maxWidth * .92,
+                width: constraints.maxWidth * .95,
                 child: Column(children: [
                   const SizedBox(height: 15),
                   _buildTitleHead(),
                   const SizedBox(height: 15),
                   _builCarouselView(),
                   const SizedBox(height: 15),
-                  _buildCardOption(
+                  CustomCard(
                     title: 'Actividades de explorador',
                     subtitle: 'consulta aqui las actividades de explorades',
                     icon: Icons.explore,
@@ -53,27 +54,25 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  _buildCardOption(
-                    title: 'Album de campo',
-                    subtitle: 'consulta aqui Album de campo',
-                    backgroundColor: const Color.fromARGB(255, 152, 209, 255),
-                    iconColor: Colors.blue,
-                    onTap: () => GoRouter.of(context).go('/home_view/album'),
-                    icon: Icons.photo_library,
-                  ),
+                  CustomCard(
+                      title: 'Album de campo',
+                      subtitle: 'consulta aqui Album de campo',
+                      backgroundColor: const Color.fromARGB(255, 152, 209, 255),
+                      iconColor: Colors.blue,
+                      onTap: () => GoRouter.of(context).go('/home_view/album'),
+                      icon: Icons.photo_library),
                   const SizedBox(height: 15),
-                  _buildCardOption(
-                    title: '¿Cómo utilizar la app?',
-                    subtitle:
-                        'Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.',
-                    backgroundColor: Colors.white,
-                    iconColor: Colors.black,
-                    onTap: () =>
-                        GoRouter.of(context).go('/home_view/instructions'),
-                    icon: Icons.info_rounded,
-                  ),
+                  CustomCard(
+                      title: '¿Cómo utilizar la app?',
+                      subtitle:
+                          'Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.',
+                      iconColor: Colors.black,
+                      backgroundColor: Colors.white,
+                      onTap: () =>
+                          GoRouter.of(context).go('/home_view/instructions'),
+                      icon: Icons.info_rounded),
                   const SizedBox(height: 15),
-                  _buildCardOption(
+                  CustomCard(
                     title: 'About us',
                     subtitle: 'Learn More About Us...',
                     onTap: () {
@@ -133,63 +132,6 @@ class HomeView extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCardOption({
-    required String title,
-    required String subtitle,
-    required void Function() onTap,
-    IconData? icon,
-    required Color backgroundColor,
-    required Color iconColor,
-    String? imgPath,
-  }) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Colors.transparent,
-          width: 0.1,
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      elevation: 10,
-      child: SizedBox(
-        height: 100,
-        child: Center(
-          child: ListTile(
-            onTap: onTap,
-            leading: CircleAvatar(
-              backgroundColor: Colors.black,
-              radius: 28,
-              child: CircleAvatar(
-                radius: 25,
-                backgroundColor: backgroundColor,
-                child: imgPath == null
-                    ? Icon(
-                        icon,
-                        size: 35,
-                        color: iconColor,
-                      )
-                    : Image.asset(
-                        imgPath,
-                        fit: BoxFit.cover,
-                      ),
-              ),
-            ),
-            title: TextView(
-              text: title,
-              fontWeight: FontWeight.w900,
-              fontSize: 18,
-            ),
-            subtitle: TextView(
-              text: subtitle,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
       ),
     );
   }

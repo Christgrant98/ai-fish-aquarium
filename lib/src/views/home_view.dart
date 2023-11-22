@@ -42,12 +42,14 @@ class _HomeViewState extends State<HomeView> {
                 iconColor: Colors.orange,
                 iconBackgoundColor: const Color.fromARGB(255, 255, 220, 168),
                 onTap: () => showDialog(
+                  barrierColor: Colors.black87,
+                  barrierDismissible: false,
                   context: context,
                   builder: (context) {
                     return const BaseModal(
                       paddingValue: 10,
                       heightFactor: .75,
-                      widthFactor: .9,
+                      widthFactor: 1,
                       content: ExplorerView(),
                     );
                   },
@@ -85,15 +87,16 @@ class _HomeViewState extends State<HomeView> {
                 icon: Icons.rocket_launch_rounded,
                 onTap: () {
                   showDialog(
-                      barrierColor: Colors.black87,
-                      context: context,
-                      builder: (context) {
-                        return const BaseModal(
-                          heightFactor: .5,
-                          widthFactor: .9,
-                          content: AboutUsView(),
-                        );
-                      });
+                    barrierColor: Colors.black87,
+                    context: context,
+                    builder: (context) {
+                      return const BaseModal(
+                        heightFactor: .5,
+                        widthFactor: .9,
+                        content: AboutUsView(),
+                      );
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 100),

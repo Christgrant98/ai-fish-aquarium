@@ -13,9 +13,10 @@ class CloseBttn extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-                spreadRadius: 4,
-                color: Color.fromARGB(45, 0, 0, 0),
-                blurRadius: 7),
+              spreadRadius: 4,
+              color: Color.fromARGB(45, 0, 0, 0),
+              blurRadius: 7,
+            ),
           ],
         ),
         child: const CircleAvatar(

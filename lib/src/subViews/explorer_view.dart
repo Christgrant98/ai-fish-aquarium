@@ -2,52 +2,104 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/models/explorer_activity_model.dart';
+import 'package:login_flutter/src/subViews/recompensas_view.dart';
+import 'package:login_flutter/src/utils/widgets/close_button.dart';
 import 'package:login_flutter/src/utils/widgets/custom_card.dart';
 
 import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/custom_progress_indicator.dart';
 import '../utils/widgets/text_view.dart';
 
-class ExplorerView extends StatelessWidget {
+enum StepView {
+  initial,
+  rewards,
+}
+
+class ExplorerView extends StatefulWidget {
   const ExplorerView({super.key});
 
   @override
+  State<ExplorerView> createState() => _ExplorerViewState();
+}
+
+class _ExplorerViewState extends State<ExplorerView> {
+  StepView step = StepView.initial;
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 5),
-        const TextView(
-          text: "Actividades de Explorador",
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
-        const SizedBox(height: 10),
-        FutureBuilder(
-          future: _getActivities(),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-              case ConnectionState.active:
-              case ConnectionState.waiting:
-                return const Center(child: CustomProgressIndicator());
-              case ConnectionState.done:
-                if (snapshot.hasError) {
-                  return TextView(text: 'Error: ${snapshot.error}');
-                }
-                return snapshot.data as Widget;
-            }
-          },
-        ),
-        const SizedBox(height: 15),
-        CustomButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-            context.go("/home_view/explorer/recompensas", extra: {"points": 0});
-          },
-          text: "Recompensas",
-        ),
-      ],
+    return _buildViewsByStep();
+  }
+
+  Widget _buildViewsByStep() {
+    if (step == StepView.initial) {
+      return Column(
+        children: [
+          const SizedBox(height: 5),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextView(
+                text: "Actividades de Explorador",
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+              CloseBttn()
+            ],
+          ),
+          FutureBuilder(
+            future: _getActivities(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.active:
+                case ConnectionState.waiting:
+                  return const Center(child: CustomProgressIndicator());
+                case ConnectionState.done:
+                  if (snapshot.hasError) {
+                    return TextView(text: 'Error: ${snapshot.error}');
+                  }
+                  return snapshot.data as Widget;
+              }
+            },
+          ),
+          const SizedBox(height: 15),
+          CustomButton(
+            onPressed: () {
+              setState(() => step = StepView.rewards);
+            },
+            text: "Recompensas",
+          ),
+        ],
+      );
+    } else {
+      return Column(
+        children: [
+          _buildBackButton(),
+          const SizedBox(height: 25),
+          const RecompensasView(points: 0),
+        ],
+      );
+    }
+  }
+
+  InkWell _buildBackButton() {
+    return InkWell(
+      onTap: () {
+        setState(() => step = StepView.initial);
+      },
+      child: const Row(
+        children: [
+          Icon(
+            Icons.arrow_back_ios_new_sharp,
+            size: 22,
+          ),
+          TextView(
+            fontWeight: FontWeight.bold,
+            text: 'Go back',
+            fontSize: 20,
+          )
+        ],
+      ),
     );
   }
 
@@ -64,7 +116,7 @@ class ExplorerView extends StatelessWidget {
         ),
       );
     }
-    return Container(
+    return SizedBox(
       height: 470,
       child: SingleChildScrollView(
         child: Padding(
@@ -90,7 +142,6 @@ class MissionWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: CustomCard(
-        cardColor: const Color.fromARGB(255, 240, 240, 240),
         title: missionText,
         titleSize: 14,
         titleWeight: FontWeight.w400,

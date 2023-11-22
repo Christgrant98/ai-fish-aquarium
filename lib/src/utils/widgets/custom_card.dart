@@ -4,13 +4,16 @@ import 'package:login_flutter/src/utils/widgets/text_view.dart';
 class CustomCard extends StatelessWidget {
   final Color? cardColor;
   final String title;
+  final double? height;
   final String subtitle;
   final void Function()? onTap;
   final FontWeight? titleWeight;
+  final bool? hasLeading;
   final double? titleSize;
   final IconData? icon;
   final Color iconBackgoundColor;
   final Color iconColor;
+  final Widget? trailing;
   const CustomCard({
     Key? key,
     required this.title,
@@ -22,6 +25,9 @@ class CustomCard extends StatelessWidget {
     this.titleWeight,
     this.titleSize,
     this.cardColor,
+    this.trailing,
+    this.height,
+    this.hasLeading = true,
   }) : super(key: key);
 
   @override
@@ -37,23 +43,25 @@ class CustomCard extends StatelessWidget {
       ),
       elevation: 10,
       child: SizedBox(
-        height: 100,
+        height: height ?? 100,
         child: Center(
           child: ListTile(
             onTap: onTap,
-            leading: CircleAvatar(
-              backgroundColor: Colors.black,
-              radius: 28,
-              child: CircleAvatar(
-                radius: 25,
-                backgroundColor: iconBackgoundColor,
-                child: Icon(
-                  icon,
-                  size: 35,
-                  color: iconColor,
-                ),
-              ),
-            ),
+            leading: hasLeading == true
+                ? CircleAvatar(
+                    backgroundColor: Colors.black,
+                    radius: 28,
+                    child: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: iconBackgoundColor,
+                      child: Icon(
+                        icon,
+                        size: 35,
+                        color: iconColor,
+                      ),
+                    ),
+                  )
+                : null,
             title: TextView(
               text: title,
               fontWeight: titleWeight ?? FontWeight.w900,
@@ -66,6 +74,7 @@ class CustomCard extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   )
                 : null,
+            trailing: trailing,
           ),
         ),
       ),

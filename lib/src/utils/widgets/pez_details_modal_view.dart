@@ -77,29 +77,33 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     } else {
       return Column(
         children: [
-          InkWell(
-            onTap: () {
-              setState(() => step = StepView.initial);
-            },
-            child: const Row(
-              children: [
-                Icon(
-                  Icons.arrow_back_ios_new_sharp,
-                  size: 18.5,
-                ),
-                TextView(
-                  fontWeight: FontWeight.bold,
-                  text: 'Go back',
-                  fontSize: 16,
-                )
-              ],
-            ),
-          ),
+          _buildBackButton(),
           const SizedBox(height: 10),
           Expanded(child: _buildCommentBoxSection(currentUser)),
         ],
       );
     }
+  }
+
+  InkWell _buildBackButton() {
+    return InkWell(
+      onTap: () {
+        setState(() => step = StepView.initial);
+      },
+      child: const Row(
+        children: [
+          Icon(
+            Icons.arrow_back_ios_new_sharp,
+            size: 18.5,
+          ),
+          TextView(
+            fontWeight: FontWeight.bold,
+            text: 'Go back',
+            fontSize: 16,
+          )
+        ],
+      ),
+    );
   }
 
   Widget _buildCommentBoxSection(
@@ -230,6 +234,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
 
     Navigator.of(context).pop();
     showDialog(
+      barrierColor: Colors.black87,
       context: context,
       builder: (ctx) {
         return const AlertDialog(

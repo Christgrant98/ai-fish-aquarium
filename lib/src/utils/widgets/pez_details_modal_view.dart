@@ -61,13 +61,12 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
                 children: [
                   TextView(text: '${widget.pez.comments!.length} comments'),
                   const SizedBox(width: 10),
-                  Expanded(
-                    child: CustomButton(
-                      onPressed: () {
-                        setState(() => step = StepView.interactionView);
-                      },
-                      text: 'see comments',
-                    ),
+                  CustomButton(
+                    width: 150,
+                    onPressed: () {
+                      setState(() => step = StepView.interactionView);
+                    },
+                    text: 'Comments',
                   )
                 ],
               ),

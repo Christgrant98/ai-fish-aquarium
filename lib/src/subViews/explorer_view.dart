@@ -15,6 +15,7 @@ class ExplorerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 5),
         const TextView(
           text: "Actividades de Explorador",
           color: Colors.black,

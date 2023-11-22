@@ -102,38 +102,6 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     }
   }
 
-  Widget _buildCommentBoxSection(
-    User currentUser,
-  ) {
-    return SizedBox(
-      height: 280,
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: widget.pez.comments?.length ?? 0,
-              itemBuilder: (context, index) {
-                Comment comment = widget.pez.comments![index];
-                return _buildCommentCard(comment);
-              },
-            ),
-          ),
-          const SizedBox(height: 3.5),
-          CommentFormField(
-            title: '@${currentUser.username}',
-            onChange: (String? value, bool isValid) {
-              setState(() {
-                comment = isValid ? value : null;
-              });
-            },
-            actionSend: () =>
-                _canSendComment() ? _addCommentToPez(user: currentUser) : null,
-          ),
-        ],
-      ),
-    );
-  }
-
   bool _canSendComment() {
     return comment != null;
   }
@@ -215,13 +183,41 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     );
   }
 
+  Widget _buildCommentBoxSection(
+    User currentUser,
+  ) {
+    return SizedBox(
+      height: 280,
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: widget.pez.comments?.length ?? 0,
+              itemBuilder: (context, index) {
+                Comment comment = widget.pez.comments![index];
+                return _buildCommentCard(comment);
+              },
+            ),
+          ),
+          const SizedBox(height: 3.5),
+          CommentFormField(
+            title: '@${currentUser.username}',
+            actionSend: () => _addCommentToPez(user: currentUser),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _addCommentToPez({
     required User user,
   }) {
+    String commentText = commentController.text;
+
     Comment newComment = _buildComment(
       username: user.username,
       mail: user.mail,
-      commentText: comment!,
+      commentText: commentText,
     );
 
     setState(() {

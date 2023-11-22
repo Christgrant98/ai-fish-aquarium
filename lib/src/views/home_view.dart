@@ -55,26 +55,34 @@ class HomeView extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   CustomCard(
-                      title: 'Album de campo',
-                      subtitle: 'consulta aqui Album de campo',
-                      backgroundColor: const Color.fromARGB(255, 152, 209, 255),
-                      iconColor: Colors.blue,
-                      onTap: () => GoRouter.of(context).go('/home_view/album'),
-                      icon: Icons.photo_library),
+                    title: 'Album de campo',
+                    subtitle: 'consulta aqui Album de campo',
+                    backgroundColor: const Color.fromARGB(255, 152, 209, 255),
+                    iconColor: Colors.blue,
+                    icon: Icons.photo_library,
+                    onTap: () => GoRouter.of(context).go(
+                      '/home_view/album',
+                    ),
+                  ),
                   const SizedBox(height: 15),
                   CustomCard(
-                      title: '¿Cómo utilizar la app?',
-                      subtitle:
-                          'Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.',
-                      iconColor: Colors.black,
-                      backgroundColor: Colors.white,
-                      onTap: () =>
-                          GoRouter.of(context).go('/home_view/instructions'),
-                      icon: Icons.info_rounded),
+                    title: '¿Cómo utilizar la app?',
+                    subtitle:
+                        'Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.',
+                    iconColor: Colors.black,
+                    backgroundColor: Colors.white,
+                    icon: Icons.info_rounded,
+                    onTap: () => GoRouter.of(context).go(
+                      '/home_view/instructions',
+                    ),
+                  ),
                   const SizedBox(height: 15),
                   CustomCard(
                     title: 'About us',
                     subtitle: 'Learn More About Us...',
+                    backgroundColor: const Color.fromARGB(255, 255, 196, 196),
+                    iconColor: Colors.red,
+                    icon: Icons.rocket_launch_rounded,
                     onTap: () {
                       showDialog(
                           context: context,
@@ -86,9 +94,6 @@ class HomeView extends StatelessWidget {
                             );
                           });
                     },
-                    backgroundColor: const Color.fromARGB(255, 255, 196, 196),
-                    iconColor: Colors.red,
-                    icon: Icons.rocket_launch_rounded,
                   ),
                   const SizedBox(height: 100),
                 ]),

@@ -22,15 +22,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final EdgeInsetsGeometry lateralMargin =
-      const EdgeInsets.symmetric(horizontal: 20.0);
-
   @override
   Widget build(BuildContext context) {
     return Layout(
       body: SingleChildScrollView(
         child: Center(
           child: SizedBox(
+            width: MediaQuery.of(context).size.width * .95,
             child: Column(children: [
               const SizedBox(height: 15),
               _buildTitleHead(),
@@ -42,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
                 subtitle: 'consulta aqui las actividades de explorades',
                 icon: Icons.explore,
                 iconColor: Colors.orange,
-                backgroundColor: const Color.fromARGB(255, 255, 220, 168),
+                iconBackgoundColor: const Color.fromARGB(255, 255, 220, 168),
                 onTap: () => showDialog(
                   context: context,
                   builder: (context) {
@@ -59,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
               CustomCard(
                 title: 'Album de campo',
                 subtitle: 'consulta aqui Album de campo',
-                backgroundColor: const Color.fromARGB(255, 152, 209, 255),
+                iconBackgoundColor: const Color.fromARGB(255, 152, 209, 255),
                 iconColor: Colors.blue,
                 icon: Icons.photo_library,
                 onTap: () => GoRouter.of(context).go(
@@ -72,7 +70,7 @@ class _HomeViewState extends State<HomeView> {
                 subtitle:
                     'Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.',
                 iconColor: Colors.black,
-                backgroundColor: Colors.white,
+                iconBackgoundColor: Colors.white,
                 icon: Icons.info_rounded,
                 onTap: () => GoRouter.of(context).go(
                   '/home_view/instructions',
@@ -82,7 +80,7 @@ class _HomeViewState extends State<HomeView> {
               CustomCard(
                 title: 'About us',
                 subtitle: 'Learn More About Us...',
-                backgroundColor: const Color.fromARGB(255, 255, 196, 196),
+                iconBackgoundColor: const Color.fromARGB(255, 255, 196, 196),
                 iconColor: Colors.red,
                 icon: Icons.rocket_launch_rounded,
                 onTap: () {

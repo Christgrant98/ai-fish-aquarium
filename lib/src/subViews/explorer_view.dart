@@ -93,7 +93,7 @@ class MissionWidget extends StatelessWidget {
         titleSize: 14,
         titleWeight: FontWeight.w400,
         icon: isCompleted ? Icons.check : Icons.close,
-        backgroundColor: Colors.white,
+        iconBackgoundColor: Colors.white,
         iconColor: isCompleted ? Colors.green : Colors.red,
       ),
     );

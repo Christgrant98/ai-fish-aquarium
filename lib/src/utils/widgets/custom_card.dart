@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
 
 class CustomCard extends StatelessWidget {
+  final Color? cardColor;
   final String title;
   final String subtitle;
   final void Function()? onTap;
   final FontWeight? titleWeight;
   final double? titleSize;
   final IconData? icon;
-  final Color backgroundColor;
+  final Color iconBackgoundColor;
   final Color iconColor;
   const CustomCard({
     Key? key,
@@ -16,15 +17,17 @@ class CustomCard extends StatelessWidget {
     this.subtitle = '',
     this.onTap,
     required this.icon,
-    required this.backgroundColor,
+    required this.iconBackgoundColor,
     required this.iconColor,
     this.titleWeight,
     this.titleSize,
+    this.cardColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.red,
       shape: RoundedRectangleBorder(
         side: const BorderSide(
           color: Colors.transparent,
@@ -43,7 +46,7 @@ class CustomCard extends StatelessWidget {
               radius: 28,
               child: CircleAvatar(
                 radius: 25,
-                backgroundColor: backgroundColor,
+                backgroundColor: iconBackgoundColor,
                 child: Icon(
                   icon,
                   size: 35,

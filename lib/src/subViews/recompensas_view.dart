@@ -10,41 +10,43 @@ class RecompensasView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const TextView(
-            text: "Recompensas",
-            fontSize: 20,
-            color: Colors.white,
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.blue.shade900,
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const TextView(
+              text: "Recompensas",
+              fontSize: 20,
+              color: Colors.white,
             ),
-            child: Column(
-              children: [
-                TextView(
-                  text: "Puntos de explorador: $points",
-                  color: Colors.white,
-                ),
-                const PromoWidget(
-                  promocion:
-                      "Obtén un 20% de descuento en la tienda del zoológico",
-                  puntosRequeridos: 2000,
-                ),
-                const PromoWidget(
-                  promocion:
-                      "Obtén un 15% de descuento en la tienda del zoológico",
-                  puntosRequeridos: 1500,
-                ),
-              ],
+            Container(
+              margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.blue.shade900,
+              ),
+              child: Column(
+                children: [
+                  TextView(
+                    text: "Puntos de explorador: $points",
+                    color: Colors.white,
+                  ),
+                  const PromoWidget(
+                    promocion:
+                        "Obtén un 20% de descuento en la tienda del zoológico",
+                    puntosRequeridos: 2000,
+                  ),
+                  const PromoWidget(
+                    promocion:
+                        "Obtén un 15% de descuento en la tienda del zoológico",
+                    puntosRequeridos: 1500,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

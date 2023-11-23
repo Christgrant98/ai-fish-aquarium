@@ -75,7 +75,9 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
       return Column(
         children: [
           _buildBackButton(),
-          Expanded(child: _buildCommentBoxSection(currentUser)),
+          Expanded(
+            child: _buildCommentBoxSection(currentUser),
+          ),
         ],
       );
     }

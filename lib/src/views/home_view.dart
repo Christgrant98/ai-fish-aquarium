@@ -91,7 +91,7 @@ class _HomeViewState extends State<HomeView> {
                     context: context,
                     builder: (context) {
                       return const BaseModal(
-                        heightFactor: .5,
+                        heightFactor: .55,
                         widthFactor: .9,
                         content: AboutUsView(),
                       );

@@ -98,6 +98,7 @@ class _DetailsViewState extends State<DetailsView> {
                   );
               }
             }),
+        const SizedBox(height: 20),
       ],
     );
   }

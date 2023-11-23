@@ -36,6 +36,7 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
           horizontal: 10,
         ),
         child: GNav(
+          backgroundColor: Colors.transparent,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           selectedIndex: _calculateSelectedIndex(context),
           color: const Color.fromARGB(255, 153, 153, 153),

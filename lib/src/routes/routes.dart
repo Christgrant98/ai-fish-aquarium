@@ -13,6 +13,7 @@ import 'package:login_flutter/src/subViews/details_view.dart';
 import 'package:login_flutter/src/subViews/explorer_view.dart';
 import 'package:login_flutter/src/subViews/instructions_view.dart';
 import 'package:login_flutter/src/subViews/recompensas_view.dart';
+import 'package:login_flutter/src/utils/widgets/layout.dart';
 import 'package:login_flutter/src/views/camera_view.dart';
 import 'package:login_flutter/src/views/home_view.dart';
 import 'package:login_flutter/src/views/map_view.dart';
@@ -33,7 +34,7 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: 'login',
-          builder: (context, state) => LoginPage(),
+          builder: (context, state) => const LoginPage(),
         ),
         GoRoute(
           path: "registro",
@@ -42,7 +43,7 @@ final router = GoRouter(
         ShellRoute(
             navigatorKey: _shellNavigatorKey,
             builder: (BuildContext context, GoRouterState state, Widget child) {
-              return ScaffoldWithNavBar(child: child);
+              return Layout(body: child);
             },
             routes: [
               GoRoute(

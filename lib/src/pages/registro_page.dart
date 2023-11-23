@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_flutter/src/utils/widgets/layout.dart';
 
 import '../utils/forms/registration_form.dart';
 import '../utils/widgets/text_view.dart';
@@ -11,7 +12,7 @@ class RegistroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Layout(
         body: SafeArea(
       child: SingleChildScrollView(
         child: Center(

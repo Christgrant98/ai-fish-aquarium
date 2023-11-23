@@ -5,12 +5,12 @@ import 'package:login_flutter/src/utils/widgets/botton_navigator_menu.dart';
 class Layout extends StatelessWidget {
   final Widget body;
   final Widget? bottomNavigationBar;
-  final bool isBottomNavigationBar;
+  final bool hasBottomNavigationBar;
   const Layout({
     Key? key,
     required this.body,
     this.bottomNavigationBar,
-    this.isBottomNavigationBar = false,
+    this.hasBottomNavigationBar = false,
   }) : super(key: key);
 
   @override
@@ -18,9 +18,9 @@ class Layout extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Scaffold(
-          body: SafeArea(child: body),
+          body: body,
           bottomNavigationBar:
-              isBottomNavigationBar ? const BottomNavigatorMenu() : null,
+              hasBottomNavigationBar ? const BottomNavigatorMenu() : null,
         );
       },
     );

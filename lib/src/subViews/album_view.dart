@@ -42,9 +42,7 @@ class _AlbumViewState extends State<AlbumView> {
                 color: Colors.white,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 40),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(

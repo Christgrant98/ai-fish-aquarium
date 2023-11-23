@@ -23,9 +23,7 @@ class RecompensasView extends StatelessWidget {
           margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
           padding: const EdgeInsets.only(left: 5, right: 10, bottom: 20),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.blue.shade900,
-          ),
+              borderRadius: BorderRadius.circular(20), color: Colors.teal),
           child: Column(
             children: [
               const SizedBox(height: 15),

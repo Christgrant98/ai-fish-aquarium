@@ -58,9 +58,21 @@ class _HomeViewState extends State<HomeView> {
               ),
               const SizedBox(height: 5),
               CustomCard(
+                title: 'Trivia del acuario',
+                subtitle:
+                    '¡Participa en nuestra emocionante Trivia del acuario!',
+                iconBackgoundColor: const Color.fromARGB(255, 255, 196, 196),
+                iconColor: Colors.red,
+                icon: Icons.grid_view_rounded,
+                onTap: () => GoRouter.of(context).go(
+                  '/home_view/trivia',
+                ),
+              ),
+              const SizedBox(height: 5),
+              CustomCard(
                 title: 'Album de campo',
                 subtitle: 'consulta aqui Album de campo',
-                iconBackgoundColor: const Color.fromARGB(255, 152, 209, 255),
+                iconBackgoundColor: Color.fromARGB(255, 176, 219, 255),
                 iconColor: Colors.blue,
                 icon: Icons.photo_library,
                 onTap: () => GoRouter.of(context).go(
@@ -72,8 +84,8 @@ class _HomeViewState extends State<HomeView> {
                 title: '¿Cómo utilizar la app?',
                 subtitle:
                     'Aquí encontrarás las instrucciones para hacer uso correcto de la aplicación y cómo funciona.',
-                iconColor: Colors.black,
-                iconBackgoundColor: Colors.white,
+                iconColor: Colors.teal,
+                iconBackgoundColor: const Color.fromARGB(255, 195, 255, 249),
                 icon: Icons.info_rounded,
                 onTap: () => GoRouter.of(context).go(
                   '/home_view/instructions',
@@ -83,8 +95,8 @@ class _HomeViewState extends State<HomeView> {
               CustomCard(
                 title: 'About us',
                 subtitle: 'Learn More About Us...',
-                iconBackgoundColor: const Color.fromARGB(255, 255, 196, 196),
-                iconColor: Colors.red,
+                iconBackgoundColor: const Color.fromARGB(255, 245, 190, 255),
+                iconColor: Colors.purple,
                 icon: Icons.rocket_launch_rounded,
                 onTap: () {
                   showDialog(

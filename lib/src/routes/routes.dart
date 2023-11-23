@@ -18,6 +18,8 @@ import 'package:login_flutter/src/views/camera_view.dart';
 import 'package:login_flutter/src/views/home_view.dart';
 import 'package:login_flutter/src/views/map_view.dart';
 
+import '../pages/trivia_game_page.dart';
+
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
 final GlobalKey<NavigatorState> _shellNavigatorKey =
@@ -61,6 +63,10 @@ final router = GoRouter(
                           return CarouselDetails(pez: carouselImage);
                         }),
                     GoRoute(
+                      path: "trivia",
+                      builder: (context, state) => const TriviaGamePage(),
+                    ),
+                    GoRoute(
                         path: "explorer",
                         builder: (BuildContext context, GoRouterState state) {
                           return const ExplorerView();
@@ -76,7 +82,7 @@ final router = GoRouter(
                                 return RecompensasView(
                                   points: points,
                                 );
-                              })
+                              }),
                         ]),
                     GoRoute(
                         path: "album",

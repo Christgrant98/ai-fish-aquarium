@@ -3,6 +3,7 @@ import 'package:login_flutter/src/models/trivia.dart';
 class TriviaGameData {
   List<TriviaGame> questions = <TriviaGame>[
     TriviaGame(
+      id: 1,
       question:
           '¿En qué tipo de hábitat acuático se encuentra comúnmente la anguila?',
       answers: {
@@ -12,10 +13,11 @@ class TriviaGameData {
         4: 'Estuarios de agua salobre',
       },
       imagePath: 'ruta_de_la_imagen',
-      points: 10,
+      points: 1000,
       isCorrect: false,
     ),
     TriviaGame(
+      id: 2,
       question:
           '¿Dónde suele encontrarse el sabalote, un pez de gran tamaño y cuerpo plateado?',
       answers: {
@@ -25,10 +27,11 @@ class TriviaGameData {
         4: 'Arrecifes de coral en aguas saladas',
       },
       imagePath: 'ruta_de_la_imagen',
-      points: 10,
+      points: 1000,
       isCorrect: false,
     ),
     TriviaGame(
+      id: 3,
       question:
           '¿Cuál es la edad máxima que puede alcanzar un pez dorado (Carassius auratus) en condiciones ideales de cuidado?',
       answers: {
@@ -38,10 +41,11 @@ class TriviaGameData {
         4: '40 años',
       },
       imagePath: 'ruta_de_la_imagen',
-      points: 10,
+      points: 1000,
       isCorrect: false,
     ),
     TriviaGame(
+      id: 4,
       question:
           '¿Cuál es una característica distintiva de la perca europea (Perca fluviatilis) en cuanto a su comportamiento alimenticio?',
       answers: {
@@ -51,10 +55,11 @@ class TriviaGameData {
         4: 'Se alimenta principalmente de algas marinas',
       },
       imagePath: 'ruta_de_la_imagen',
-      points: 10,
+      points: 1000,
       isCorrect: false,
     ),
     TriviaGame(
+      id: 5,
       question:
           '¿Cuál es una característica distintiva del plecostoma rayado (Pterygoplichthys gibbiceps), también conocido como "pleco", en relación con su dieta?',
       answers: {
@@ -64,7 +69,7 @@ class TriviaGameData {
         4: 'Prefiere alimentarse de insectos acuáticos',
       },
       imagePath: 'ruta_de_la_imagen',
-      points: 10,
+      points: 1000,
       isCorrect: false,
     ),
   ];

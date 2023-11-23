@@ -14,4 +14,6 @@ class TriviaGame {
     required this.points,
     required this.isCorrect,
   });
+
+  bool _SelectCorrectAnswer(int idQuestion, int answer) {}
 }

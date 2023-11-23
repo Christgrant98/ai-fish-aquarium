@@ -10,7 +10,7 @@ class Layout extends StatelessWidget {
     Key? key,
     required this.body,
     this.bottomNavigationBar,
-    this.hasBottomNavigationBar = false,
+    this.hasBottomNavigationBar = true,
   }) : super(key: key);
 
   @override
@@ -18,7 +18,8 @@ class Layout extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Scaffold(
-          body: body,
+          resizeToAvoidBottomInset: true,
+          body: SafeArea(child: body),
           bottomNavigationBar:
               hasBottomNavigationBar ? const BottomNavigatorMenu() : null,
         );

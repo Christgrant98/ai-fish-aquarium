@@ -44,7 +44,9 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
           padding: const EdgeInsets.all(5),
           gap: 8,
           onTabChange: (index) {
-            _onItemTapped(index, context);
+            if (!_isDisposed) {
+              _onItemTapped(index, context);
+            }
           },
           tabs: const [
             GButton(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:login_flutter/src/utils/widgets/layout.dart';
 
 import '../utils/widgets/text_view.dart';
 
 class InstructionsView extends StatelessWidget {
-  const InstructionsView({Key? key});
+  const InstructionsView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

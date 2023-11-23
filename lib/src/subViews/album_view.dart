@@ -26,7 +26,7 @@ class _AlbumViewState extends State<AlbumView> {
           color: Colors.teal,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
+            children: [
               const SizedBox(height: 40),
               const TextView(
                 text: 'Album',
@@ -39,7 +39,7 @@ class _AlbumViewState extends State<AlbumView> {
                 text:
                     'Explora las fotos que has tomado de tus encuentros submarinos',
                 fontSize: 16,
-                color: Colors.black,
+                color: Colors.white,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(

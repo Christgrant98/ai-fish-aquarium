@@ -1,11 +1,13 @@
 class TriviaGame {
+  int? id;
   String question;
-  List<String> answers;
+  Map<int, String> answers;
   String imagePath;
   int points;
   bool isCorrect;
 
   TriviaGame({
+    this.id,
     required this.question,
     required this.answers,
     required this.imagePath,

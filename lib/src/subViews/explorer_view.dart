@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/database/database_helper.dart';
 import 'package:login_flutter/src/models/explorer_activity_model.dart';
 import 'package:login_flutter/src/subViews/recompensas_view.dart';
@@ -31,44 +30,51 @@ class _ExplorerViewState extends State<ExplorerView> {
 
   Widget _buildViewsByStep() {
     if (step == StepView.initial) {
-      return Column(
+      return Stack(
         children: [
-          const SizedBox(height: 5),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextView(
-                text: "Actividades de Explorador",
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+              const SizedBox(height: 30),
+              const Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: TextView(
+                  text: "Actividades de Explorador",
+                  color: Colors.black,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20,
+                ),
               ),
-              ButtonXmark()
+              FutureBuilder(
+                future: _getActivities(),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                    case ConnectionState.active:
+                    case ConnectionState.waiting:
+                      return const Center(child: CustomProgressIndicator());
+                    case ConnectionState.done:
+                      if (snapshot.hasError) {
+                        return TextView(text: 'Error: ${snapshot.error}');
+                      }
+                      return snapshot.data as Widget;
+                  }
+                },
+              ),
+              const SizedBox(height: 15),
+              CustomButton(
+                onPressed: () {
+                  setState(() => step = StepView.rewards);
+                },
+                text: "Recompensas",
+              ),
             ],
           ),
-          FutureBuilder(
-            future: _getActivities(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.active:
-                case ConnectionState.waiting:
-                  return const Center(child: CustomProgressIndicator());
-                case ConnectionState.done:
-                  if (snapshot.hasError) {
-                    return TextView(text: 'Error: ${snapshot.error}');
-                  }
-                  return snapshot.data as Widget;
-              }
-            },
-          ),
-          const SizedBox(height: 15),
-          CustomButton(
-            onPressed: () {
-              setState(() => step = StepView.rewards);
-            },
-            text: "Recompensas",
-          ),
+          const Positioned(
+            top: 0,
+            right: 0,
+            child: ButtonXmark(),
+          )
         ],
       );
     } else {

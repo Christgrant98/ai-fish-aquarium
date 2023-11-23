@@ -6,7 +6,7 @@ class TriviaGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Layout(
+    return const Layout(
       body: Column(),
     );
   }

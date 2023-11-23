@@ -44,7 +44,16 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
             ? screenHeight * 0.625
             : screenHeight * 0.5,
         width: screenWidth * 0.9,
-        child: _buildFishModalContent(),
+        child: Stack(
+          children: [
+            _buildFishModalContent(),
+            const Positioned(
+              right: -7.5,
+              top: -7.5,
+              child: ButtonXmark(),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -55,7 +64,10 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     if (StepView.initial == step) {
       return Column(
         children: [
-          Expanded(child: _buildFishContent()),
+          const SizedBox(height: 12.5),
+          Expanded(
+            child: _buildFishContent(),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -75,6 +87,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     } else {
       return Column(
         children: [
+          const SizedBox(height: 12.5),
           _buildBackButton(),
           Expanded(
             child: _buildCommentBoxSection(currentUser),
@@ -85,29 +98,23 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
   }
 
   Widget _buildBackButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        InkWell(
-          onTap: () {
-            setState(() => step = StepView.initial);
-          },
-          child: const Row(
-            children: [
-              Icon(
-                Icons.arrow_back_ios_new_sharp,
-                size: 18.5,
-              ),
-              TextView(
-                fontWeight: FontWeight.bold,
-                text: 'Go back',
-                fontSize: 16,
-              )
-            ],
+    return InkWell(
+      onTap: () {
+        setState(() => step = StepView.initial);
+      },
+      child: const Row(
+        children: [
+          Icon(
+            Icons.arrow_back_ios_new_sharp,
+            size: 18.5,
           ),
-        ),
-        const ButtonXmark(),
-      ],
+          TextView(
+            fontWeight: FontWeight.bold,
+            text: 'Go back',
+            fontSize: 16,
+          )
+        ],
+      ),
     );
   }
 
@@ -186,18 +193,13 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
 
   Widget _buildFishContent() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextView(
-              text: widget.pez.name,
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w900,
-            ),
-            const ButtonXmark(),
-          ],
+        TextView(
+          text: widget.pez.name,
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w900,
         ),
         const SizedBox(height: 10),
         ClipRRect(

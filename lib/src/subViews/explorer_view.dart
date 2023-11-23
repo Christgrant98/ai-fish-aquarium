@@ -36,15 +36,7 @@ class _ExplorerViewState extends State<ExplorerView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: TextView(
-                  text: "Actividades de Explorador",
-                  color: Colors.black,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 20,
-                ),
-              ),
+              _buildTitleHeader(),
               FutureBuilder(
                 future: _getActivities(),
                 builder: (context, snapshot) {
@@ -86,6 +78,18 @@ class _ExplorerViewState extends State<ExplorerView> {
         ],
       );
     }
+  }
+
+  Widget _buildTitleHeader() {
+    return const Padding(
+      padding: EdgeInsets.only(left: 10),
+      child: TextView(
+        text: "Actividades de Explorador",
+        color: Colors.black,
+        fontWeight: FontWeight.w900,
+        fontSize: 20,
+      ),
+    );
   }
 
   InkWell _buildBackButton() {

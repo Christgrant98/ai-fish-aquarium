@@ -40,7 +40,7 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           selectedIndex: _calculateSelectedIndex(context),
           color: const Color.fromARGB(255, 153, 153, 153),
-          activeColor: const Color.fromARGB(255, 33, 243, 236),
+          activeColor: Colors.white,
           padding: const EdgeInsets.all(5),
           gap: 8,
           onTabChange: (index) {

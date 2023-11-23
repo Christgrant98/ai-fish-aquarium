@@ -13,24 +13,25 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Layout(
+        hasBottomNavigationBar: false,
         body: SingleChildScrollView(
-      child: Center(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height * .9,
-          width: MediaQuery.of(context).size.width * .85,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildTitle('Login'),
-              const SizedBox(height: 30),
-              const LoginForm(),
-              const SizedBox(height: 30),
-              _buildAskForRegistration(context),
-            ],
+          child: Center(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * .9,
+              width: MediaQuery.of(context).size.width * .85,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildTitle('Login'),
+                  const SizedBox(height: 30),
+                  const LoginForm(),
+                  const SizedBox(height: 30),
+                  _buildAskForRegistration(context),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
   Widget _buildTitle(String text) {

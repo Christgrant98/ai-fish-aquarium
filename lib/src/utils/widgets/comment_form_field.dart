@@ -5,10 +5,10 @@ import 'package:login_flutter/src/utils/widgets/base_text_form_field.dart';
 import 'text_view.dart';
 
 class CommentFormField extends StatelessWidget {
+  final TextEditingController commentController;
   final void Function(String?, bool) onChange;
   final void Function(String)? onFieldSubmitted;
   final String title;
-
   final void Function() actionSend;
   const CommentFormField({
     super.key,
@@ -16,6 +16,7 @@ class CommentFormField extends StatelessWidget {
     required this.onChange,
     this.onFieldSubmitted,
     required this.title,
+    required this.commentController,
   });
 
   @override
@@ -32,36 +33,36 @@ class CommentFormField extends StatelessWidget {
         ),
         const SizedBox(height: 2.5),
         BaseTextFormField(
-            minLines: 1,
-            maxLines: 3,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(10),
-              floatingLabelBehavior: FloatingLabelBehavior.never,
-              floatingLabelStyle: const TextStyle(
+          controller: commentController,
+          minLines: 1,
+          maxLines: 3,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(10),
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            floatingLabelStyle: const TextStyle(
+              color: Colors.black,
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            hintText: "Write a comment...",
+            hintStyle: GoogleFonts.quicksand(
+              color: const Color.fromARGB(255, 190, 190, 190),
+              fontSize: 14,
+            ),
+            suffixIcon: InkWell(
+              onTap: actionSend,
+              child: const Icon(
+                Icons.send_rounded,
                 color: Colors.black,
               ),
-              filled: true,
-              fillColor: Colors.white,
-              hintText: "Write a comment...",
-              hintStyle: GoogleFonts.quicksand(
-                color: const Color.fromARGB(255, 190, 190, 190),
-                fontSize: 14,
-              ),
-              suffixIcon: InkWell(
-                onTap: actionSend,
-                child: const Icon(
-                  Icons.send_rounded,
-                  color: Colors.black,
-                ),
-              ),
             ),
-            onChanged: onChange,
-            onFieldSubmitted: onFieldSubmitted,
-            validator: (String? value, BuildContext context) {
-              return value!.isEmpty
-                  ? "No se puede enviar un comentario vacio"
-                  : null;
-            }),
+          ),
+          onChanged: onChange,
+          onFieldSubmitted: onFieldSubmitted,
+          validator: (String? value, BuildContext context) {
+            return value!.isEmpty ? "Campo vacio" : null;
+          },
+        ),
       ],
     );
   }

@@ -13,26 +13,27 @@ class RegistroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Layout(
+        hasBottomNavigationBar: false,
         body: SafeArea(
-      child: SingleChildScrollView(
-        child: Center(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * .9,
-            width: MediaQuery.of(context).size.width * .85,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildTitle('Register'),
-                const SizedBox(height: 30),
-                const RegistrationForm(),
-                const SizedBox(height: 30),
-                _buildAskForLogin(context)
-              ],
+          child: SingleChildScrollView(
+            child: Center(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * .9,
+                width: MediaQuery.of(context).size.width * .85,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTitle('Register'),
+                    const SizedBox(height: 30),
+                    const RegistrationForm(),
+                    const SizedBox(height: 30),
+                    _buildAskForLogin(context)
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
   Widget _buildTitle(String text) {

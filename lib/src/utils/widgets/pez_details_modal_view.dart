@@ -27,7 +27,8 @@ class PezDetailsModalView extends StatefulWidget {
 class _PezDetailsModalViewState extends State<PezDetailsModalView> {
   String? comment;
   StepView step = StepView.initial;
-  final TextEditingController commentController = TextEditingController();
+
+  final TextEditingController _commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -128,15 +129,16 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           ),
           const SizedBox(height: 3.5),
           CommentFormField(
-            title: '@${currentUser.username}',
-            onChange: (String? value, bool isValid) {
-              setState(() {
-                comment = isValid ? value : null;
-              });
-            },
-            actionSend: () =>
-                _canSendComment() ? _addCommentToPez(user: currentUser) : null,
-          ),
+              commentController: _commentController,
+              title: '@${currentUser.username}',
+              onChange: (String? value, bool isValid) {
+                setState(() {
+                  comment = isValid ? value : null;
+                });
+              },
+              actionSend: () {
+                _canSendComment() ? _addCommentToPez(user: currentUser) : null;
+              }),
         ],
       ),
     );
@@ -240,20 +242,8 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
 
     setState(() {
       widget.pez.comments!.add(newComment);
+      _commentController.clear();
     });
-
-    Navigator.of(context).pop();
-    showDialog(
-      barrierColor: Colors.black87,
-      context: context,
-      builder: (ctx) {
-        return const AlertDialog(
-          content: TextView(
-            text: 'comment was sent successfully',
-          ),
-        );
-      },
-    );
   }
 
   _buildComment({

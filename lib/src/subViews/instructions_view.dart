@@ -13,6 +13,7 @@ class InstructionsView extends StatelessWidget {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       return Layout(
+        hasBottomNavigationBar: true,
         body: SingleChildScrollView(
           child: Center(
             child: SizedBox(

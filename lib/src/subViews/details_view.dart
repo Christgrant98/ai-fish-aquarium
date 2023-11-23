@@ -31,6 +31,7 @@ class _DetailsViewState extends State<DetailsView> {
   @override
   Widget build(BuildContext context) {
     return Layout(
+      hasBottomNavigationBar: true,
       body: SingleChildScrollView(
         child: Column(children: [
           const SizedBox(height: 35),

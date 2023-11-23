@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:login_flutter/src/utils/widgets/layout.dart';
 
 import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/text_view.dart';
@@ -9,12 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const TextView(text: "App Acuario"),
-        centerTitle: true,
-        leading: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
-      ),
+    return Layout(
+      hasBottomNavigationBar: false,
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,

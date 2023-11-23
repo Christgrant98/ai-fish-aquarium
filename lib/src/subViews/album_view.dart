@@ -21,6 +21,7 @@ class _AlbumViewState extends State<AlbumView> {
   @override
   Widget build(BuildContext context) {
     return Layout(
+      hasBottomNavigationBar: true,
       body: Center(
         child: Container(
           color: Colors.teal,
@@ -45,10 +46,7 @@ class _AlbumViewState extends State<AlbumView> {
               const SizedBox(height: 40),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 30,
-                  ),
+                  padding: const EdgeInsets.only(top: 35, left: 15, right: 15),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(

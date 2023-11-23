@@ -10,7 +10,7 @@ class Layout extends StatelessWidget {
     Key? key,
     required this.body,
     this.bottomNavigationBar,
-    this.hasBottomNavigationBar = true,
+    this.hasBottomNavigationBar = false,
   }) : super(key: key);
 
   @override

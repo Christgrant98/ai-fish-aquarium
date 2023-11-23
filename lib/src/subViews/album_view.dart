@@ -22,8 +22,8 @@ class _AlbumViewState extends State<AlbumView> {
   Widget build(BuildContext context) {
     return Layout(
       body: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * .85,
+        child: Container(
+          color: Colors.teal,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[

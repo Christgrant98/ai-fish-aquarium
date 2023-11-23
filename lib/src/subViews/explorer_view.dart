@@ -43,7 +43,7 @@ class _ExplorerViewState extends State<ExplorerView> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
-              CloseBttn()
+              ButtonXmark()
             ],
           ),
           FutureBuilder(

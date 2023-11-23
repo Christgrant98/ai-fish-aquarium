@@ -4,6 +4,7 @@ import 'package:login_flutter/src/models/comment.dart';
 import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/models/user_model.dart';
 import 'package:login_flutter/src/providers/user_provider.dart';
+import 'package:login_flutter/src/utils/widgets/close_button.dart';
 import 'package:login_flutter/src/utils/widgets/comment_form_field.dart';
 import 'package:login_flutter/src/utils/widgets/custom_button.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
@@ -33,12 +34,14 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return AlertDialog(
+      backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       contentPadding: const EdgeInsets.all(20),
       insetPadding: const EdgeInsets.all(20),
       content: SizedBox(
-        height:
-            step == StepView.initial ? screenHeight * 0.6 : screenHeight * 0.5,
+        height: step == StepView.initial
+            ? screenHeight * 0.625
+            : screenHeight * 0.5,
         width: screenWidth * 0.9,
         child: _buildFishModalContent(),
       ),
@@ -51,7 +54,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     if (StepView.initial == step) {
       return Column(
         children: [
-          Expanded(child: _buildHeaderInformation()),
+          Expanded(child: _buildFishContent()),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -72,31 +75,36 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
       return Column(
         children: [
           _buildBackButton(),
-          const SizedBox(height: 10),
           Expanded(child: _buildCommentBoxSection(currentUser)),
         ],
       );
     }
   }
 
-  InkWell _buildBackButton() {
-    return InkWell(
-      onTap: () {
-        setState(() => step = StepView.initial);
-      },
-      child: const Row(
-        children: [
-          Icon(
-            Icons.arrow_back_ios_new_sharp,
-            size: 18.5,
+  Widget _buildBackButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        InkWell(
+          onTap: () {
+            setState(() => step = StepView.initial);
+          },
+          child: const Row(
+            children: [
+              Icon(
+                Icons.arrow_back_ios_new_sharp,
+                size: 18.5,
+              ),
+              TextView(
+                fontWeight: FontWeight.bold,
+                text: 'Go back',
+                fontSize: 16,
+              )
+            ],
           ),
-          TextView(
-            fontWeight: FontWeight.bold,
-            text: 'Go back',
-            fontSize: 16,
-          )
-        ],
-      ),
+        ),
+        const ButtonXmark(),
+      ],
     );
   }
 
@@ -172,16 +180,22 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     );
   }
 
-  Widget _buildHeaderInformation() {
+  Widget _buildFishContent() {
     return Column(
       children: [
-        TextView(
-          text: widget.pez.name,
-          color: Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextView(
+              text: widget.pez.name,
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w900,
+            ),
+            const ButtonXmark(),
+          ],
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 10),
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: FadeInImage(

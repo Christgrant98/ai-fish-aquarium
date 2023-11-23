@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CloseBttn extends StatelessWidget {
-  const CloseBttn({
+class ButtonXmark extends StatelessWidget {
+  const ButtonXmark({
     super.key,
   });
 
@@ -13,7 +13,7 @@ class CloseBttn extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              spreadRadius: 4,
+              spreadRadius: 3,
               color: Color.fromARGB(45, 0, 0, 0),
               blurRadius: 7,
             ),

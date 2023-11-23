@@ -20,6 +20,7 @@ class CardCarouselImagesState extends State<CardCarouselImages> {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () => showDialog(
+              barrierDismissible: false,
               barrierColor: Colors.black87,
               context: context,
               builder: (context) {

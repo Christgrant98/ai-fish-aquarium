@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart';
+import 'package:login_flutter/src/utils/widgets/layout.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -69,49 +71,60 @@ class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     if (!controller.value.isInitialized) {
-      return const Center(child: TextView(text: "Camera preview"));
+      return const Center(
+        child: TextView(
+          text: "Camera preview",
+          fontWeight: FontWeight.bold,
+          fontSize: 15,
+          color: Colors.black,
+        ),
+      );
     }
 
-    return Stack(
-      children: <Widget>[
-        SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: CameraPreview(controller),
-        ),
-        Positioned(
-          top: 16,
-          left: 16,
-          child: TextView(text: result),
-        ),
-        Positioned(
-          bottom: 16, // Ajusta la posición vertical del botón
-          width: MediaQuery.of(context)
-              .size
-              .width, // Ancho igual al ancho de la pantalla
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FloatingActionButton(
-                onPressed: () {
-                  takePicture(context);
-                },
-                child: const Icon(Icons.camera,
-                    size: 36), // Ajusta el tamaño del icono
-              ),
-              const SizedBox(width: 16), // Agrega un espacio entre los botones
-              IconButton(
-                color: Colors.white,
-                icon: const Icon(Icons.photo_library),
-                onPressed: () {
-                  chooseImage(context);
-                },
-                iconSize: 36, // Ajusta el tamaño del icono
-              ),
-            ],
+    return Layout(
+      body: Stack(
+        children: <Widget>[
+          SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: CameraPreview(controller),
           ),
-        ),
-      ],
+          Positioned(
+            top: 16,
+            left: 16,
+            child: TextView(text: result),
+          ),
+          Positioned(
+            right: 10,
+            bottom: 16,
+            child: IconButton(
+              color: Colors.white,
+              icon: const Icon(Icons.photo_library),
+              onPressed: () {
+                chooseImage(context);
+              },
+              iconSize: 36,
+            ),
+          ),
+          Positioned(
+            right: 0,
+            left: 0,
+            bottom: 16,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 35,
+              child: IconButton(
+                onPressed: () => takePicture(context),
+                icon: const Icon(
+                  CupertinoIcons.camera_fill,
+                  size: 36,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

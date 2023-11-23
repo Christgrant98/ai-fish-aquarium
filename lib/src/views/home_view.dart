@@ -30,11 +30,11 @@ class _HomeViewState extends State<HomeView> {
           child: SizedBox(
             width: MediaQuery.of(context).size.width * .95,
             child: Column(children: [
-              const SizedBox(height: 5),
+              const SizedBox(height: 30),
               _buildTitleHead(),
-              const SizedBox(height: 5),
-              _builCarouselView(context),
               const SizedBox(height: 20),
+              _builCarouselView(context),
+              const SizedBox(height: 15),
               CustomCard(
                 title: 'Actividades de explorador',
                 subtitle: 'consulta aqui las actividades de explorades',

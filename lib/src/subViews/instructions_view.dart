@@ -16,7 +16,7 @@ class InstructionsView extends StatelessWidget {
         body: SingleChildScrollView(
           child: Center(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * .85,
+              width: constraints.maxWidth * .85,
               child: Column(
                 children: [
                   const SizedBox(height: 30),

@@ -4,8 +4,6 @@ import 'package:login_flutter/src/models/comment.dart';
 import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/models/user_model.dart';
 import 'package:login_flutter/src/providers/user_provider.dart';
-import 'package:login_flutter/src/utils/widgets/base_modal.dart';
-import 'package:login_flutter/src/utils/widgets/card_carousel_image.dart';
 import 'package:login_flutter/src/utils/widgets/comment_form_field.dart';
 import 'package:login_flutter/src/utils/widgets/custom_button.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
@@ -51,25 +49,21 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
     final currentUser = Provider.of<UserProvider>(context, listen: false).user!;
 
     if (StepView.initial == step) {
-      return Stack(
+      return Column(
         children: [
-          Column(
+          Expanded(child: _buildHeaderInformation()),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(child: _buildHeaderInformation()),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextView(text: '${widget.pez.comments!.length} comments'),
-                  const SizedBox(width: 10),
-                  CustomButton(
-                    width: 150,
-                    onPressed: () {
-                      setState(() => step = StepView.interactionView);
-                    },
-                    text: 'Comments',
-                  )
-                ],
-              ),
+              TextView(text: '${widget.pez.comments!.length} comments'),
+              const SizedBox(width: 10),
+              CustomButton(
+                width: 150,
+                onPressed: () {
+                  setState(() => step = StepView.interactionView);
+                },
+                text: 'Comments',
+              )
             ],
           ),
         ],
@@ -170,7 +164,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           ],
         ),
         subtitle: TextView(
-          text: '${comment.comment} ${comment.comment} ${comment.comment}',
+          text: comment.comment,
           fontSize: 13,
           fontWeight: FontWeight.w300,
         ),

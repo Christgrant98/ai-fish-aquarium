@@ -6,65 +6,73 @@ import 'package:login_flutter/src/utils/widgets/pez_details_modal_view.dart';
 
 import '../../models/peces_model.dart';
 
-class CardImages extends StatefulWidget {
+class CardCarouselImages extends StatefulWidget {
   final Pez pez;
 
-  const CardImages({super.key, required this.pez});
+  const CardCarouselImages({super.key, required this.pez});
 
   @override
-  CardImagesState createState() => CardImagesState();
+  CardCarouselImagesState createState() => CardCarouselImagesState();
 }
 
-class CardImagesState extends State<CardImages> {
+class CardCarouselImagesState extends State<CardCarouselImages> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: InkWell(
-                  onTap: () => showDialog(
-                        barrierColor: Colors.black87,
-                        context: context,
-                        builder: (context) {
-                          return BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 5.0,
-                              sigmaY: 5.0,
-                            ),
-                            child: PezDetailsModalView(
-                              pez: widget.pez,
-                            ),
-                          );
-                        },
-                      ),
-                  child: widget.pez.imageRoute.isNotEmpty
-                      ? Image.asset(widget.pez.imageRoute)
-                      : const CustomProgressIndicator()),
+    return InkWell(
+        onTap: () => showDialog(
+              barrierColor: Colors.black87,
+              context: context,
+              builder: (context) {
+                return BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 5.0,
+                    sigmaY: 5.0,
+                  ),
+                  child: PezDetailsModalView(
+                    pez: widget.pez,
+                  ),
+                );
+              },
             ),
+        child: widget.pez.imageRoute.isNotEmpty
+            ? _buildImage()
+            : const CustomProgressIndicator());
+  }
+
+  Widget _buildImage() {
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(
+            bottom: 10,
           ),
-          _buildLikeBttn(),
-        ],
-      ),
+          child: Image.asset(
+            widget.pez.imageRoute,
+            width: MediaQuery.of(context).size.width,
+          ),
+        ),
+        Positioned(
+          left: 0,
+          bottom: 0,
+          right: 0,
+          child: _buildLikeButton(),
+        ),
+      ],
     );
   }
 
-  Widget _buildLikeBttn() {
+  Widget _buildLikeButton() {
     return CircleAvatar(
-      backgroundColor: Colors.black,
+      radius: 25,
+      backgroundColor: Color.fromARGB(255, 35, 35, 35),
       child: IconButton(
-        onPressed: () {
-          setState(() {
-            widget.pez.toggleLike();
-          });
-        },
+        onPressed: () => setState(() {
+          widget.pez.toggleLike();
+        }),
         icon: Icon(
           widget.pez.isLiked ? Icons.favorite : Icons.favorite_border,
           color: widget.pez.isLiked ? Colors.red : Colors.grey,
+          size: widget.pez.isLiked ? 35 : 25,
         ),
       ),
     );

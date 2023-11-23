@@ -154,7 +154,7 @@ Widget _builCarouselView(BuildContext context) {
             itemBuilder: (context, index, realIndex) {
               final pez = snapshot.data![index];
               print('pez $pez');
-              return CardImages(pez: pez);
+              return CardCarouselImages(pez: pez);
             },
             options: CarouselOptions(
               autoPlayInterval: const Duration(seconds: 5),

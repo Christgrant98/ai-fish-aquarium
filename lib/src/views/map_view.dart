@@ -10,6 +10,7 @@ class MapaView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Layout(
+      hasBottomNavigationBar: true,
       body: Column(children: [
         const SizedBox(height: 30),
         const TextView(

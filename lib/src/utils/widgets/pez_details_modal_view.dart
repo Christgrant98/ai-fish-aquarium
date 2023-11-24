@@ -39,7 +39,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
       insetPadding: const EdgeInsets.all(20),
       content: SizedBox(
         height:
-            step == StepView.initial ? screenHeight * 0.7 : screenHeight * 0.5,
+            step == StepView.initial ? screenHeight * 0.7 : screenHeight * 0.6,
         width: screenWidth * 0.9,
         child: Stack(
           children: [
@@ -109,6 +109,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
         children: [
           const SizedBox(height: 12.5),
           _buildBackButton(),
+          const SizedBox(height: 10),
           Expanded(
             child: _buildCommentBoxSection(currentUser),
           ),
@@ -192,7 +193,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
             TextView(
               text: '@${comment.username}',
               fontWeight: FontWeight.bold,
-              fontSize: 12.5,
+              fontSize: 13,
             ),
             TextView(
               text: comment.mail,
@@ -201,10 +202,12 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
             )
           ],
         ),
-        subtitle: TextView(
-          text: comment.comment,
-          fontSize: 13,
-          fontWeight: FontWeight.w300,
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: TextView(
+            text: comment.comment,
+            fontSize: 14,
+          ),
         ),
       ),
     );

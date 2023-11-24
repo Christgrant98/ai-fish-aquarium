@@ -264,7 +264,6 @@ class _CameraViewState extends State<CameraView> {
       GoRouter.of(context).go('/camera_view/details',
           extra: {"image": _image, "name": fishName});
     } catch (e) {
-      // Handle error taking picture
       print("Error taking picture: $e");
     }
   }

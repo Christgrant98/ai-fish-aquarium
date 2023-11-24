@@ -12,7 +12,7 @@ class TriviaGameData {
         3: 'Ríos y lagos de agua dulce (Correcta)',
         4: 'Estuarios de agua salobre',
       },
-      imagePath: 'ruta_de_la_imagen',
+      imagePath: 'assets/carousel/electric_eel.jpg',
       points: 1000,
     ),
     TriviaGame(
@@ -25,7 +25,7 @@ class TriviaGameData {
         3: 'Fondo del océano en aguas profundas',
         4: 'Arrecifes de coral en aguas saladas',
       },
-      imagePath: 'ruta_de_la_imagen',
+      imagePath: 'assets/carousel/mexican_cavefish.jpg',
       points: 1000,
     ),
     TriviaGame(
@@ -38,7 +38,7 @@ class TriviaGameData {
         3: '25 años (Correcta)',
         4: '40 años',
       },
-      imagePath: 'ruta_de_la_imagen',
+      imagePath: 'assets/carousel/gold_barb.jpg',
       points: 1000,
     ),
     TriviaGame(
@@ -51,7 +51,7 @@ class TriviaGameData {
         3: 'Es carnívora y se alimenta de otros peces (Correcta)',
         4: 'Se alimenta principalmente de algas marinas',
       },
-      imagePath: 'ruta_de_la_imagen',
+      imagePath: 'assets/carousel/machaca.jpg',
       points: 1000,
     ),
     TriviaGame(
@@ -64,7 +64,7 @@ class TriviaGameData {
         3: 'Es omnívoro y consume algas y restos orgánicos (Correcta)',
         4: 'Prefiere alimentarse de insectos acuáticos',
       },
-      imagePath: 'ruta_de_la_imagen',
+      imagePath: 'assets/carousel/characidum.jpg',
       points: 1000,
     ),
   ];

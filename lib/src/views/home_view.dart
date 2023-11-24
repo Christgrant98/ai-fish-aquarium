@@ -25,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Layout(
-      hasBottomNavigationBar: true,
+      hasBottomNavigationBar: false,
       body: SingleChildScrollView(
         child: Center(
           child: SizedBox(

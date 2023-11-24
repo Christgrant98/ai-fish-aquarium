@@ -64,16 +64,20 @@ class CardCarouselImagesState extends State<CardCarouselImages> {
 
   Widget _buildLikeButton() {
     return CircleAvatar(
-      radius: 25,
-      backgroundColor: const Color.fromARGB(255, 35, 35, 35),
-      child: IconButton(
-        onPressed: () => setState(() {
-          widget.pez.toggleLike();
-        }),
-        icon: Icon(
-          widget.pez.isLiked ? Icons.favorite : Icons.favorite_border,
-          color: widget.pez.isLiked ? Colors.red : Colors.grey,
-          size: widget.pez.isLiked ? 35 : 25,
+      radius: 27,
+      backgroundColor: Colors.teal,
+      child: CircleAvatar(
+        radius: 25,
+        backgroundColor: const Color.fromARGB(255, 35, 35, 35),
+        child: IconButton(
+          onPressed: () => setState(() {
+            widget.pez.toggleLike();
+          }),
+          icon: Icon(
+            widget.pez.isLiked ? Icons.favorite : Icons.favorite_border,
+            color: widget.pez.isLiked ? Colors.red : Colors.grey,
+            size: widget.pez.isLiked ? 30 : 25,
+          ),
         ),
       ),
     );

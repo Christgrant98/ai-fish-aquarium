@@ -4,7 +4,7 @@ class TriviaGame {
   Map<int, String> answers;
   String imagePath;
   int points;
-  bool isCorrect;
+  bool? isCorrect;
 
   TriviaGame({
     this.id,
@@ -12,8 +12,21 @@ class TriviaGame {
     required this.answers,
     required this.imagePath,
     required this.points,
-    required this.isCorrect,
+    this.isCorrect,
   });
 
-  bool _SelectCorrectAnswer(int idQuestion, int answer) {}
+  bool _selectCorrectAnswer(
+    int idQuestion,
+    int answerSelected,
+  ) {
+    if (idQuestion == 0 && answerSelected == 3 ||
+        idQuestion == 1 && answerSelected == 2 ||
+        idQuestion == 2 && answerSelected == 3 ||
+        idQuestion == 3 && answerSelected == 3 ||
+        idQuestion == 4 && answerSelected == 3) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -33,13 +33,11 @@ class RecompensasView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               const PromoWidget(
-                promocion:
-                    "Obtén un 20% de descuento en la tienda del zoológico",
+                promo: "Obtén un 20% de descuento en la tienda del zoológico",
                 puntosRequeridos: 2000,
               ),
               const PromoWidget(
-                promocion:
-                    "Obtén un 15% de descuento en la tienda del zoológico",
+                promo: "Obtén un 15% de descuento en la tienda del zoológico",
                 puntosRequeridos: 1500,
               ),
             ],
@@ -51,11 +49,11 @@ class RecompensasView extends StatelessWidget {
 }
 
 class PromoWidget extends StatelessWidget {
-  final String promocion;
+  final String promo;
   final int puntosRequeridos;
 
   const PromoWidget(
-      {super.key, required this.promocion, required this.puntosRequeridos});
+      {super.key, required this.promo, required this.puntosRequeridos});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +62,7 @@ class PromoWidget extends StatelessWidget {
       child: CustomCard(
         hasLeading: true,
         height: 150,
-        title: promocion,
+        title: promo,
         titleSize: 14,
         icon: Icons.money_rounded,
         iconBackgoundColor: const Color.fromARGB(255, 255, 250, 207),

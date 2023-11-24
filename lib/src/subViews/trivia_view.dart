@@ -89,11 +89,11 @@ class _TriviaViewState extends State<TriviaView> {
               builder: (ctx) {
                 return BaseModal(
                   paddingValue: 5,
-                  heightFactor: .2,
+                  heightFactor: .22,
                   widthFactor: .9,
                   content: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const SizedBox(height: 20),
                       const TextView(
                         text: 'Deseas empezar ya?',
                         fontWeight: FontWeight.w900,
@@ -177,10 +177,17 @@ class _TriviaViewState extends State<TriviaView> {
                         .questions[indexQuestion].answers[answerIndex];
 
                     return Card(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                          color: Colors.transparent,
+                          width: 0.1,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       elevation: 2,
                       color: selectedAnswerIndex == answerIndex
                           ? Colors.greenAccent
-                          : Colors.white,
+                          : const Color.fromARGB(255, 240, 240, 240),
                       child: ListTile(
                         title: TextView(
                           text: answer.toString(),

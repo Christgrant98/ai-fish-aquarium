@@ -159,13 +159,14 @@ class _TriviaViewState extends State<TriviaView> {
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
+              const SizedBox(height: 5),
               Image.asset(questionsData.questions[indexQuestion].imagePath),
-              const SizedBox(height: 15),
+              const SizedBox(height: 10),
               TextView(
                 text: questionsData.questions[indexQuestion].question,
                 fontWeight: FontWeight.bold,
                 textAlign: TextAlign.center,
-                fontSize: 15,
+                fontSize: 14,
               ),
               const SizedBox(height: 5),
               Expanded(
@@ -188,16 +189,20 @@ class _TriviaViewState extends State<TriviaView> {
                       color: selectedAnswerIndex == answerIndex
                           ? Colors.greenAccent
                           : const Color.fromARGB(255, 240, 240, 240),
-                      child: ListTile(
-                        title: TextView(
-                          text: answer.toString(),
-                          fontSize: 12,
+                      child: SizedBox(
+                        height: 50,
+                        child: ListTile(
+                          title: TextView(
+                            text: answer.toString(),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          onTap: () {
+                            setState(() {
+                              selectedAnswerIndex = answerIndex;
+                            });
+                          },
                         ),
-                        onTap: () {
-                          setState(() {
-                            selectedAnswerIndex = answerIndex;
-                          });
-                        },
                       ),
                     );
                   },

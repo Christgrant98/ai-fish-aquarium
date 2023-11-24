@@ -65,7 +65,7 @@ class CardCarouselImagesState extends State<CardCarouselImages> {
   Widget _buildLikeButton() {
     return CircleAvatar(
       radius: 25,
-      backgroundColor: Color.fromARGB(255, 35, 35, 35),
+      backgroundColor: const Color.fromARGB(255, 35, 35, 35),
       child: IconButton(
         onPressed: () => setState(() {
           widget.pez.toggleLike();

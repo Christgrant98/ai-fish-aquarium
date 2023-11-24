@@ -166,7 +166,6 @@ Widget _builCarouselView(BuildContext context) {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index, realIndex) {
               final pez = snapshot.data![index];
-              print('pez $pez');
               return CardCarouselImages(pez: pez);
             },
             options: CarouselOptions(

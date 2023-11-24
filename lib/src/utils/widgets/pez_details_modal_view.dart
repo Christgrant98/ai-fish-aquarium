@@ -40,9 +40,8 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
       contentPadding: const EdgeInsets.all(20),
       insetPadding: const EdgeInsets.all(20),
       content: SizedBox(
-        height: step == StepView.initial
-            ? screenHeight * 0.625
-            : screenHeight * 0.5,
+        height:
+            step == StepView.initial ? screenHeight * 0.7 : screenHeight * 0.5,
         width: screenWidth * 0.9,
         child: Stack(
           children: [
@@ -68,10 +67,22 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           Expanded(
             child: _buildFishContent(),
           ),
+          const Divider(
+            color: Colors.black,
+            thickness: 1,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextView(text: '${widget.pez.comments!.length} comments'),
+              Row(
+                children: [
+                  const Icon(
+                    CupertinoIcons.text_bubble,
+                    color: Colors.black,
+                  ),
+                  TextView(text: '${widget.pez.comments!.length} comments'),
+                ],
+              ),
               const SizedBox(width: 10),
               CustomButton(
                 width: 150,
@@ -212,7 +223,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
         ),
         const SizedBox(height: 2.5),
         SizedBox(
-          height: 155,
+          height: 230,
           child: Center(
             child: SingleChildScrollView(
               child: TextView(
@@ -225,10 +236,6 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           ),
         ),
         const SizedBox(height: 8),
-        const Divider(
-          color: Colors.black,
-          thickness: 1,
-        )
       ],
     );
   }

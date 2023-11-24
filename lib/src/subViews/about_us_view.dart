@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_flutter/src/utils/widgets/custom_button.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
@@ -16,6 +17,11 @@ class AboutUsView extends StatelessWidget {
             text: 'Acerca de la Aplicación para Acuarios',
             textAlign: TextAlign.center,
             fontWeight: FontWeight.bold,
+          ),
+          const Icon(
+            CupertinoIcons.info_circle,
+            size: 40,
+            color: Colors.teal,
           ),
           const SizedBox(height: 20),
           const TextView(

@@ -11,11 +11,10 @@ class TriviaGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Layout(
+    return const Layout(
       // hasBottomNavigationBar: true,
       body: SizedBox(
-        height: MediaQuery.of(context).size.height * .9,
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: 25),

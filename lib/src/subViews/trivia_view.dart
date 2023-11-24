@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_flutter/src/utils/widgets/base_modal.dart';
 import 'package:login_flutter/src/utils/widgets/custom_button.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
@@ -29,6 +30,7 @@ class _TriviaViewState extends State<TriviaView> {
   int? selectedAnswerIndex;
   int indexQuestion = 0;
   int points = 0;
+  int answeredCorrecltyCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +78,127 @@ class _TriviaViewState extends State<TriviaView> {
         }),
       );
     } else {
-      return Container(
-        height: 500,
-        color: Colors.teal,
+      return Column(
+        children: [
+          const SizedBox(height: 25),
+          Container(
+            width: MediaQuery.of(context).size.width * .9,
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            height: MediaQuery.of(context).size.height * .45,
+            child: QuestionsInformationTrivia(
+              indexQuestion: 0,
+              questionsData: questionsData,
+            ),
+          ),
+          const SizedBox(height: 25),
+          Container(
+            width: MediaQuery.of(context).size.width * .9,
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            height: MediaQuery.of(context).size.height * .45,
+            child: QuestionsInformationTrivia(
+              indexQuestion: 1,
+              questionsData: questionsData,
+            ),
+          ),
+          const SizedBox(height: 25),
+          Container(
+            width: MediaQuery.of(context).size.width * .9,
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            height: MediaQuery.of(context).size.height * .45,
+            child: QuestionsInformationTrivia(
+              indexQuestion: 2,
+              questionsData: questionsData,
+            ),
+          ),
+          const SizedBox(height: 25),
+          Container(
+            width: MediaQuery.of(context).size.width * .9,
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            height: MediaQuery.of(context).size.height * .45,
+            child: QuestionsInformationTrivia(
+              indexQuestion: 3,
+              questionsData: questionsData,
+            ),
+          ),
+          const SizedBox(height: 25),
+          Container(
+            width: MediaQuery.of(context).size.width * .9,
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            height: MediaQuery.of(context).size.height * .46,
+            child: QuestionsInformationTrivia(
+              indexQuestion: 4,
+              questionsData: questionsData,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 50, bottom: 20),
+            child: CustomButton(
+              width: MediaQuery.of(context).size.width * .9,
+              text: 'Go Home',
+              onPressed: () => GoRouter.of(context).go('/home_view'),
+            ),
+          )
+        ],
       );
     }
   }
@@ -91,11 +211,10 @@ class _TriviaViewState extends State<TriviaView> {
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
-        const SizedBox(height: 45),
         Container(
-          width: MediaQuery.of(context).size.width * .9,
-          height: MediaQuery.of(context).size.height * .2,
           padding: const EdgeInsets.all(16.0),
+          width: MediaQuery.of(context).size.width * .9,
+          height: MediaQuery.of(context).size.height * .6,
           decoration: BoxDecoration(
             color: Colors.teal,
             borderRadius: BorderRadius.circular(20),
@@ -135,7 +254,73 @@ class _TriviaViewState extends State<TriviaView> {
                 ),
                 child: Center(
                   child: TextView(
-                    text: points.toString(),
+                    text: '${points.toString()}/6000',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 25),
+              const TextView(
+                text: 'Resultados de la Trivia:',
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 16,
+              ),
+              const SizedBox(height: 25),
+              Container(
+                width: MediaQuery.of(context).size.width * .9,
+                height: MediaQuery.of(context).size.height * .1,
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: TextView(
+                    text: '${answeredCorrecltyCount.toString()}/5',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+              const TextView(
+                text: 'Resultados de la Trivia:',
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 16,
+              ),
+              const SizedBox(height: 25),
+              Container(
+                width: MediaQuery.of(context).size.width * .9,
+                height: MediaQuery.of(context).size.height * .1,
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: TextView(
+                    text:
+                        '${(answeredCorrecltyCount / 5 * 100).toStringAsFixed(0)}%',
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                     fontSize: 25,
@@ -196,8 +381,7 @@ class _TriviaViewState extends State<TriviaView> {
                           questionsData.questions[indexQuestion].pointsValue;
 
                       points = updatedPoints;
-                      print('points $points');
-                      print('updatedPoints $updatedPoints');
+                      answeredCorrecltyCount++;
                     }
                     selectedAnswerIndex = null;
                     navigationAction();
@@ -333,38 +517,29 @@ class _TriviaViewState extends State<TriviaView> {
   }
 }
 
-class QuestionsInformationTrivia extends StatefulWidget {
-  final int selectedAnswerIndex;
-  final int correcAnswerIndex;
+class QuestionsInformationTrivia extends StatelessWidget {
   final int indexQuestion;
   final TriviaGameData questionsData;
   const QuestionsInformationTrivia({
     super.key,
     required this.indexQuestion,
     required this.questionsData,
-    required this.selectedAnswerIndex,
-    required this.correcAnswerIndex,
   });
 
   @override
-  State<QuestionsInformationTrivia> createState() =>
-      _QuestionsInformationTriviaState();
-}
-
-class _QuestionsInformationTriviaState
-    extends State<QuestionsInformationTrivia> {
-  @override
   Widget build(BuildContext context) {
+    int correctAnswerId =
+        questionsData.getCorrectAnswersId(idQuestion: indexQuestion);
     return Column(
       children: [
         TextView(
-          text: 'Pregunta #${(widget.indexQuestion + 1).toString()}',
+          text: 'Pregunta #${(indexQuestion + 1).toString()}',
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
         const SizedBox(height: 10),
         TextView(
-          text: widget.questionsData.questions[widget.indexQuestion].question,
+          text: questionsData.questions[indexQuestion].question,
           fontWeight: FontWeight.bold,
           textAlign: TextAlign.center,
           fontSize: 14,
@@ -372,13 +547,14 @@ class _QuestionsInformationTriviaState
         const SizedBox(height: 5),
         Expanded(
           child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             reverse: false,
-            shrinkWrap: true,
-            itemCount: widget
-                .questionsData.questions[widget.indexQuestion].answers.length,
+            itemCount: questionsData.questions[indexQuestion].answers.length,
             itemBuilder: (context, answerIndex) {
-              final answer = widget.questionsData
-                  .questions[widget.indexQuestion].answers[answerIndex];
+              final answer =
+                  questionsData.questions[indexQuestion].answers[answerIndex];
+
+              bool isCorrectAnswer = answerIndex == correctAnswerId;
 
               return Card(
                 shape: RoundedRectangleBorder(
@@ -389,18 +565,17 @@ class _QuestionsInformationTriviaState
                   borderRadius: BorderRadius.circular(20),
                 ),
                 elevation: 2,
-                color: widget.selectedAnswerIndex == answerIndex
+                color: isCorrectAnswer
                     ? Colors.greenAccent
                     : const Color.fromARGB(255, 240, 240, 240),
                 child: ListTile(
+                  enabled: false,
                   title: TextView(
                     text: answer.toString(),
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
-                  onTap: () {
-                    setState(() {});
-                  },
+                  onTap: () {},
                 ),
               );
             },

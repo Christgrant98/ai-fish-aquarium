@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:login_flutter/src/models/trivia.dart';
 
 class TriviaGameData {
@@ -81,6 +82,22 @@ class TriviaGameData {
       return true;
     } else {
       return false;
+    }
+  }
+
+  int getCorrectAnswersId({
+    required int idQuestion,
+  }) {
+    if ((idQuestion == 0)) {
+      return 2;
+    } else if (idQuestion == 1) {
+      return 1;
+    } else if (idQuestion == 2) {
+      return 2;
+    } else if (idQuestion == 3) {
+      return 2;
+    } else {
+      return 2;
     }
   }
 }

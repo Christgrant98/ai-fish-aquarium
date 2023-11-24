@@ -75,7 +75,12 @@ class _TriviaViewState extends State<TriviaView> {
           step = QuestionStep.resultChecker;
         }),
       );
-    } else {}
+    } else {
+      return Container(
+        height: 500,
+        color: Colors.teal,
+      );
+    }
   }
 
   Widget _buildResultView({required void Function() navigationAction}) {

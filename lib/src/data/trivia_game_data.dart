@@ -69,7 +69,7 @@ class TriviaGameData {
     ),
   ];
 
-  bool selectCorrectAnswer({
+  bool validateCorrectAnswer({
     required int idQuestion,
     required int answerSelected,
   }) {

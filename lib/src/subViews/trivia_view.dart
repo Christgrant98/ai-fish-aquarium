@@ -27,6 +27,7 @@ class _TriviaViewState extends State<TriviaView> {
   QuestionStep step = QuestionStep.initial;
   TriviaGameData questionsData = TriviaGameData();
   int indexQuestion = 0;
+  int? selectedAnswerIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class _TriviaViewState extends State<TriviaView> {
   Widget _buildQuestionStepView({
     required void Function() navigationAction,
   }) {
-    return QuestionContainer(
+    return _buildZZZ(
       gameData: questionsData,
       indexQuestion: indexQuestion,
       navigationAction: navigationAction,
@@ -84,76 +85,61 @@ class _TriviaViewState extends State<TriviaView> {
     return Column(
       children: [
         CustomButton(
-            text: 'GO',
-            onPressed: () {
-              showDialog(
-                  barrierColor: Colors.black87,
-                  context: context,
-                  builder: (ctx) {
-                    return BaseModal(
-                      paddingValue: 5,
-                      heightFactor: .2,
-                      widthFactor: .9,
-                      content: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const TextView(
-                            text: 'Deseas empezar ya?',
-                            fontWeight: FontWeight.w900,
-                            fontSize: 20,
-                          ),
-                          const SizedBox(height: 30),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              CustomButton(
-                                width: 140,
-                                isAppColor: false,
-                                buttonTextColor: Colors.black,
-                                text: 'Cancel',
-                                onPressed: () => Navigator.of(ctx).pop(),
-                              ),
-                              CustomButton(
-                                width: 150,
-                                text: 'Empezar ya!',
-                                onPressed: () => setState(() {
-                                  step = QuestionStep.first;
-                                  Navigator.of(ctx).pop();
-                                }),
-                              ),
-                            ],
-                          )
-                        ],
+          text: 'GO',
+          onPressed: () {
+            showDialog(
+              barrierColor: Colors.black87,
+              context: context,
+              builder: (ctx) {
+                return BaseModal(
+                  paddingValue: 5,
+                  heightFactor: .2,
+                  widthFactor: .9,
+                  content: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const TextView(
+                        text: 'Deseas empezar ya?',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 20,
                       ),
-                    );
-                  });
-            })
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          CustomButton(
+                            width: 140,
+                            isAppColor: false,
+                            buttonTextColor: Colors.black,
+                            text: 'Cancel',
+                            onPressed: () => Navigator.of(ctx).pop(),
+                          ),
+                          CustomButton(
+                            width: 150,
+                            text: 'Empezar ya!',
+                            onPressed: () => setState(() {
+                              step = QuestionStep.first;
+                              Navigator.of(ctx).pop();
+                            }),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        )
       ],
     );
   }
-}
 
-class QuestionContainer extends StatefulWidget {
-  final int indexQuestion;
-  final TriviaGameData gameData;
-  final void Function() navigationAction;
-
-  const QuestionContainer({
-    Key? key,
-    required this.gameData,
-    required this.indexQuestion,
-    required this.navigationAction,
-  }) : super(key: key);
-
-  @override
-  QuestionContainerState createState() => QuestionContainerState();
-}
-
-class QuestionContainerState extends State<QuestionContainer> {
-  int? selectedAnswerIndex;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildZZZ({
+    required int indexQuestion,
+    required final TriviaGameData gameData,
+    required final void Function() navigationAction,
+  }) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.8,
       width: MediaQuery.of(context).size.width * 0.9,
@@ -173,25 +159,47 @@ class QuestionContainerState extends State<QuestionContainer> {
       child: Column(
         children: [
           TextView(
-            text: widget.indexQuestion.toString(),
+            text: indexQuestion.toString(),
           ),
-          Image.asset(
-              widget.gameData.questions[widget.indexQuestion].imagePath),
+          Image.asset(gameData.questions[indexQuestion].imagePath),
           const SizedBox(height: 15),
           TextView(
-            text: widget.gameData.questions[widget.indexQuestion].question,
+            text: gameData.questions[indexQuestion].question,
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.center,
           ),
           Expanded(
-            child: _buildAnswerBox(),
+            child: ListView.builder(
+              itemCount: gameData.questions[indexQuestion].answers.length,
+              itemBuilder: (context, answerIndex) {
+                final answer =
+                    gameData.questions[indexQuestion].answers[answerIndex];
+
+                return Card(
+                  color: selectedAnswerIndex == answerIndex
+                      ? Colors.greenAccent
+                      : Colors.white,
+                  child: ListTile(
+                    title: TextView(
+                      text: answer.toString(),
+                      fontSize: 12,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        selectedAnswerIndex = answerIndex;
+                      });
+                    },
+                  ),
+                );
+              },
+            ),
           ),
           if (selectedAnswerIndex != null)
             CustomButton(
               onPressed: () {
-                widget.navigationAction();
-                widget.gameData.selectCorrectAnswer(
-                  idQuestion: widget.indexQuestion,
+                navigationAction();
+                gameData.validateCorrectAnswer(
+                  idQuestion: indexQuestion,
                   answerSelected: selectedAnswerIndex!,
                 );
               },
@@ -199,33 +207,6 @@ class QuestionContainerState extends State<QuestionContainer> {
             ),
         ],
       ),
-    );
-  }
-
-  ListView _buildAnswerBox() {
-    return ListView.builder(
-      itemCount: widget.gameData.questions[widget.indexQuestion].answers.length,
-      itemBuilder: (context, answerIndex) {
-        final answer = widget
-            .gameData.questions[widget.indexQuestion].answers[answerIndex];
-
-        return Card(
-          color: selectedAnswerIndex == answerIndex
-              ? Colors.greenAccent
-              : Colors.white,
-          child: ListTile(
-            title: TextView(
-              text: answer.toString(),
-              fontSize: 12,
-            ),
-            onTap: () {
-              setState(() {
-                selectedAnswerIndex = answerIndex;
-              });
-            },
-          ),
-        );
-      },
     );
   }
 }

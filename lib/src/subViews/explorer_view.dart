@@ -152,9 +152,10 @@ class MissionWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: CustomCard(
+        height: 75,
         title: missionText,
         titleSize: 14,
-        titleWeight: FontWeight.w400,
+        titleWeight: FontWeight.w600,
         icon: isCompleted ? Icons.check : Icons.close,
         iconBackgoundColor: Colors.white,
         iconColor: isCompleted ? Colors.green : Colors.red,

@@ -71,7 +71,7 @@ class PromoWidget extends StatelessWidget {
         iconColor: Colors.yellow,
         trailing: Column(
           children: [
-            const TextView(text: 'Puntos:'),
+            const TextView(text: 'Puntos'),
             Expanded(
               child: CircleAvatar(
                 backgroundColor: Colors.yellow,

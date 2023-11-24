@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login_flutter/src/models/peces_model.dart';
-import 'package:login_flutter/src/providers/carousel_provider.dart';
 import 'package:login_flutter/src/utils/widgets/base_modal.dart';
 import 'package:login_flutter/src/utils/widgets/custom_button.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
@@ -71,16 +69,6 @@ class _TriviaViewState extends State<TriviaView> {
     }
   }
 
-  Widget _buildQuestionStepView({
-    required void Function() navigationAction,
-  }) {
-    return _buildZZZ(
-      gameData: questionsData,
-      indexQuestion: indexQuestion,
-      navigationAction: navigationAction,
-    );
-  }
-
   Widget _buildInitialStepView() {
     return Column(
       children: [
@@ -135,9 +123,7 @@ class _TriviaViewState extends State<TriviaView> {
     );
   }
 
-  Widget _buildZZZ({
-    required int indexQuestion,
-    required final TriviaGameData gameData,
+  Widget _buildQuestionStepView({
     required final void Function() navigationAction,
   }) {
     return Container(
@@ -161,19 +147,19 @@ class _TriviaViewState extends State<TriviaView> {
           TextView(
             text: indexQuestion.toString(),
           ),
-          Image.asset(gameData.questions[indexQuestion].imagePath),
+          Image.asset(questionsData.questions[indexQuestion].imagePath),
           const SizedBox(height: 15),
           TextView(
-            text: gameData.questions[indexQuestion].question,
+            text: questionsData.questions[indexQuestion].question,
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.center,
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: gameData.questions[indexQuestion].answers.length,
+              itemCount: questionsData.questions[indexQuestion].answers.length,
               itemBuilder: (context, answerIndex) {
                 final answer =
-                    gameData.questions[indexQuestion].answers[answerIndex];
+                    questionsData.questions[indexQuestion].answers[answerIndex];
 
                 return Card(
                   color: selectedAnswerIndex == answerIndex
@@ -198,7 +184,7 @@ class _TriviaViewState extends State<TriviaView> {
             CustomButton(
               onPressed: () {
                 navigationAction();
-                gameData.validateCorrectAnswer(
+                questionsData.validateCorrectAnswer(
                   idQuestion: indexQuestion,
                   answerSelected: selectedAnswerIndex!,
                 );

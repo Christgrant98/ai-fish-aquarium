@@ -211,10 +211,11 @@ class _TriviaViewState extends State<TriviaView> {
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
+        const SizedBox(height: 30),
         Container(
           padding: const EdgeInsets.all(16.0),
           width: MediaQuery.of(context).size.width * .9,
-          height: MediaQuery.of(context).size.height * .6,
+          height: MediaQuery.of(context).size.height * .55,
           decoration: BoxDecoration(
             color: Colors.teal,
             borderRadius: BorderRadius.circular(20),
@@ -235,7 +236,7 @@ class _TriviaViewState extends State<TriviaView> {
                 color: Colors.white,
                 fontSize: 16,
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
               Container(
                 width: MediaQuery.of(context).size.width * .9,
                 height: MediaQuery.of(context).size.height * .1,
@@ -268,7 +269,7 @@ class _TriviaViewState extends State<TriviaView> {
                 color: Colors.white,
                 fontSize: 16,
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
               Container(
                 width: MediaQuery.of(context).size.width * .9,
                 height: MediaQuery.of(context).size.height * .1,
@@ -294,13 +295,14 @@ class _TriviaViewState extends State<TriviaView> {
                   ),
                 ),
               ),
+              const SizedBox(height: 25),
               const TextView(
-                text: 'Resultados de la Trivia:',
+                text: 'Calificacion:',
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
                 fontSize: 16,
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
               Container(
                 width: MediaQuery.of(context).size.width * .9,
                 height: MediaQuery.of(context).size.height * .1,
@@ -330,7 +332,7 @@ class _TriviaViewState extends State<TriviaView> {
             ],
           ),
         ),
-        const SizedBox(height: 45),
+        const SizedBox(height: 60),
         CustomButton(
             width: MediaQuery.of(context).size.width * .9,
             text: 'Ver Resultados',

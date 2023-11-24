@@ -205,6 +205,7 @@ class _TriviaViewState extends State<TriviaView> {
                       idQuestion: indexQuestion,
                       answerSelected: selectedAnswerIndex!,
                     );
+                    selectedAnswerIndex = null;
                   },
                   text: 'Continuar',
                 ),

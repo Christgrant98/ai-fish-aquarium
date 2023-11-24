@@ -28,8 +28,6 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
   String? comment;
   StepView step = StepView.initial;
 
-  final TextEditingController _commentController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -158,7 +156,6 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
           ),
           const SizedBox(height: 3.5),
           CommentFormField(
-              commentController: _commentController,
               title: '@${currentUser.username}',
               onChange: (String? value, bool isValid) {
                 setState(() {
@@ -262,7 +259,6 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
 
     setState(() {
       widget.pez.comments!.add(newComment);
-      _commentController.clear();
     });
   }
 

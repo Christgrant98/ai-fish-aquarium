@@ -5,7 +5,6 @@ import 'package:login_flutter/src/utils/widgets/base_text_form_field.dart';
 import 'text_view.dart';
 
 class CommentFormField extends StatelessWidget {
-  final TextEditingController commentController;
   final void Function(String?, bool) onChange;
   final void Function(String)? onFieldSubmitted;
   final String title;
@@ -16,7 +15,6 @@ class CommentFormField extends StatelessWidget {
     required this.onChange,
     this.onFieldSubmitted,
     required this.title,
-    required this.commentController,
   });
 
   @override
@@ -33,7 +31,6 @@ class CommentFormField extends StatelessWidget {
         ),
         const SizedBox(height: 2.5),
         BaseTextFormField(
-          controller: commentController,
           minLines: 1,
           maxLines: 3,
           decoration: InputDecoration(

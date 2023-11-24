@@ -555,9 +555,7 @@ class QuestionsInformationTrivia extends StatelessWidget {
             itemBuilder: (context, answerIndex) {
               final answer =
                   questionsData.questions[indexQuestion].answers[answerIndex];
-
               bool isCorrectAnswer = answerIndex == correctAnswerId;
-
               return Card(
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(

@@ -24,43 +24,59 @@ class TriviaView extends StatefulWidget {
 }
 
 class _TriviaViewState extends State<TriviaView> {
-  int indexQuestion = 0;
   QuestionStep step = QuestionStep.initial;
-  // late List<Pez> pecesData;
   TriviaGameData questionsData = TriviaGameData();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   cargarPecesData();
-  // }
-
-  // Future<void> cargarPecesData() async {
-  //   pecesData = await carouselProvider.cargarData();
-  //   setState(() {});
-  // }
+  int indexQuestion = 0;
 
   @override
   Widget build(BuildContext context) {
     if (QuestionStep.initial == step) {
       return _buildInitialStepView();
     } else if (QuestionStep.first == step) {
-      return _buildQuestionStepView();
+      return _buildQuestionStepView(
+        navigationAction: () => setState(() {
+          step = QuestionStep.second;
+          indexQuestion++;
+        }),
+      );
     } else if (QuestionStep.second == step) {
-      return Container();
+      return _buildQuestionStepView(
+        navigationAction: () => setState(() {
+          step = QuestionStep.third;
+          indexQuestion++;
+        }),
+      );
     } else if (QuestionStep.third == step) {
-      return Container();
+      return _buildQuestionStepView(
+        navigationAction: () => setState(() {
+          step = QuestionStep.fourth;
+          indexQuestion++;
+        }),
+      );
     } else if (QuestionStep.fourth == step) {
-      return Container();
+      return _buildQuestionStepView(
+        navigationAction: () => setState(() {
+          step = QuestionStep.fifth;
+          indexQuestion++;
+        }),
+      );
     } else {
-      return Container();
+      return _buildQuestionStepView(
+        navigationAction: () => setState(() {
+          step = QuestionStep.initial;
+          indexQuestion = 0;
+        }),
+      );
     }
   }
 
-  Widget _buildQuestionStepView() {
+  Widget _buildQuestionStepView({
+    required void Function() navigationAction,
+  }) {
     return QuestionContainer(
       gameData: questionsData,
-      index: indexQuestion,
+      indexQuestion: indexQuestion,
+      navigationAction: navigationAction,
     );
   }
 
@@ -101,7 +117,6 @@ class _TriviaViewState extends State<TriviaView> {
                                 width: 150,
                                 text: 'Empezar ya!',
                                 onPressed: () => setState(() {
-                                  indexQuestion++;
                                   step = QuestionStep.first;
                                   Navigator.of(ctx).pop();
                                 }),
@@ -118,21 +133,30 @@ class _TriviaViewState extends State<TriviaView> {
   }
 }
 
-class QuestionContainer extends StatelessWidget {
-  final int index;
+class QuestionContainer extends StatefulWidget {
+  final int indexQuestion;
   final TriviaGameData gameData;
+  final void Function() navigationAction;
 
   const QuestionContainer({
     Key? key,
     required this.gameData,
-    required this.index,
+    required this.indexQuestion,
+    required this.navigationAction,
   }) : super(key: key);
+
+  @override
+  QuestionContainerState createState() => QuestionContainerState();
+}
+
+class QuestionContainerState extends State<QuestionContainer> {
+  int? selectedAnswerIndex;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .8,
-      width: MediaQuery.of(context).size.width * .9,
+      height: MediaQuery.of(context).size.height * 0.8,
+      width: MediaQuery.of(context).size.width * 0.9,
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -149,31 +173,51 @@ class QuestionContainer extends StatelessWidget {
       child: Column(
         children: [
           TextView(
-            text: index.toString(),
+            text: widget.indexQuestion.toString(),
           ),
-          Image.asset(gameData.questions[0].imagePath),
           const SizedBox(height: 15),
           TextView(
-            text: gameData.questions[0].question,
+            text: widget.gameData.questions[widget.indexQuestion].question,
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.center,
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: gameData.questions[0].answers.length,
-              itemBuilder: (context, answerIndex) {
-                final answer = gameData.questions[0].answers[answerIndex];
-                return Card(
-                  child: ListTile(
-                    title: Text(answer.toString()),
-                    onTap: () {},
-                  ),
-                );
-              },
-            ),
+            child: _buildAnswerBox(),
           ),
+          if (selectedAnswerIndex != null)
+            CustomButton(
+              onPressed: widget.navigationAction,
+              text: 'Continuar',
+            ),
         ],
       ),
+    );
+  }
+
+  ListView _buildAnswerBox() {
+    return ListView.builder(
+      itemCount: widget.gameData.questions[widget.indexQuestion].answers.length,
+      itemBuilder: (context, answerIndex) {
+        final answer = widget
+            .gameData.questions[widget.indexQuestion].answers[answerIndex];
+
+        return Card(
+          color: selectedAnswerIndex == answerIndex
+              ? Colors.greenAccent
+              : Colors.white,
+          child: ListTile(
+            title: TextView(
+              text: answer.toString(),
+              fontSize: 12,
+            ),
+            onTap: () {
+              setState(() {
+                selectedAnswerIndex = answerIndex;
+              });
+            },
+          ),
+        );
+      },
     );
   }
 }

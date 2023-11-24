@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login_flutter/src/utils/widgets/layout.dart';
 import 'package:login_flutter/src/utils/widgets/text_view.dart';
 
-import '../models/peces_model.dart';
-import '../providers/carousel_provider.dart';
-import '../subViews/trivia_view.dart';
 import '../subViews/trivia_view.dart';
 
 class TriviaGamePage extends StatelessWidget {
@@ -15,6 +12,7 @@ class TriviaGamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Layout(
+      // hasBottomNavigationBar: true,
       body: Column(
         children: [
           SizedBox(height: 35),

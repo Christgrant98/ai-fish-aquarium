@@ -175,6 +175,8 @@ class QuestionContainerState extends State<QuestionContainer> {
           TextView(
             text: widget.indexQuestion.toString(),
           ),
+          Image.asset(
+              widget.gameData.questions[widget.indexQuestion].imagePath),
           const SizedBox(height: 15),
           TextView(
             text: widget.gameData.questions[widget.indexQuestion].question,

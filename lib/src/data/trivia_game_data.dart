@@ -68,4 +68,19 @@ class TriviaGameData {
       points: 1000,
     ),
   ];
+
+  bool selectCorrectAnswer({
+    required int idQuestion,
+    required int answerSelected,
+  }) {
+    if (idQuestion == 0 && answerSelected == 2 ||
+        idQuestion == 1 && answerSelected == 1 ||
+        idQuestion == 2 && answerSelected == 2 ||
+        idQuestion == 3 && answerSelected == 2 ||
+        idQuestion == 4 && answerSelected == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

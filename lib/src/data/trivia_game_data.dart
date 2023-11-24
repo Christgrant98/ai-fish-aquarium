@@ -13,7 +13,7 @@ class TriviaGameData {
         3: 'Estuarios de agua salobre',
       },
       imagePath: 'assets/carousel/electric_eel.jpg',
-      points: 1000,
+      pointsValue: 1000,
     ),
     TriviaGame(
       id: 1,
@@ -26,7 +26,7 @@ class TriviaGameData {
         3: 'Arrecifes de coral en aguas saladas',
       },
       imagePath: 'assets/carousel/mexican_cavefish.jpg',
-      points: 1000,
+      pointsValue: 1100,
     ),
     TriviaGame(
       id: 2,
@@ -39,7 +39,7 @@ class TriviaGameData {
         3: '40 años',
       },
       imagePath: 'assets/carousel/gold_barb.jpg',
-      points: 1000,
+      pointsValue: 1200,
     ),
     TriviaGame(
       id: 3,
@@ -52,7 +52,7 @@ class TriviaGameData {
         3: 'Se alimenta principalmente de algas marinas',
       },
       imagePath: 'assets/carousel/machaca.jpg',
-      points: 1000,
+      pointsValue: 1300,
     ),
     TriviaGame(
       id: 4,
@@ -65,7 +65,7 @@ class TriviaGameData {
         3: 'Prefiere alimentarse de insectos acuáticos',
       },
       imagePath: 'assets/carousel/characidum.jpg',
-      points: 1000,
+      pointsValue: 1400,
     ),
   ];
 

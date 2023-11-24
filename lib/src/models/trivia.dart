@@ -3,13 +3,13 @@ class TriviaGame {
   String question;
   Map<int, String> answers;
   String imagePath;
-  int points;
+  int pointsValue;
 
   TriviaGame({
     this.id,
     required this.question,
     required this.answers,
     required this.imagePath,
-    required this.points,
+    required this.pointsValue,
   });
 }

@@ -22,13 +22,15 @@ class TriviaView extends StatefulWidget {
 }
 
 class _TriviaViewState extends State<TriviaView> {
-  QuestionStep step = QuestionStep.initial;
   TriviaGameData questionsData = TriviaGameData();
-  int indexQuestion = 0;
+  QuestionStep step = QuestionStep.initial;
   int? selectedAnswerIndex;
+  int indexQuestion = 0;
+  int points = 0;
 
   @override
   Widget build(BuildContext context) {
+    print('those are the init points === ${points}');
     if (QuestionStep.initial == step) {
       return _buildInitialStepView();
     } else if (QuestionStep.first == step) {
@@ -67,68 +69,6 @@ class _TriviaViewState extends State<TriviaView> {
         }),
       );
     }
-  }
-
-  Widget _buildInitialStepView() {
-    return Container(
-      height: MediaQuery.of(context).size.height * .7,
-      child: CircleAvatar(
-        backgroundColor: Colors.black,
-        radius: 65,
-        child: TextButton(
-          child: const TextView(
-            fontWeight: FontWeight.w900,
-            text: 'GO',
-            fontSize: 40,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            showDialog(
-              barrierColor: Colors.black87,
-              context: context,
-              builder: (ctx) {
-                return BaseModal(
-                  paddingValue: 5,
-                  heightFactor: .22,
-                  widthFactor: .9,
-                  content: Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      const TextView(
-                        text: 'Deseas empezar ya?',
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20,
-                      ),
-                      const SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          CustomButton(
-                            width: 140,
-                            isAppColor: false,
-                            buttonTextColor: Colors.black,
-                            text: 'Cancel',
-                            onPressed: () => Navigator.of(ctx).pop(),
-                          ),
-                          CustomButton(
-                            width: 150,
-                            text: 'Empezar ya!',
-                            onPressed: () => setState(() {
-                              step = QuestionStep.first;
-                              Navigator.of(ctx).pop();
-                            }),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      ),
-    );
   }
 
   Widget _buildQuestionStepView({
@@ -212,12 +152,21 @@ class _TriviaViewState extends State<TriviaView> {
               if (selectedAnswerIndex != null)
                 CustomButton(
                   onPressed: () {
-                    navigationAction();
-                    questionsData.validateCorrectAnswer(
+                    bool isCorrectAnswered =
+                        questionsData.validateCorrectAnswer(
                       idQuestion: indexQuestion,
                       answerSelected: selectedAnswerIndex!,
                     );
+                    if (isCorrectAnswered) {
+                      int updatedPoints = points +
+                          questionsData.questions[indexQuestion].pointsValue;
+
+                      points = updatedPoints;
+                      print('points $points');
+                      print('updatedPoints $updatedPoints');
+                    }
                     selectedAnswerIndex = null;
+                    navigationAction();
                   },
                   text: 'Continuar',
                 ),
@@ -225,6 +174,68 @@ class _TriviaViewState extends State<TriviaView> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildInitialStepView() {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .7,
+      child: InkWell(
+        onTap: () {
+          showDialog(
+            barrierColor: Colors.black87,
+            context: context,
+            builder: (ctx) {
+              return BaseModal(
+                paddingValue: 5,
+                heightFactor: .22,
+                widthFactor: .9,
+                content: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    const TextView(
+                      text: 'Deseas empezar ya?',
+                      fontWeight: FontWeight.w900,
+                      fontSize: 20,
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CustomButton(
+                          width: 140,
+                          isAppColor: false,
+                          buttonTextColor: Colors.black,
+                          text: 'Cancel',
+                          onPressed: () => Navigator.of(ctx).pop(),
+                        ),
+                        CustomButton(
+                          width: 150,
+                          text: 'Empezar ya!',
+                          onPressed: () => setState(() {
+                            step = QuestionStep.first;
+                            Navigator.of(ctx).pop();
+                          }),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              );
+            },
+          );
+        },
+        child: const CircleAvatar(
+          backgroundColor: Colors.black,
+          radius: 65,
+          child: TextView(
+            fontWeight: FontWeight.w900,
+            text: 'GO',
+            fontSize: 40,
+            color: Colors.white,
+          ),
+        ),
+      ),
     );
   }
 }

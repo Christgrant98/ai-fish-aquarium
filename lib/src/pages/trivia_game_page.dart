@@ -15,20 +15,22 @@ class TriviaGamePage extends StatelessWidget {
       // hasBottomNavigationBar: true,
       body: SizedBox(
         height: MediaQuery.of(context).size.height * .9,
-        child: const Column(
-          children: [
-            SizedBox(height: 25),
-            TextView(
-              text: 'Trivia',
-              fontSize: 35,
-              fontWeight: FontWeight.w900,
-              color: Colors.black,
-            ),
-            SizedBox(height: 10),
-            Center(
-              child: TriviaView(),
-            ),
-          ],
+        child: const SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 25),
+              TextView(
+                text: 'Trivia',
+                fontSize: 35,
+                fontWeight: FontWeight.w900,
+                color: Colors.black,
+              ),
+              SizedBox(height: 10),
+              Center(
+                child: TriviaView(),
+              ),
+            ],
+          ),
         ),
       ),
     );

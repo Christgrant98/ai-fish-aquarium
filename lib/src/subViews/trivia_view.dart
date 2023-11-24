@@ -12,7 +12,8 @@ enum QuestionStep {
   third,
   fourth,
   fifth,
-  result,
+  resultPoints,
+  resultChecker,
 }
 
 class TriviaView extends StatefulWidget {
@@ -64,16 +65,20 @@ class _TriviaViewState extends State<TriviaView> {
     } else if (QuestionStep.fifth == step) {
       return _buildQuestionStepView(
         navigationAction: () => setState(() {
-          step = QuestionStep.result;
+          step = QuestionStep.resultPoints;
           indexQuestion = 0;
         }),
       );
-    } else {
-      return _buildResultView();
-    }
+    } else if (QuestionStep.resultPoints == step) {
+      return _buildResultView(
+        navigationAction: () => setState(() {
+          step = QuestionStep.resultChecker;
+        }),
+      );
+    } else {}
   }
 
-  Widget _buildResultView() {
+  Widget _buildResultView({required void Function() navigationAction}) {
     return Column(
       children: [
         const TextView(
@@ -137,25 +142,11 @@ class _TriviaViewState extends State<TriviaView> {
         ),
         const SizedBox(height: 45),
         CustomButton(
-          width: MediaQuery.of(context).size.width * .9,
-          text: 'Ver Resultados',
-          onPressed: () => showDialog(
-            context: context,
-            builder: (context) {
-              return BaseModal(
-                heightFactor: .9,
-                content: SingleChildScrollView(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * .6,
-                    child: _buildTiviaGameComponent(
-                      showPic: false,
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        )
+            width: MediaQuery.of(context).size.width * .9,
+            text: 'Ver Resultados',
+            onPressed: () {
+              navigationAction();
+            })
       ],
     );
   }
@@ -215,7 +206,7 @@ class _TriviaViewState extends State<TriviaView> {
     );
   }
 
-  Widget _buildTiviaGameComponent({bool showPic = true}) {
+  Widget _buildTiviaGameComponent() {
     return Column(
       children: [
         TextView(
@@ -224,9 +215,7 @@ class _TriviaViewState extends State<TriviaView> {
           fontWeight: FontWeight.bold,
         ),
         const SizedBox(height: 5),
-        showPic == true
-            ? Image.asset(questionsData.questions[indexQuestion].imagePath)
-            : Container(),
+        Image.asset(questionsData.questions[indexQuestion].imagePath),
         const SizedBox(height: 10),
         TextView(
           text: questionsData.questions[indexQuestion].question,
@@ -237,6 +226,8 @@ class _TriviaViewState extends State<TriviaView> {
         const SizedBox(height: 5),
         Expanded(
           child: ListView.builder(
+            reverse: false,
+            shrinkWrap: true,
             itemCount: questionsData.questions[indexQuestion].answers.length,
             itemBuilder: (context, answerIndex) {
               final answer =
@@ -254,20 +245,17 @@ class _TriviaViewState extends State<TriviaView> {
                 color: selectedAnswerIndex == answerIndex
                     ? Colors.greenAccent
                     : const Color.fromARGB(255, 240, 240, 240),
-                child: SizedBox(
-                  height: 50,
-                  child: ListTile(
-                    title: TextView(
-                      text: answer.toString(),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    onTap: () {
-                      setState(() {
-                        selectedAnswerIndex = answerIndex;
-                      });
-                    },
+                child: ListTile(
+                  title: TextView(
+                    text: answer.toString(),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
                   ),
+                  onTap: () {
+                    setState(() {
+                      selectedAnswerIndex = answerIndex;
+                    });
+                  },
                 ),
               );
             },
@@ -336,6 +324,84 @@ class _TriviaViewState extends State<TriviaView> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class QuestionsInformationTrivia extends StatefulWidget {
+  final int selectedAnswerIndex;
+  final int correcAnswerIndex;
+  final int indexQuestion;
+  final TriviaGameData questionsData;
+  const QuestionsInformationTrivia({
+    super.key,
+    required this.indexQuestion,
+    required this.questionsData,
+    required this.selectedAnswerIndex,
+    required this.correcAnswerIndex,
+  });
+
+  @override
+  State<QuestionsInformationTrivia> createState() =>
+      _QuestionsInformationTriviaState();
+}
+
+class _QuestionsInformationTriviaState
+    extends State<QuestionsInformationTrivia> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextView(
+          text: 'Pregunta #${(widget.indexQuestion + 1).toString()}',
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+        const SizedBox(height: 10),
+        TextView(
+          text: widget.questionsData.questions[widget.indexQuestion].question,
+          fontWeight: FontWeight.bold,
+          textAlign: TextAlign.center,
+          fontSize: 14,
+        ),
+        const SizedBox(height: 5),
+        Expanded(
+          child: ListView.builder(
+            reverse: false,
+            shrinkWrap: true,
+            itemCount: widget
+                .questionsData.questions[widget.indexQuestion].answers.length,
+            itemBuilder: (context, answerIndex) {
+              final answer = widget.questionsData
+                  .questions[widget.indexQuestion].answers[answerIndex];
+
+              return Card(
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(
+                    color: Colors.transparent,
+                    width: 0.1,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                elevation: 2,
+                color: widget.selectedAnswerIndex == answerIndex
+                    ? Colors.greenAccent
+                    : const Color.fromARGB(255, 240, 240, 240),
+                child: ListTile(
+                  title: TextView(
+                    text: answer.toString(),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  onTap: () {
+                    setState(() {});
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

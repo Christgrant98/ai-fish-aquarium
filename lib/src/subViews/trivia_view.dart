@@ -12,6 +12,7 @@ enum QuestionStep {
   third,
   fourth,
   fifth,
+  result,
 }
 
 class TriviaView extends StatefulWidget {
@@ -30,7 +31,6 @@ class _TriviaViewState extends State<TriviaView> {
 
   @override
   Widget build(BuildContext context) {
-    print('those are the init points === ${points}');
     if (QuestionStep.initial == step) {
       return _buildInitialStepView();
     } else if (QuestionStep.first == step) {
@@ -61,14 +61,106 @@ class _TriviaViewState extends State<TriviaView> {
           indexQuestion++;
         }),
       );
-    } else {
+    } else if (QuestionStep.fifth == step) {
       return _buildQuestionStepView(
         navigationAction: () => setState(() {
-          step = QuestionStep.initial;
+          step = QuestionStep.result;
           indexQuestion = 0;
         }),
       );
+    } else {
+      return _buildResultView();
     }
+  }
+
+  Widget _buildResultView() {
+    return Column(
+      children: [
+        const TextView(
+          text: 'Resultados de tu Trivia',
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+        const SizedBox(height: 45),
+        Container(
+          width: MediaQuery.of(context).size.width * .9,
+          height: MediaQuery.of(context).size.height * .2,
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Colors.teal,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 7,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const TextView(
+                text: 'Puntos obtenidos',
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 16,
+              ),
+              const SizedBox(height: 25),
+              Container(
+                width: MediaQuery.of(context).size.width * .9,
+                height: MediaQuery.of(context).size.height * .1,
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: TextView(
+                    text: points.toString(),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 45),
+        CustomButton(
+          width: MediaQuery.of(context).size.width * .9,
+          text: 'Ver Resultados',
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) {
+              return const BaseModal(
+                heightFactor: .9,
+                widthFactor: .92,
+                content: Column(
+                  children: [
+                    TextView(
+                      text: 'Estos son tus resultados',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        )
+      ],
+    );
   }
 
   Widget _buildQuestionStepView({

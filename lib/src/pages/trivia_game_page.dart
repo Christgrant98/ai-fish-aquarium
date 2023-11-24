@@ -17,18 +17,17 @@ class TriviaGamePage extends StatelessWidget {
         height: MediaQuery.of(context).size.height * .9,
         child: const Column(
           children: [
-            SizedBox(height: 35),
+            SizedBox(height: 25),
             TextView(
               text: 'Trivia',
               fontSize: 35,
               fontWeight: FontWeight.w900,
               color: Colors.black,
             ),
-            Spacer(),
+            SizedBox(height: 10),
             Center(
               child: TriviaView(),
             ),
-            Spacer(),
           ],
         ),
       ),

@@ -70,10 +70,18 @@ class _TriviaViewState extends State<TriviaView> {
   }
 
   Widget _buildInitialStepView() {
-    return Column(
-      children: [
-        CustomButton(
-          text: 'GO',
+    return Container(
+      height: MediaQuery.of(context).size.height * .7,
+      child: CircleAvatar(
+        backgroundColor: Colors.black,
+        radius: 65,
+        child: TextButton(
+          child: const TextView(
+            fontWeight: FontWeight.w900,
+            text: 'GO',
+            fontSize: 40,
+            color: Colors.white,
+          ),
           onPressed: () {
             showDialog(
               barrierColor: Colors.black87,
@@ -118,81 +126,92 @@ class _TriviaViewState extends State<TriviaView> {
               },
             );
           },
-        )
-      ],
+        ),
+      ),
     );
   }
 
   Widget _buildQuestionStepView({
     required final void Function() navigationAction,
   }) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      width: MediaQuery.of(context).size.width * 0.9,
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 3,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
+    return Stack(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height * .8,
+          width: MediaQuery.of(context).size.width * .9,
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 7,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          TextView(
-            text: indexQuestion.toString(),
-          ),
-          Image.asset(questionsData.questions[indexQuestion].imagePath),
-          const SizedBox(height: 15),
-          TextView(
-            text: questionsData.questions[indexQuestion].question,
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.center,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: questionsData.questions[indexQuestion].answers.length,
-              itemBuilder: (context, answerIndex) {
-                final answer =
-                    questionsData.questions[indexQuestion].answers[answerIndex];
+          child: Column(
+            children: [
+              TextView(
+                text: 'Pregunta #${(indexQuestion + 1).toString()}',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              Image.asset(questionsData.questions[indexQuestion].imagePath),
+              const SizedBox(height: 15),
+              TextView(
+                text: questionsData.questions[indexQuestion].question,
+                fontWeight: FontWeight.bold,
+                textAlign: TextAlign.center,
+                fontSize: 15,
+              ),
+              const SizedBox(height: 5),
+              Expanded(
+                child: ListView.builder(
+                  itemCount:
+                      questionsData.questions[indexQuestion].answers.length,
+                  itemBuilder: (context, answerIndex) {
+                    final answer = questionsData
+                        .questions[indexQuestion].answers[answerIndex];
 
-                return Card(
-                  color: selectedAnswerIndex == answerIndex
-                      ? Colors.greenAccent
-                      : Colors.white,
-                  child: ListTile(
-                    title: TextView(
-                      text: answer.toString(),
-                      fontSize: 12,
-                    ),
-                    onTap: () {
-                      setState(() {
-                        selectedAnswerIndex = answerIndex;
-                      });
-                    },
-                  ),
-                );
-              },
-            ),
+                    return Card(
+                      elevation: 2,
+                      color: selectedAnswerIndex == answerIndex
+                          ? Colors.greenAccent
+                          : Colors.white,
+                      child: ListTile(
+                        title: TextView(
+                          text: answer.toString(),
+                          fontSize: 12,
+                        ),
+                        onTap: () {
+                          setState(() {
+                            selectedAnswerIndex = answerIndex;
+                          });
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 5),
+              if (selectedAnswerIndex != null)
+                CustomButton(
+                  onPressed: () {
+                    navigationAction();
+                    questionsData.validateCorrectAnswer(
+                      idQuestion: indexQuestion,
+                      answerSelected: selectedAnswerIndex!,
+                    );
+                  },
+                  text: 'Continuar',
+                ),
+            ],
           ),
-          if (selectedAnswerIndex != null)
-            CustomButton(
-              onPressed: () {
-                navigationAction();
-                questionsData.validateCorrectAnswer(
-                  idQuestion: indexQuestion,
-                  answerSelected: selectedAnswerIndex!,
-                );
-              },
-              text: 'Continuar',
-            ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

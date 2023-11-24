@@ -4,7 +4,6 @@ class TriviaGame {
   Map<int, String> answers;
   String imagePath;
   int points;
-  bool? isCorrect;
 
   TriviaGame({
     this.id,
@@ -12,6 +11,5 @@ class TriviaGame {
     required this.answers,
     required this.imagePath,
     required this.points,
-    this.isCorrect,
   });
 }

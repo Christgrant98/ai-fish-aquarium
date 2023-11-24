@@ -188,7 +188,13 @@ class QuestionContainerState extends State<QuestionContainer> {
           ),
           if (selectedAnswerIndex != null)
             CustomButton(
-              onPressed: widget.navigationAction,
+              onPressed: () {
+                widget.navigationAction();
+                widget.gameData.selectCorrectAnswer(
+                  idQuestion: widget.indexQuestion,
+                  answerSelected: selectedAnswerIndex!,
+                );
+              },
               text: 'Continuar',
             ),
         ],

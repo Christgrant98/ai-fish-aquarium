@@ -4,9 +4,13 @@ import 'package:login_flutter/src/utils/widgets/text_view.dart';
 
 import '../models/peces_model.dart';
 import '../providers/carousel_provider.dart';
+import '../subViews/trivia_view.dart';
+import '../subViews/trivia_view.dart';
 
 class TriviaGamePage extends StatelessWidget {
-  const TriviaGamePage({Key? key});
+  const TriviaGamePage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,44 +27,6 @@ class TriviaGamePage extends StatelessWidget {
           SizedBox(height: 35),
           TriviaView(),
         ],
-      ),
-    );
-  }
-}
-
-class TriviaView extends StatefulWidget {
-  const TriviaView({super.key});
-
-  @override
-  State<TriviaView> createState() => _TriviaViewState();
-}
-
-class _TriviaViewState extends State<TriviaView> {
-  late List<Pez> pecesData;
-
-  @override
-  void initState() {
-    super.initState();
-    cargarPecesData();
-  }
-
-  Future<void> cargarPecesData() async {
-    pecesData = await carouselProvider.cargarData();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: pecesData.length,
-        itemBuilder: (context, index) {
-          final pez = pecesData[index];
-          return Card(
-            child: ListTile(
-              title: Text(pez.name.toString()),
-            ),
-          );
-        },
       ),
     );
   }

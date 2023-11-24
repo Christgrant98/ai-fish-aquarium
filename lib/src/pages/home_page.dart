@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
     return Layout(
       hasBottomNavigationBar: false,
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width * .9,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,16 +33,12 @@ class HomePage extends StatelessWidget {
                     )),
                 const SizedBox(height: 30),
                 CustomButton(
-                  onPressed: () {
-                    context.go("/login");
-                  },
+                  onPressed: () => context.go("/login"),
                   text: "Iniciar Sesión",
                 ),
                 const SizedBox(height: 10),
                 CustomButton(
-                  onPressed: () {
-                    context.go("/registro");
-                  },
+                  onPressed: () => context.go("/registro"),
                   color: Colors.teal,
                   text: "Regístrate",
                 )

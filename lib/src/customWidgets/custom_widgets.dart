@@ -1,190 +1,189 @@
-import 'package:flutter/material.dart';
-import 'package:login_flutter/src/providers/user_provider.dart';
-import 'package:provider/provider.dart';
+  // import 'package:flutter/material.dart';
+  // import 'package:login_flutter/src/providers/user_provider.dart';
+  // import 'package:provider/provider.dart';
 
-import '../utils/widgets/botton_navigator_menu.dart';
-import '../utils/widgets/text_view.dart';
+  // import '../utils/widgets/botton_navigator_menu.dart';
+  // import '../utils/widgets/text_view.dart';
 
-class MyBottonNavBar extends StatelessWidget {
-  final Function(int) onTapFunc;
-  final int selectedIndex;
+  // class MyBottonNavBar extends StatelessWidget {
+  //   final Function(int) onTapFunc;
+  //   final int selectedIndex;
 
-  const MyBottonNavBar(
-      {super.key, required this.onTapFunc, required this.selectedIndex});
+  //   const MyBottonNavBar(
+  //       {super.key, required this.onTapFunc, required this.selectedIndex});
 
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: onTapFunc,
-      currentIndex: selectedIndex,
-      unselectedItemColor: const Color.fromARGB(146, 255, 255, 255),
-      selectedItemColor: Colors.white,
-      items: const [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            activeIcon: Icon(Icons.home_outlined),
-            label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            activeIcon: Icon(Icons.camera_outlined),
-            label: "Camara"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            activeIcon: Icon(Icons.map_outlined),
-            label: "Mapa"),
-      ],
-    );
-  }
-}
+  //   @override
+  //   Widget build(BuildContext context) {
+  //     return BottomNavigationBar(
+  //       onTap: onTapFunc,
+  //       currentIndex: selectedIndex,
+  //       unselectedItemColor: const Color.fromARGB(146, 255, 255, 255),
+  //       selectedItemColor: Colors.white,
+  //       items: const [
+  //         BottomNavigationBarItem(
+  //             icon: Icon(Icons.home),
+  //             activeIcon: Icon(Icons.home_outlined),
+  //             label: "Home"),
+  //         BottomNavigationBarItem(
+  //             icon: Icon(Icons.camera),
+  //             activeIcon: Icon(Icons.camera_outlined),
+  //             label: "Camara"),
+  //         BottomNavigationBarItem(
+  //             icon: Icon(Icons.map),
+  //             activeIcon: Icon(Icons.map_outlined),
+  //             label: "Mapa"),
+  //       ],
+  //     );
+  //   }
+  // }
 
-class MyAppBar extends StatelessWidget {
-  const MyAppBar({super.key});
+  // class MyAppBar extends StatelessWidget {
+  //   const MyAppBar({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context, listen: false).user!;
-    return AppBar(
-      elevation: 0,
-      toolbarHeight: 60,
-      backgroundColor: Colors.transparent,
-      leading: Builder(
-        builder: (BuildContext context) {
-          return IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-              size: 25,
-            ),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        },
-      ),
-    );
-  }
-}
+  //   @override
+  //   Widget build(BuildContext context) {
+  //     return AppBar(
+  //       elevation: 0,
+  //       toolbarHeight: 60,
+  //       backgroundColor: Colors.transparent,
+  //       leading: Builder(
+  //         builder: (BuildContext context) {
+  //           return IconButton(
+  //             icon: const Icon(
+  //               Icons.menu,
+  //               color: Colors.black,
+  //               size: 25,
+  //             ),
+  //             onPressed: () => Scaffold.of(context).openDrawer(),
+  //             tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+  //           );
+  //         },
+  //       ),
+  //     );
+  //   }
+  // }
 
-class ScaffoldWithNavBar extends StatelessWidget {
-  const ScaffoldWithNavBar({
-    required this.child,
-    super.key,
-  });
+  // class ScaffoldWithNavBar extends StatelessWidget {
+  //   const ScaffoldWithNavBar({
+  //     required this.child,
+  //     super.key,
+  //   });
 
-  final Widget child;
+  //   final Widget child;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.indigoAccent,
-      // appBar: const PreferredSize(
-      //   preferredSize: Size.fromHeight(kToolbarHeight),
-      //   // child: MyAppBar(),
-      // ),
-      drawer: const MyDrawer(),
-      body: SafeArea(child: child),
+  //   @override
+  //   Widget build(BuildContext context) {
+  //     return Scaffold(
+  //       backgroundColor: Colors.indigoAccent,
+  //       // appBar: const PreferredSize(
+  //       //   preferredSize: Size.fromHeight(kToolbarHeight),
+  //       //   // child: MyAppBar(),
+  //       // ),
+  //       drawer: const MyDrawer(),
+  //       body: SafeArea(child: child),
 
-      bottomNavigationBar: const BottomNavigatorMenu(),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.home),
-      //         activeIcon: Icon(Icons.home_outlined),
-      //         label: "Home"),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.camera),
-      //         activeIcon: Icon(Icons.camera_outlined),
-      //         label: "Camara"),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.map),
-      //         activeIcon: Icon(Icons.map_outlined),
-      //         label: "Mapa"),
-      //   ],
-      //   currentIndex: _calculateSelectedIndex(context),
-      //   onTap: (int idx) => _onItemTapped(idx, context),
-      // ),
-    );
-  }
-}
+  //       bottomNavigationBar: const BottomNavigatorMenu(),
+  //       // bottomNavigationBar: BottomNavigationBar(
+  //       //   items: const [
+  //       //     BottomNavigationBarItem(
+  //       //         icon: Icon(Icons.home),
+  //       //         activeIcon: Icon(Icons.home_outlined),
+  //       //         label: "Home"),
+  //       //     BottomNavigationBarItem(
+  //       //         icon: Icon(Icons.camera),
+  //       //         activeIcon: Icon(Icons.camera_outlined),
+  //       //         label: "Camara"),
+  //       //     BottomNavigationBarItem(
+  //       //         icon: Icon(Icons.map),
+  //       //         activeIcon: Icon(Icons.map_outlined),
+  //       //         label: "Mapa"),
+  //       //   ],
+  //       //   currentIndex: _calculateSelectedIndex(context),
+  //       //   onTap: (int idx) => _onItemTapped(idx, context),
+  //       // ),
+  //     );
+  //   }
+  // }
 
-class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
-  @override
-  Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context, listen: false).user!;
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage(user.profilePicture),
-                ),
-                const SizedBox(height: 10),
-                TextView(
-                  text: user.username,
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ],
-            ),
-          ),
-          ListTile(
-            title: const TextView(text: 'About'),
-            onTap: () {
-              Navigator.pop(context);
-              _showAboutDialog(context);
-            },
-          ),
-        ],
-      ),
-    );
-  }
+  // class MyDrawer extends StatelessWidget {
+  //   const MyDrawer({super.key});
+  //   @override
+  //   Widget build(BuildContext context) {
+  //     final user = Provider.of<UserProvider>(context, listen: false).user!;
+  //     return Drawer(
+  //       child: ListView(
+  //         padding: EdgeInsets.zero,
+  //         children: [
+  //           DrawerHeader(
+  //             decoration: const BoxDecoration(
+  //               color: Colors.blue,
+  //             ),
+  //             child: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 CircleAvatar(
+  //                   radius: 40,
+  //                   backgroundImage: AssetImage(user.profilePicture),
+  //                 ),
+  //                 const SizedBox(height: 10),
+  //                 TextView(
+  //                   text: user.username,
+  //                   color: Colors.white,
+  //                   fontSize: 18,
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //           ListTile(
+  //             title: const TextView(text: 'About'),
+  //             onTap: () {
+  //               Navigator.pop(context);
+  //               _showAboutDialog(context);
+  //             },
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
 
-  void _showAboutDialog(BuildContext context) {
-    showDialog(
-      barrierColor: Colors.black87,
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const TextView(text: 'Acerca de la Aplicación para Acuarios'),
-          content: const SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextView(
-                  text: 'Bienvenido a la Aplicación para Acuarios',
-                  fontWeight: FontWeight.bold,
-                ),
-                SizedBox(height: 10),
-                TextView(
-                  text:
-                      'Esta aplicación está diseñada para los amantes de los acuarios, ya sean principiantes o expertos en acuarismo. Aquí encontrarás herramientas útiles, información sobre peces, consejos de cuidado y mucho más.',
-                ),
-                SizedBox(height: 10),
-                TextView(
-                  text:
-                      '¡Explora el mundo fascinante de los acuarios y crea un entorno acuático vibrante para tus peces!',
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const TextView(text: 'Cerrar'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
+  //   void _showAboutDialog(BuildContext context) {
+  //     showDialog(
+  //       barrierColor: Colors.black87,
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //           title: const TextView(text: 'Acerca de la Aplicación para Acuarios'),
+  //           content: const SingleChildScrollView(
+  //             child: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 TextView(
+  //                   text: 'Bienvenido a la Aplicación para Acuarios',
+  //                   fontWeight: FontWeight.bold,
+  //                 ),
+  //                 SizedBox(height: 10),
+  //                 TextView(
+  //                   text:
+  //                       'Esta aplicación está diseñada para los amantes de los acuarios, ya sean principiantes o expertos en acuarismo. Aquí encontrarás herramientas útiles, información sobre peces, consejos de cuidado y mucho más.',
+  //                 ),
+  //                 SizedBox(height: 10),
+  //                 TextView(
+  //                   text:
+  //                       '¡Explora el mundo fascinante de los acuarios y crea un entorno acuático vibrante para tus peces!',
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //           actions: [
+  //             TextButton(
+  //               onPressed: () {
+  //                 Navigator.pop(context);
+  //               },
+  //               child: const TextView(text: 'Cerrar'),
+  //             ),
+  //           ],
+  //         );
+  //       },
+  //     );
+  //   }
+  // }

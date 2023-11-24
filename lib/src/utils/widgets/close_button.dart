@@ -8,7 +8,7 @@ class ButtonXmark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Container(
+      icon: const SizedBox(
         // decoration: const BoxDecoration(
         //   shape: BoxShape.circle,
         //   boxShadow: [
@@ -19,7 +19,7 @@ class ButtonXmark extends StatelessWidget {
         //     ),
         //   ],
         // ),
-        child: const CircleAvatar(
+        child: CircleAvatar(
           radius: 12,
           backgroundColor: Colors.black,
           child: Icon(

@@ -44,23 +44,12 @@ class BottomNavigatorMenuState extends State<BottomNavigatorMenu> {
           padding: const EdgeInsets.all(5),
           gap: 8,
           onTabChange: (index) {
-            if (!_isDisposed) {
-              _onItemTapped(index, context);
-            }
+            _onItemTapped(index, context);
           },
           tabs: const [
-            GButton(
-              iconSize: 30,
-              icon: CupertinoIcons.house_fill,
-            ),
-            GButton(
-              iconSize: 50.5,
-              icon: CupertinoIcons.camera_fill,
-            ),
-            GButton(
-              iconSize: 30,
-              icon: CupertinoIcons.map_fill,
-            ),
+            GButton(iconSize: 30, icon: CupertinoIcons.house_fill),
+            GButton(iconSize: 50.5, icon: CupertinoIcons.camera_fill),
+            GButton(iconSize: 30, icon: CupertinoIcons.map_fill),
           ],
         ),
       ),

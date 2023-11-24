@@ -40,10 +40,9 @@ class Pez implements GenericModel {
       "name": name,
       "image_route": imageRoute,
       "description": description,
-      "is_liked":
-          isLiked ? 1 : 0, // Convertir el bool a un valor compatible con SQLite
-      "comments":
-          jsonEncode(comments?.map((comment) => comment.toMap()).toList()),
+      "is_liked": isLiked ? 1 : 0,
+      "comments": jsonEncode(
+          comments?.map((Comment comment) => comment.toMap()).toList()),
     };
   }
 

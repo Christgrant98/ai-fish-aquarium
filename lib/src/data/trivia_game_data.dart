@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:login_flutter/src/models/trivia.dart';
 
 class TriviaGameData {

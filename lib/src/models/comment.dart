@@ -17,7 +17,6 @@ class Comment {
     );
   }
 
-  @override
   Map<String, dynamic> toMap() {
     return {
       "username": username,

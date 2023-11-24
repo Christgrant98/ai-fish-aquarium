@@ -202,43 +202,7 @@ class _TriviaViewState extends State<TriviaView> {
               ),
               const SizedBox(height: 5),
               Expanded(
-                child: ListView.builder(
-                  itemCount:
-                      questionsData.questions[indexQuestion].answers.length,
-                  itemBuilder: (context, answerIndex) {
-                    final answer = questionsData
-                        .questions[indexQuestion].answers[answerIndex];
-
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                          color: Colors.transparent,
-                          width: 0.1,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      elevation: 2,
-                      color: selectedAnswerIndex == answerIndex
-                          ? Colors.greenAccent
-                          : const Color.fromARGB(255, 240, 240, 240),
-                      child: SizedBox(
-                        height: 50,
-                        child: ListTile(
-                          title: TextView(
-                            text: answer.toString(),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          onTap: () {
-                            setState(() {
-                              selectedAnswerIndex = answerIndex;
-                            });
-                          },
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                child: _buildTiviaGameComponent(),
               ),
               const SizedBox(height: 5),
               if (selectedAnswerIndex != null)
@@ -266,6 +230,45 @@ class _TriviaViewState extends State<TriviaView> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTiviaGameComponent() {
+    return ListView.builder(
+      itemCount: questionsData.questions[indexQuestion].answers.length,
+      itemBuilder: (context, answerIndex) {
+        final answer =
+            questionsData.questions[indexQuestion].answers[answerIndex];
+
+        return Card(
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(
+              color: Colors.transparent,
+              width: 0.1,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          elevation: 2,
+          color: selectedAnswerIndex == answerIndex
+              ? Colors.greenAccent
+              : const Color.fromARGB(255, 240, 240, 240),
+          child: SizedBox(
+            height: 50,
+            child: ListTile(
+              title: TextView(
+                text: answer.toString(),
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+              onTap: () {
+                setState(() {
+                  selectedAnswerIndex = answerIndex;
+                });
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 

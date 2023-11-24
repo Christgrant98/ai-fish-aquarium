@@ -18,19 +18,20 @@ class AboutUsView extends StatelessWidget {
             textAlign: TextAlign.center,
             fontWeight: FontWeight.bold,
           ),
-          const Icon(
-            CupertinoIcons.info_circle,
-            size: 40,
-            color: Colors.teal,
-          ),
           const SizedBox(height: 20),
           const TextView(
-            text: 'Bienvenido a la Aplicación para Acuarios',
+            text: 'Bienvenido a la Aplicación para Acuarios!',
             fontWeight: FontWeight.w900,
             fontSize: 20,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
+          const Icon(
+            CupertinoIcons.info_circle,
+            size: 50,
+            color: Colors.teal,
+          ),
+          const SizedBox(height: 15),
           const TextView(
             text:
                 'Esta aplicación está diseñada para los amantes de los acuarios, ya sean principiantes o expertos en acuarismo. Aquí encontrarás herramientas útiles, información sobre peces, consejos de cuidado y mucho más.',

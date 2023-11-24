@@ -80,7 +80,18 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
                     CupertinoIcons.text_bubble,
                     color: Colors.black,
                   ),
-                  TextView(text: '${widget.pez.comments!.length} comments'),
+                  const SizedBox(width: 3.5),
+                  widget.pez.comments!.length > 1
+                      ? TextView(
+                          text: '${widget.pez.comments!.length} comments',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        )
+                      : TextView(
+                          text: '${widget.pez.comments!.length} comment',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
                 ],
               ),
               const SizedBox(width: 10),
@@ -209,7 +220,7 @@ class _PezDetailsModalViewState extends State<PezDetailsModalView> {
         TextView(
           text: widget.pez.name,
           color: Colors.black,
-          fontSize: 18,
+          fontSize: 20,
           fontWeight: FontWeight.w900,
         ),
         const SizedBox(height: 10),

@@ -38,7 +38,8 @@ class _HomeViewState extends State<HomeView> {
               const SizedBox(height: 15),
               CustomCard(
                 title: 'Actividades de explorador',
-                subtitle: 'consulta aqui las actividades de explorades',
+                subtitle:
+                    'Consulta aquí las actividades de explorades y obten descuentos',
                 icon: Icons.explore,
                 iconColor: Colors.orange,
                 iconBackgoundColor: const Color.fromARGB(255, 255, 220, 168),
@@ -71,8 +72,8 @@ class _HomeViewState extends State<HomeView> {
               const SizedBox(height: 5),
               CustomCard(
                 title: 'Album de campo',
-                subtitle: 'consulta aqui Album de campo',
-                iconBackgoundColor: Color.fromARGB(255, 176, 219, 255),
+                subtitle: 'Consulta aquí Album de campo',
+                iconBackgoundColor: const Color.fromARGB(255, 176, 219, 255),
                 iconColor: Colors.blue,
                 icon: Icons.photo_library,
                 onTap: () => GoRouter.of(context).go(

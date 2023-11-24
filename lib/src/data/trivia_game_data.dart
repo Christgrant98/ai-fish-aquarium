@@ -7,10 +7,10 @@ class TriviaGameData {
       question:
           '¿En qué tipo de hábitat acuático se encuentra comúnmente la anguila?',
       answers: {
-        1: 'Océano Atlántico',
-        2: 'Agua salada de mar',
-        3: 'Ríos y lagos de agua dulce (Correcta)',
-        4: 'Estuarios de agua salobre',
+        0: 'Océano Atlántico',
+        1: 'Agua salada de mar',
+        2: 'Ríos y lagos de agua dulce (Correcta)',
+        3: 'Estuarios de agua salobre',
       },
       imagePath: 'assets/carousel/electric_eel.jpg',
       points: 1000,
@@ -20,10 +20,10 @@ class TriviaGameData {
       question:
           '¿Dónde suele encontrarse el sabalote, un pez de gran tamaño y cuerpo plateado?',
       answers: {
-        1: 'Aguas dulces de lagos y embalses',
-        2: 'Estuarios y desembocaduras de ríos (Correcta)',
-        3: 'Fondo del océano en aguas profundas',
-        4: 'Arrecifes de coral en aguas saladas',
+        0: 'Aguas dulces de lagos y embalses',
+        1: 'Estuarios y desembocaduras de ríos (Correcta)',
+        2: 'Fondo del océano en aguas profundas',
+        3: 'Arrecifes de coral en aguas saladas',
       },
       imagePath: 'assets/carousel/mexican_cavefish.jpg',
       points: 1000,
@@ -33,10 +33,10 @@ class TriviaGameData {
       question:
           '¿Cuál es la edad máxima que puede alcanzar un pez dorado (Carassius auratus) en condiciones ideales de cuidado?',
       answers: {
-        1: '5 años',
-        2: '15 años',
-        3: '25 años (Correcta)',
-        4: '40 años',
+        0: '5 años',
+        1: '15 años',
+        2: '25 años (Correcta)',
+        3: '40 años',
       },
       imagePath: 'assets/carousel/gold_barb.jpg',
       points: 1000,
@@ -46,10 +46,10 @@ class TriviaGameData {
       question:
           '¿Cuál es una característica distintiva de la perca europea (Perca fluviatilis) en cuanto a su comportamiento alimenticio?',
       answers: {
-        1: 'Es exclusivamente herbívora',
-        2: 'Prefiere alimentarse en aguas profundas',
-        3: 'Es carnívora y se alimenta de otros peces (Correcta)',
-        4: 'Se alimenta principalmente de algas marinas',
+        0: 'Es exclusivamente herbívora',
+        1: 'Prefiere alimentarse en aguas profundas',
+        2: 'Es carnívora y se alimenta de otros peces (Correcta)',
+        3: 'Se alimenta principalmente de algas marinas',
       },
       imagePath: 'assets/carousel/machaca.jpg',
       points: 1000,
@@ -59,10 +59,10 @@ class TriviaGameData {
       question:
           '¿Cuál es una característica distintiva del plecostoma rayado (Pterygoplichthys gibbiceps), también conocido como "pleco", en relación con su dieta?',
       answers: {
-        1: 'Se alimenta principalmente de plantas acuáticas',
-        2: 'Es exclusivamente carnívoro',
-        3: 'Es omnívoro y consume algas y restos orgánicos (Correcta)',
-        4: 'Prefiere alimentarse de insectos acuáticos',
+        0: 'Se alimenta principalmente de plantas acuáticas',
+        1: 'Es exclusivamente carnívoro',
+        2: 'Es omnívoro y consume algas y restos orgánicos (Correcta)',
+        3: 'Prefiere alimentarse de insectos acuáticos',
       },
       imagePath: 'assets/carousel/characidum.jpg',
       points: 1000,

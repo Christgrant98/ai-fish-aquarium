@@ -11,20 +11,26 @@ class TriviaGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Layout(
+    return Layout(
       // hasBottomNavigationBar: true,
-      body: Column(
-        children: [
-          SizedBox(height: 35),
-          TextView(
-            text: 'Trivia',
-            fontSize: 35,
-            fontWeight: FontWeight.w900,
-            color: Colors.black,
-          ),
-          SizedBox(height: 35),
-          TriviaView(),
-        ],
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height * .9,
+        child: const Column(
+          children: [
+            SizedBox(height: 35),
+            TextView(
+              text: 'Trivia',
+              fontSize: 35,
+              fontWeight: FontWeight.w900,
+              color: Colors.black,
+            ),
+            Spacer(),
+            Center(
+              child: TriviaView(),
+            ),
+            Spacer(),
+          ],
+        ),
       ),
     );
   }

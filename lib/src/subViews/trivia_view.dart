@@ -142,18 +142,15 @@ class _TriviaViewState extends State<TriviaView> {
           onPressed: () => showDialog(
             context: context,
             builder: (context) {
-              return const BaseModal(
+              return BaseModal(
                 heightFactor: .9,
-                widthFactor: .92,
-                content: Column(
-                  children: [
-                    TextView(
-                      text: 'Estos son tus resultados',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                content: SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * .6,
+                    child: _buildTiviaGameComponent(
+                      showPic: false,
                     ),
-                  ],
+                  ),
                 ),
               );
             },
@@ -186,21 +183,6 @@ class _TriviaViewState extends State<TriviaView> {
           ),
           child: Column(
             children: [
-              TextView(
-                text: 'Pregunta #${(indexQuestion + 1).toString()}',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              const SizedBox(height: 5),
-              Image.asset(questionsData.questions[indexQuestion].imagePath),
-              const SizedBox(height: 10),
-              TextView(
-                text: questionsData.questions[indexQuestion].question,
-                fontWeight: FontWeight.bold,
-                textAlign: TextAlign.center,
-                fontSize: 14,
-              ),
-              const SizedBox(height: 5),
               Expanded(
                 child: _buildTiviaGameComponent(),
               ),
@@ -233,42 +215,65 @@ class _TriviaViewState extends State<TriviaView> {
     );
   }
 
-  Widget _buildTiviaGameComponent() {
-    return ListView.builder(
-      itemCount: questionsData.questions[indexQuestion].answers.length,
-      itemBuilder: (context, answerIndex) {
-        final answer =
-            questionsData.questions[indexQuestion].answers[answerIndex];
+  Widget _buildTiviaGameComponent({bool showPic = true}) {
+    return Column(
+      children: [
+        TextView(
+          text: 'Pregunta #${(indexQuestion + 1).toString()}',
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+        const SizedBox(height: 5),
+        showPic == true
+            ? Image.asset(questionsData.questions[indexQuestion].imagePath)
+            : Container(),
+        const SizedBox(height: 10),
+        TextView(
+          text: questionsData.questions[indexQuestion].question,
+          fontWeight: FontWeight.bold,
+          textAlign: TextAlign.center,
+          fontSize: 14,
+        ),
+        const SizedBox(height: 5),
+        Expanded(
+          child: ListView.builder(
+            itemCount: questionsData.questions[indexQuestion].answers.length,
+            itemBuilder: (context, answerIndex) {
+              final answer =
+                  questionsData.questions[indexQuestion].answers[answerIndex];
 
-        return Card(
-          shape: RoundedRectangleBorder(
-            side: const BorderSide(
-              color: Colors.transparent,
-              width: 0.1,
-            ),
-            borderRadius: BorderRadius.circular(20),
+              return Card(
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(
+                    color: Colors.transparent,
+                    width: 0.1,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                elevation: 2,
+                color: selectedAnswerIndex == answerIndex
+                    ? Colors.greenAccent
+                    : const Color.fromARGB(255, 240, 240, 240),
+                child: SizedBox(
+                  height: 50,
+                  child: ListTile(
+                    title: TextView(
+                      text: answer.toString(),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        selectedAnswerIndex = answerIndex;
+                      });
+                    },
+                  ),
+                ),
+              );
+            },
           ),
-          elevation: 2,
-          color: selectedAnswerIndex == answerIndex
-              ? Colors.greenAccent
-              : const Color.fromARGB(255, 240, 240, 240),
-          child: SizedBox(
-            height: 50,
-            child: ListTile(
-              title: TextView(
-                text: answer.toString(),
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-              onTap: () {
-                setState(() {
-                  selectedAnswerIndex = answerIndex;
-                });
-              },
-            ),
-          ),
-        );
-      },
+        ),
+      ],
     );
   }
 

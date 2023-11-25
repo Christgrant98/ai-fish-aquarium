@@ -29,19 +29,26 @@ class _AlbumViewState extends State<AlbumView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 40),
-              const TextView(
-                text: 'Album',
-                fontSize: 25,
-                fontWeight: FontWeight.w900,
-                color: Colors.black,
-                textAlign: TextAlign.center,
-              ),
-              const TextView(
-                text:
-                    'Explora las fotos que has tomado de tus encuentros submarinos',
-                fontSize: 16,
-                color: Colors.white,
-                textAlign: TextAlign.center,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .9,
+                child: Column(
+                  children: [
+                    const TextView(
+                      text: 'Album',
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      textAlign: TextAlign.center,
+                    ),
+                    const TextView(
+                      text:
+                          'Explora las fotos que has tomado de tus encuentros submarinos',
+                      fontSize: 16,
+                      color: Colors.white,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 40),
               Expanded(

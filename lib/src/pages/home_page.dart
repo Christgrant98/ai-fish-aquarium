@@ -23,14 +23,11 @@ class HomePage extends StatelessWidget {
                   child: _buildHeaderTitle(),
                 ),
                 const SizedBox(height: 30),
-                CircleAvatar(
-                    backgroundColor: Colors.teal,
-                    radius: 175,
-                    child: Image.asset(
-                      'assets/fish_home.png',
-                      height: 250,
-                      width: 250,
-                    )),
+                Image.asset(
+                  'assets/zooCali.png',
+                  height: 300,
+                  width: 300,
+                ),
                 const SizedBox(height: 30),
                 CustomButton(
                   onPressed: () => context.go("/login"),

@@ -7,9 +7,11 @@ import 'package:login_flutter/src/models/peces_model.dart';
 import 'package:login_flutter/src/providers/carousel_provider.dart';
 import 'package:login_flutter/src/subViews/explorer_view.dart';
 import 'package:login_flutter/src/utils/widgets/base_modal.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../subViews/about_us_view.dart';
 import '../utils/widgets/card_carousel_image.dart';
+import '../utils/widgets/custom_button.dart';
 import '../utils/widgets/custom_card.dart';
 import '../utils/widgets/custom_progress_indicator.dart';
 import '../utils/widgets/layout.dart';
@@ -22,6 +24,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final urlToZoo = 'https://www.zoologicodecali.com.co/quienes-somos';
   @override
   Widget build(BuildContext context) {
     return Layout(
@@ -105,7 +108,7 @@ class _HomeViewState extends State<HomeView> {
                     context: context,
                     builder: (context) {
                       return const BaseModal(
-                        heightFactor: .55,
+                        heightFactor: .65,
                         widthFactor: .9,
                         content: AboutUsView(),
                       );
@@ -114,11 +117,31 @@ class _HomeViewState extends State<HomeView> {
                 },
               ),
               const SizedBox(height: 20),
+              CustomButton(
+                text: 'Launch to zoo page bttn',
+                onPressed: () async {
+                  await _browserLauncherUrl(urlToZoo);
+                },
+              ),
             ]),
           ),
         ),
       ),
     );
+  }
+}
+
+Future<void> _browserLauncherUrl(String urlToLaunch) async {
+  final urlx = Uri.parse(
+    urlToLaunch,
+  );
+  if (await canLaunchUrl(urlx)) {
+    launchUrl(
+      urlx,
+      mode: LaunchMode.externalApplication,
+    );
+  } else {
+    print("Can't launch $urlx");
   }
 }
 

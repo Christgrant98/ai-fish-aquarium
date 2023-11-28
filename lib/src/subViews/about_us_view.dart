@@ -52,7 +52,7 @@ class _AboutUsViewState extends State<AboutUsView> {
             ),
             const SizedBox(height: 15),
             CustomButton(
-              text: 'Launch to zoo page bttn',
+              text: 'Conoce mas sobre nosotros',
               onPressed: () async {
                 await _browserLauncherUrl();
               },
